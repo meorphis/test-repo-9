@@ -39,8 +39,8 @@ classifiers = [
 
 
 [project.urls]
-Homepage = "https://github.com/meorphis-test/test-repo-4"
-Repository = "https://github.com/meorphis-test/test-repo-4"
+Homepage = "https://github.com/stainless-sdks/-python"
+Repository = "https://github.com/stainless-sdks/-python"
 
 
 
