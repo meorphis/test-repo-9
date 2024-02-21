@@ -2,15 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Literal
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["AccountUpdateParams", "VerificationAddress"]
+
 
 class AccountUpdateParams(TypedDict, total=False):
     daily_spend_limit: int
@@ -44,6 +39,7 @@ class AccountUpdateParams(TypedDict, total=False):
     Address used during Address Verification Service (AVS) checks during
     transactions if enabled via Auth Rules.
     """
+
 
 class VerificationAddress(TypedDict, total=False):
     address1: str

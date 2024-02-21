@@ -7,7 +7,8 @@ import asyncio
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-  from ._client import AsyncMeorphisTest7, MeorphisTest7
+    from ._client import MeorphisTest7, AsyncMeorphisTest7
+
 
 class SyncAPIResource:
     _client: MeorphisTest7
@@ -22,7 +23,8 @@ class SyncAPIResource:
         self._get_api_list = client.get_api_list
 
     def _sleep(self, seconds: float) -> None:
-      time.sleep(seconds)
+        time.sleep(seconds)
+
 
 class AsyncAPIResource:
     _client: AsyncMeorphisTest7
@@ -37,4 +39,4 @@ class AsyncAPIResource:
         self._get_api_list = client.get_api_list
 
     async def _sleep(self, seconds: float) -> None:
-      await asyncio.sleep(seconds)
+        await asyncio.sleep(seconds)

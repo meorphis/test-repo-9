@@ -1,6 +1,6 @@
 # Meorphis Test 7 Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/.svg)](https://pypi.org/project//)
+[![PyPI version](https://img.shields.io/pypi/v/meorphis-python.svg)](https://pypi.org/project/meorphis-python/)
 
 The Meorphis Test 7 Python library provides convenient access to the Meorphis Test 7 REST API from any Python 3.7+
 application. The library includes type definitions for all request params and response fields,
@@ -8,12 +8,12 @@ and offers both synchronous and asynchronous clients powered by [httpx](https://
 
 ## Documentation
 
-The REST API documentation can be found [on docs.meorphis-test-10.com](https://docs.meorphis-test-10.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on docs.meorphis-test-11.com](https://docs.meorphis-test-11.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-pip install --pre
+pip install --pre meorphis-python
 ```
 
 ## Usage
@@ -56,9 +56,11 @@ client = AsyncMeorphisTest7(
     environment="environment_1",
 )
 
+
 async def main() -> None:
-  status_retrieve_response = await client.status.retrieve()
-  print(status_retrieve_response.message)
+    status_retrieve_response = await client.status.retrieve()
+    print(status_retrieve_response.message)
+
 
 asyncio.run(main())
 ```
@@ -93,7 +95,7 @@ try:
     client.status.retrieve()
 except meorphis_test_7.APIConnectionError as e:
     print("The server could not be reached")
-    print(e.__cause__) # an underlying Exception, likely raised within httpx.
+    print(e.__cause__)  # an underlying Exception, likely raised within httpx.
 except meorphis_test_7.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
 except meorphis_test_7.APIStatusError as e:
@@ -133,7 +135,7 @@ client = MeorphisTest7(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries = 5).status.retrieve()
+client.with_options(max_retries=5).status.retrieve()
 ```
 
 ### Timeouts
@@ -156,7 +158,7 @@ client = MeorphisTest7(
 )
 
 # Override per-request:
-client.with_options(timeout = 5 * 1000).status.retrieve()
+client.with_options(timeout=5 * 1000).status.retrieve()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -202,9 +204,9 @@ status = response.parse()  # get the object that `status.retrieve()` would have 
 print(status.message)
 ```
 
-These methods return an [`APIResponse`](https://github.com/meorphis-test/test-repo-4/tree/main/src/meorphis_test_7/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/meorphis-test/test-repo-4/tree/stainless/src/meorphis_test_7/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/meorphis-test/test-repo-4/tree/main/src/meorphis_test_7/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/meorphis-test/test-repo-4/tree/stainless/src/meorphis_test_7/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -213,11 +215,11 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.status.with_streaming_response.retrieve() as response :
-    print(response.headers.get('X-My-Header'))
+with client.status.with_streaming_response.retrieve() as response:
+    print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
-      print(line)
+        print(line)
 ```
 
 The context manager is required so that the response will reliably be closed.
@@ -237,7 +239,10 @@ from meorphis_test_7 import MeorphisTest7
 client = MeorphisTest7(
     # Or use the `MEORPHIS_TEST_7_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
-    http_client=httpx.Client(proxies="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),
+    http_client=httpx.Client(
+        proxies="http://my.test.proxy.example.com",
+        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
+    ),
 )
 ```
 

@@ -2,32 +2,41 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
-from .financial_transactions import FinancialTransactions, AsyncFinancialTransactions
-
+from ...types import (
+    Card,
+    CardProvisionResponse,
+    card_create_params,
+    card_update_params,
+    card_provision_params,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
-from ...types import Card, CardProvisionResponse, card_create_params
-
-from typing_extensions import Literal
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import SyncAPIClient, AsyncAPIClient, _merge_mappings, AsyncPaginator, make_request_options, HttpxBinaryResponseContent
-from ...types import shared_params
-from ...types import card_create_params
-from ...types import card_update_params
-from ...types import card_provision_params
-from .financial_transactions import FinancialTransactions, AsyncFinancialTransactions, FinancialTransactionsWithRawResponse, AsyncFinancialTransactionsWithRawResponse, FinancialTransactionsWithStreamingResponse, AsyncFinancialTransactionsWithStreamingResponse
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._base_client import (
+    make_request_options,
+)
+from .financial_transactions import (
+    FinancialTransactions,
+    AsyncFinancialTransactions,
+    FinancialTransactionsWithRawResponse,
+    AsyncFinancialTransactionsWithRawResponse,
+    FinancialTransactionsWithStreamingResponse,
+    AsyncFinancialTransactionsWithStreamingResponse,
+)
 
 __all__ = ["Cards", "AsyncCards"]
+
 
 class Cards(SyncAPIResource):
     @cached_property
@@ -42,36 +51,39 @@ class Cards(SyncAPIResource):
     def with_streaming_response(self) -> CardsWithStreamingResponse:
         return CardsWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    type: Literal["VIRTUAL", "PHYSICAL", "MERCHANT_LOCKED", "SINGLE_USE"],
-    account_token: str | NotGiven = NOT_GIVEN,
-    card_program_token: str | NotGiven = NOT_GIVEN,
-    carrier: card_create_params.Carrier | NotGiven = NOT_GIVEN,
-    digital_card_art_token: str | NotGiven = NOT_GIVEN,
-    exp_month: str | NotGiven = NOT_GIVEN,
-    exp_year: str | NotGiven = NOT_GIVEN,
-    memo: str | NotGiven = NOT_GIVEN,
-    pin: str | NotGiven = NOT_GIVEN,
-    product_id: str | NotGiven = NOT_GIVEN,
-    shipping_address: card_create_params.ShippingAddress | NotGiven = NOT_GIVEN,
-    shipping_method: Literal["STANDARD", "STANDARD_WITH_TRACKING", "PRIORITY", "EXPRESS", "2_DAY", "EXPEDITED"] | NotGiven = NOT_GIVEN,
-    spend_limit: int | NotGiven = NOT_GIVEN,
-    spend_limit_duration: Literal["ANNUALLY", "FOREVER", "MONTHLY", "TRANSACTION"] | NotGiven = NOT_GIVEN,
-    state: Literal["OPEN", "PAUSED"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Card:
+    def create(
+        self,
+        *,
+        type: Literal["VIRTUAL", "PHYSICAL", "MERCHANT_LOCKED", "SINGLE_USE"],
+        account_token: str | NotGiven = NOT_GIVEN,
+        card_program_token: str | NotGiven = NOT_GIVEN,
+        carrier: card_create_params.Carrier | NotGiven = NOT_GIVEN,
+        digital_card_art_token: str | NotGiven = NOT_GIVEN,
+        exp_month: str | NotGiven = NOT_GIVEN,
+        exp_year: str | NotGiven = NOT_GIVEN,
+        memo: str | NotGiven = NOT_GIVEN,
+        pin: str | NotGiven = NOT_GIVEN,
+        product_id: str | NotGiven = NOT_GIVEN,
+        shipping_address: card_create_params.ShippingAddress | NotGiven = NOT_GIVEN,
+        shipping_method: Literal["STANDARD", "STANDARD_WITH_TRACKING", "PRIORITY", "EXPRESS", "2_DAY", "EXPEDITED"]
+        | NotGiven = NOT_GIVEN,
+        spend_limit: int | NotGiven = NOT_GIVEN,
+        spend_limit_duration: Literal["ANNUALLY", "FOREVER", "MONTHLY", "TRANSACTION"] | NotGiven = NOT_GIVEN,
+        state: Literal["OPEN", "PAUSED"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Card:
         """Create a new virtual or physical card.
 
         Parameters `pin`, `shipping_address`, and
         `product_id` only apply to physical cards.
 
         Args:
-          type: 
+          type:
               Card types:
 
               - `VIRTUAL` - Card will authorize at any merchant and can be added to a digital
@@ -138,7 +150,7 @@ class Cards(SyncAPIResource):
               1 or above will result in declined transactions due to checks against the card
               limit.
 
-          spend_limit_duration: 
+          spend_limit_duration:
               Spend limit duration values:
 
               - `ANNUALLY` - Card will authorize transactions up to spend limit in a calendar
@@ -150,7 +162,7 @@ class Cards(SyncAPIResource):
               - `TRANSACTION` - Card will authorize multiple transactions if each individual
                 transaction is under the spend limit.
 
-          state: 
+          state:
               Card state values:
 
               - `OPEN` - Card will approve authorizations (if they match card and account
@@ -168,36 +180,43 @@ class Cards(SyncAPIResource):
         """
         return self._post(
             "/cards",
-            body=maybe_transform({
-                "type": type,
-                "account_token": account_token,
-                "card_program_token": card_program_token,
-                "carrier": carrier,
-                "digital_card_art_token": digital_card_art_token,
-                "exp_month": exp_month,
-                "exp_year": exp_year,
-                "memo": memo,
-                "pin": pin,
-                "product_id": product_id,
-                "shipping_address": shipping_address,
-                "shipping_method": shipping_method,
-                "spend_limit": spend_limit,
-                "spend_limit_duration": spend_limit_duration,
-                "state": state,
-            }, card_create_params.CardCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=maybe_transform(
+                {
+                    "type": type,
+                    "account_token": account_token,
+                    "card_program_token": card_program_token,
+                    "carrier": carrier,
+                    "digital_card_art_token": digital_card_art_token,
+                    "exp_month": exp_month,
+                    "exp_year": exp_year,
+                    "memo": memo,
+                    "pin": pin,
+                    "product_id": product_id,
+                    "shipping_address": shipping_address,
+                    "shipping_method": shipping_method,
+                    "spend_limit": spend_limit,
+                    "spend_limit_duration": spend_limit_duration,
+                    "state": state,
+                },
+                card_create_params.CardCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=Card,
         )
 
-    def retrieve(self,
-    card_token: str,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Card:
+    def retrieve(
+        self,
+        card_token: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Card:
         """
         Get card configuration such as spend limit and state.
 
@@ -211,31 +230,33 @@ class Cards(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not card_token:
-          raise ValueError(
-            f'Expected a non-empty value for `card_token` but received {card_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `card_token` but received {card_token!r}")
         return self._get(
             f"/cards/{card_token}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=Card,
         )
 
-    def update(self,
-    card_token: str,
-    *,
-    auth_rule_token: str | NotGiven = NOT_GIVEN,
-    digital_card_art_token: str | NotGiven = NOT_GIVEN,
-    memo: str | NotGiven = NOT_GIVEN,
-    pin: str | NotGiven = NOT_GIVEN,
-    spend_limit: int | NotGiven = NOT_GIVEN,
-    spend_limit_duration: Literal["ANNUALLY", "FOREVER", "MONTHLY", "TRANSACTION"] | NotGiven = NOT_GIVEN,
-    state: Literal["CLOSED", "OPEN", "PAUSED"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Card:
+    def update(
+        self,
+        card_token: str,
+        *,
+        auth_rule_token: str | NotGiven = NOT_GIVEN,
+        digital_card_art_token: str | NotGiven = NOT_GIVEN,
+        memo: str | NotGiven = NOT_GIVEN,
+        pin: str | NotGiven = NOT_GIVEN,
+        spend_limit: int | NotGiven = NOT_GIVEN,
+        spend_limit_duration: Literal["ANNUALLY", "FOREVER", "MONTHLY", "TRANSACTION"] | NotGiven = NOT_GIVEN,
+        state: Literal["CLOSED", "OPEN", "PAUSED"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Card:
         """Update the specified properties of the card.
 
         Unsupplied properties will remain
@@ -266,7 +287,7 @@ class Cards(SyncAPIResource):
               1 or above will result in declined transactions due to checks against the card
               limit.
 
-          spend_limit_duration: 
+          spend_limit_duration:
               Spend limit duration values:
 
               - `ANNUALLY` - Card will authorize transactions up to spend limit in a calendar
@@ -278,7 +299,7 @@ class Cards(SyncAPIResource):
               - `TRANSACTION` - Card will authorize multiple transactions if each individual
                 transaction is under the spend limit.
 
-          state: 
+          state:
               Card state values:
 
               - `CLOSED` - Card will no longer approve authorizations. Closing a card cannot
@@ -297,37 +318,42 @@ class Cards(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not card_token:
-          raise ValueError(
-            f'Expected a non-empty value for `card_token` but received {card_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `card_token` but received {card_token!r}")
         return self._patch(
             f"/cards/{card_token}",
-            body=maybe_transform({
-                "auth_rule_token": auth_rule_token,
-                "digital_card_art_token": digital_card_art_token,
-                "memo": memo,
-                "pin": pin,
-                "spend_limit": spend_limit,
-                "spend_limit_duration": spend_limit_duration,
-                "state": state,
-            }, card_update_params.CardUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=maybe_transform(
+                {
+                    "auth_rule_token": auth_rule_token,
+                    "digital_card_art_token": digital_card_art_token,
+                    "memo": memo,
+                    "pin": pin,
+                    "spend_limit": spend_limit,
+                    "spend_limit_duration": spend_limit_duration,
+                    "state": state,
+                },
+                card_update_params.CardUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=Card,
         )
 
-    def provision(self,
-    card_token: str,
-    *,
-    certificate: str | NotGiven = NOT_GIVEN,
-    digital_wallet: Literal["APPLE_PAY", "GOOGLE_PAY", "SAMSUNG_PAY"] | NotGiven = NOT_GIVEN,
-    nonce: str | NotGiven = NOT_GIVEN,
-    nonce_signature: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CardProvisionResponse:
+    def provision(
+        self,
+        card_token: str,
+        *,
+        certificate: str | NotGiven = NOT_GIVEN,
+        digital_wallet: Literal["APPLE_PAY", "GOOGLE_PAY", "SAMSUNG_PAY"] | NotGiven = NOT_GIVEN,
+        nonce: str | NotGiven = NOT_GIVEN,
+        nonce_signature: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CardProvisionResponse:
         """
         Allow your cardholders to directly add payment cards to the device's digital
         wallet (e.g. Apple Pay) with one touch from your app.
@@ -361,20 +387,24 @@ class Cards(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not card_token:
-          raise ValueError(
-            f'Expected a non-empty value for `card_token` but received {card_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `card_token` but received {card_token!r}")
         return self._post(
             f"/cards/{card_token}/provision",
-            body=maybe_transform({
-                "certificate": certificate,
-                "digital_wallet": digital_wallet,
-                "nonce": nonce,
-                "nonce_signature": nonce_signature,
-            }, card_provision_params.CardProvisionParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=maybe_transform(
+                {
+                    "certificate": certificate,
+                    "digital_wallet": digital_wallet,
+                    "nonce": nonce,
+                    "nonce_signature": nonce_signature,
+                },
+                card_provision_params.CardProvisionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=CardProvisionResponse,
         )
+
 
 class AsyncCards(AsyncAPIResource):
     @cached_property
@@ -389,36 +419,39 @@ class AsyncCards(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCardsWithStreamingResponse:
         return AsyncCardsWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    type: Literal["VIRTUAL", "PHYSICAL", "MERCHANT_LOCKED", "SINGLE_USE"],
-    account_token: str | NotGiven = NOT_GIVEN,
-    card_program_token: str | NotGiven = NOT_GIVEN,
-    carrier: card_create_params.Carrier | NotGiven = NOT_GIVEN,
-    digital_card_art_token: str | NotGiven = NOT_GIVEN,
-    exp_month: str | NotGiven = NOT_GIVEN,
-    exp_year: str | NotGiven = NOT_GIVEN,
-    memo: str | NotGiven = NOT_GIVEN,
-    pin: str | NotGiven = NOT_GIVEN,
-    product_id: str | NotGiven = NOT_GIVEN,
-    shipping_address: card_create_params.ShippingAddress | NotGiven = NOT_GIVEN,
-    shipping_method: Literal["STANDARD", "STANDARD_WITH_TRACKING", "PRIORITY", "EXPRESS", "2_DAY", "EXPEDITED"] | NotGiven = NOT_GIVEN,
-    spend_limit: int | NotGiven = NOT_GIVEN,
-    spend_limit_duration: Literal["ANNUALLY", "FOREVER", "MONTHLY", "TRANSACTION"] | NotGiven = NOT_GIVEN,
-    state: Literal["OPEN", "PAUSED"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Card:
+    async def create(
+        self,
+        *,
+        type: Literal["VIRTUAL", "PHYSICAL", "MERCHANT_LOCKED", "SINGLE_USE"],
+        account_token: str | NotGiven = NOT_GIVEN,
+        card_program_token: str | NotGiven = NOT_GIVEN,
+        carrier: card_create_params.Carrier | NotGiven = NOT_GIVEN,
+        digital_card_art_token: str | NotGiven = NOT_GIVEN,
+        exp_month: str | NotGiven = NOT_GIVEN,
+        exp_year: str | NotGiven = NOT_GIVEN,
+        memo: str | NotGiven = NOT_GIVEN,
+        pin: str | NotGiven = NOT_GIVEN,
+        product_id: str | NotGiven = NOT_GIVEN,
+        shipping_address: card_create_params.ShippingAddress | NotGiven = NOT_GIVEN,
+        shipping_method: Literal["STANDARD", "STANDARD_WITH_TRACKING", "PRIORITY", "EXPRESS", "2_DAY", "EXPEDITED"]
+        | NotGiven = NOT_GIVEN,
+        spend_limit: int | NotGiven = NOT_GIVEN,
+        spend_limit_duration: Literal["ANNUALLY", "FOREVER", "MONTHLY", "TRANSACTION"] | NotGiven = NOT_GIVEN,
+        state: Literal["OPEN", "PAUSED"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Card:
         """Create a new virtual or physical card.
 
         Parameters `pin`, `shipping_address`, and
         `product_id` only apply to physical cards.
 
         Args:
-          type: 
+          type:
               Card types:
 
               - `VIRTUAL` - Card will authorize at any merchant and can be added to a digital
@@ -485,7 +518,7 @@ class AsyncCards(AsyncAPIResource):
               1 or above will result in declined transactions due to checks against the card
               limit.
 
-          spend_limit_duration: 
+          spend_limit_duration:
               Spend limit duration values:
 
               - `ANNUALLY` - Card will authorize transactions up to spend limit in a calendar
@@ -497,7 +530,7 @@ class AsyncCards(AsyncAPIResource):
               - `TRANSACTION` - Card will authorize multiple transactions if each individual
                 transaction is under the spend limit.
 
-          state: 
+          state:
               Card state values:
 
               - `OPEN` - Card will approve authorizations (if they match card and account
@@ -515,36 +548,43 @@ class AsyncCards(AsyncAPIResource):
         """
         return await self._post(
             "/cards",
-            body=maybe_transform({
-                "type": type,
-                "account_token": account_token,
-                "card_program_token": card_program_token,
-                "carrier": carrier,
-                "digital_card_art_token": digital_card_art_token,
-                "exp_month": exp_month,
-                "exp_year": exp_year,
-                "memo": memo,
-                "pin": pin,
-                "product_id": product_id,
-                "shipping_address": shipping_address,
-                "shipping_method": shipping_method,
-                "spend_limit": spend_limit,
-                "spend_limit_duration": spend_limit_duration,
-                "state": state,
-            }, card_create_params.CardCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=maybe_transform(
+                {
+                    "type": type,
+                    "account_token": account_token,
+                    "card_program_token": card_program_token,
+                    "carrier": carrier,
+                    "digital_card_art_token": digital_card_art_token,
+                    "exp_month": exp_month,
+                    "exp_year": exp_year,
+                    "memo": memo,
+                    "pin": pin,
+                    "product_id": product_id,
+                    "shipping_address": shipping_address,
+                    "shipping_method": shipping_method,
+                    "spend_limit": spend_limit,
+                    "spend_limit_duration": spend_limit_duration,
+                    "state": state,
+                },
+                card_create_params.CardCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=Card,
         )
 
-    async def retrieve(self,
-    card_token: str,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Card:
+    async def retrieve(
+        self,
+        card_token: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Card:
         """
         Get card configuration such as spend limit and state.
 
@@ -558,31 +598,33 @@ class AsyncCards(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not card_token:
-          raise ValueError(
-            f'Expected a non-empty value for `card_token` but received {card_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `card_token` but received {card_token!r}")
         return await self._get(
             f"/cards/{card_token}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=Card,
         )
 
-    async def update(self,
-    card_token: str,
-    *,
-    auth_rule_token: str | NotGiven = NOT_GIVEN,
-    digital_card_art_token: str | NotGiven = NOT_GIVEN,
-    memo: str | NotGiven = NOT_GIVEN,
-    pin: str | NotGiven = NOT_GIVEN,
-    spend_limit: int | NotGiven = NOT_GIVEN,
-    spend_limit_duration: Literal["ANNUALLY", "FOREVER", "MONTHLY", "TRANSACTION"] | NotGiven = NOT_GIVEN,
-    state: Literal["CLOSED", "OPEN", "PAUSED"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Card:
+    async def update(
+        self,
+        card_token: str,
+        *,
+        auth_rule_token: str | NotGiven = NOT_GIVEN,
+        digital_card_art_token: str | NotGiven = NOT_GIVEN,
+        memo: str | NotGiven = NOT_GIVEN,
+        pin: str | NotGiven = NOT_GIVEN,
+        spend_limit: int | NotGiven = NOT_GIVEN,
+        spend_limit_duration: Literal["ANNUALLY", "FOREVER", "MONTHLY", "TRANSACTION"] | NotGiven = NOT_GIVEN,
+        state: Literal["CLOSED", "OPEN", "PAUSED"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Card:
         """Update the specified properties of the card.
 
         Unsupplied properties will remain
@@ -613,7 +655,7 @@ class AsyncCards(AsyncAPIResource):
               1 or above will result in declined transactions due to checks against the card
               limit.
 
-          spend_limit_duration: 
+          spend_limit_duration:
               Spend limit duration values:
 
               - `ANNUALLY` - Card will authorize transactions up to spend limit in a calendar
@@ -625,7 +667,7 @@ class AsyncCards(AsyncAPIResource):
               - `TRANSACTION` - Card will authorize multiple transactions if each individual
                 transaction is under the spend limit.
 
-          state: 
+          state:
               Card state values:
 
               - `CLOSED` - Card will no longer approve authorizations. Closing a card cannot
@@ -644,37 +686,42 @@ class AsyncCards(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not card_token:
-          raise ValueError(
-            f'Expected a non-empty value for `card_token` but received {card_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `card_token` but received {card_token!r}")
         return await self._patch(
             f"/cards/{card_token}",
-            body=maybe_transform({
-                "auth_rule_token": auth_rule_token,
-                "digital_card_art_token": digital_card_art_token,
-                "memo": memo,
-                "pin": pin,
-                "spend_limit": spend_limit,
-                "spend_limit_duration": spend_limit_duration,
-                "state": state,
-            }, card_update_params.CardUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=maybe_transform(
+                {
+                    "auth_rule_token": auth_rule_token,
+                    "digital_card_art_token": digital_card_art_token,
+                    "memo": memo,
+                    "pin": pin,
+                    "spend_limit": spend_limit,
+                    "spend_limit_duration": spend_limit_duration,
+                    "state": state,
+                },
+                card_update_params.CardUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=Card,
         )
 
-    async def provision(self,
-    card_token: str,
-    *,
-    certificate: str | NotGiven = NOT_GIVEN,
-    digital_wallet: Literal["APPLE_PAY", "GOOGLE_PAY", "SAMSUNG_PAY"] | NotGiven = NOT_GIVEN,
-    nonce: str | NotGiven = NOT_GIVEN,
-    nonce_signature: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CardProvisionResponse:
+    async def provision(
+        self,
+        card_token: str,
+        *,
+        certificate: str | NotGiven = NOT_GIVEN,
+        digital_wallet: Literal["APPLE_PAY", "GOOGLE_PAY", "SAMSUNG_PAY"] | NotGiven = NOT_GIVEN,
+        nonce: str | NotGiven = NOT_GIVEN,
+        nonce_signature: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CardProvisionResponse:
         """
         Allow your cardholders to directly add payment cards to the device's digital
         wallet (e.g. Apple Pay) with one touch from your app.
@@ -708,20 +755,24 @@ class AsyncCards(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not card_token:
-          raise ValueError(
-            f'Expected a non-empty value for `card_token` but received {card_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `card_token` but received {card_token!r}")
         return await self._post(
             f"/cards/{card_token}/provision",
-            body=maybe_transform({
-                "certificate": certificate,
-                "digital_wallet": digital_wallet,
-                "nonce": nonce,
-                "nonce_signature": nonce_signature,
-            }, card_provision_params.CardProvisionParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=maybe_transform(
+                {
+                    "certificate": certificate,
+                    "digital_wallet": digital_wallet,
+                    "nonce": nonce,
+                    "nonce_signature": nonce_signature,
+                },
+                card_provision_params.CardProvisionParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=CardProvisionResponse,
         )
+
 
 class CardsWithRawResponse:
     def __init__(self, cards: Cards) -> None:
@@ -744,6 +795,7 @@ class CardsWithRawResponse:
     def financial_transactions(self) -> FinancialTransactionsWithRawResponse:
         return FinancialTransactionsWithRawResponse(self._cards.financial_transactions)
 
+
 class AsyncCardsWithRawResponse:
     def __init__(self, cards: AsyncCards) -> None:
         self._cards = cards
@@ -765,6 +817,7 @@ class AsyncCardsWithRawResponse:
     def financial_transactions(self) -> AsyncFinancialTransactionsWithRawResponse:
         return AsyncFinancialTransactionsWithRawResponse(self._cards.financial_transactions)
 
+
 class CardsWithStreamingResponse:
     def __init__(self, cards: Cards) -> None:
         self._cards = cards
@@ -785,6 +838,7 @@ class CardsWithStreamingResponse:
     @cached_property
     def financial_transactions(self) -> FinancialTransactionsWithStreamingResponse:
         return FinancialTransactionsWithStreamingResponse(self._cards.financial_transactions)
+
 
 class AsyncCardsWithStreamingResponse:
     def __init__(self, cards: AsyncCards) -> None:

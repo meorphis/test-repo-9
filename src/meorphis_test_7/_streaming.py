@@ -5,13 +5,11 @@ import json
 import inspect
 from types import TracebackType
 from typing import TYPE_CHECKING, Any, Generic, TypeVar, Iterator, AsyncIterator, cast
-from typing_extensions import Self, override, TypeGuard, get_origin
+from typing_extensions import Self, TypeGuard, override, get_origin
 
 import httpx
 
-from ._utils import is_mapping, is_dict, extract_type_var_from_base
-from ._exceptions import APIError
-from ._response import APIResponse, AsyncAPIResponse
+from ._utils import extract_type_var_from_base
 
 if TYPE_CHECKING:
     from ._client import MeorphisTest7, AsyncMeorphisTest7
@@ -46,19 +44,17 @@ class Stream(Generic[_T]):
             yield item
 
     def _iter_events(self) -> Iterator[ServerSentEvent]:
-        yield from self._decoder.iter(
-self.response.iter_lines()
-        )
+        yield from self._decoder.iter(self.response.iter_lines())
 
     def __stream__(self) -> Iterator[_T]:
         cast_to = cast(Any, self._cast_to)
         response = self.response
         process_data = self._client._process_response_data
         iterator = self._iter_events()
-        
+
         for sse in iterator:
             yield process_data(data=sse.json(), cast_to=cast_to, response=response)
-        
+
         # Ensure the entire stream is consumed
         for _sse in iterator:
             ...
@@ -109,9 +105,7 @@ class AsyncStream(Generic[_T]):
             yield item
 
     async def _iter_events(self) -> AsyncIterator[ServerSentEvent]:
-        async for sse in self._decoder.aiter(
-self.response.aiter_lines()
-        ):
+        async for sse in self._decoder.aiter(self.response.aiter_lines()):
             yield sse
 
     async def __stream__(self) -> AsyncIterator[_T]:
@@ -119,10 +113,10 @@ self.response.aiter_lines()
         response = self.response
         process_data = self._client._process_response_data
         iterator = self._iter_events()
-        
+
         async for sse in iterator:
             yield process_data(data=sse.json(), cast_to=cast_to, response=response)
-        
+
         # Ensure the entire stream is consumed
         async for _sse in iterator:
             ...
@@ -294,6 +288,3 @@ def extract_stream_chunk_type(
         generic_bases=cast("tuple[type, ...]", (Stream, AsyncStream)),
         failure_message=failure_message,
     )
-
-
-

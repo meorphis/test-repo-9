@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
-
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = ["FinancialTransaction", "Event"]
+
 
 class Event(BaseModel):
     token: Optional[str] = None
@@ -33,7 +28,32 @@ class Event(BaseModel):
     declined by user, Acme, or the network.
     """
 
-    type: Optional[Literal["ACH_INSUFFICIENT_FUNDS", "ACH_ORIGINATION_PENDING", "ACH_ORIGINATION_RELEASED", "ACH_RECEIPT_PENDING", "ACH_RECEIPT_RELEASED", "ACH_RETURN", "AUTHORIZATION", "AUTHORIZATION_ADVICE", "AUTHORIZATION_EXPIRY", "AUTHORIZATION_REVERSAL", "BALANCE_INQUIRY", "CLEARING", "CORRECTION_DEBIT", "CORRECTION_CREDIT", "CREDIT_AUTHORIZATION", "CREDIT_AUTHORIZATION_ADVICE", "FINANCIAL_AUTHORIZATION", "FINANCIAL_CREDIT_AUTHORIZATION", "RETURN", "RETURN_REVERSAL", "TRANSFER", "TRANSFER_INSUFFICIENT_FUNDS"]] = None
+    type: Optional[
+        Literal[
+            "ACH_INSUFFICIENT_FUNDS",
+            "ACH_ORIGINATION_PENDING",
+            "ACH_ORIGINATION_RELEASED",
+            "ACH_RECEIPT_PENDING",
+            "ACH_RECEIPT_RELEASED",
+            "ACH_RETURN",
+            "AUTHORIZATION",
+            "AUTHORIZATION_ADVICE",
+            "AUTHORIZATION_EXPIRY",
+            "AUTHORIZATION_REVERSAL",
+            "BALANCE_INQUIRY",
+            "CLEARING",
+            "CORRECTION_DEBIT",
+            "CORRECTION_CREDIT",
+            "CREDIT_AUTHORIZATION",
+            "CREDIT_AUTHORIZATION_ADVICE",
+            "FINANCIAL_AUTHORIZATION",
+            "FINANCIAL_CREDIT_AUTHORIZATION",
+            "RETURN",
+            "RETURN_REVERSAL",
+            "TRANSFER",
+            "TRANSFER_INSUFFICIENT_FUNDS",
+        ]
+    ] = None
     """Event types:
 
     - `ACH_INSUFFICIENT_FUNDS` - Attempted ACH origination declined due to
@@ -70,6 +90,7 @@ class Event(BaseModel):
     - `TRANSFER_INSUFFICIENT_FUNDS` - Declined internl transfer of funds due to
       insufficient balance of the sender.
     """
+
 
 class FinancialTransaction(BaseModel):
     token: str

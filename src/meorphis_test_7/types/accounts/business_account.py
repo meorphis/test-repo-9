@@ -2,13 +2,10 @@
 
 from typing import Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ..._models import BaseModel
-from ...types import shared
 
 __all__ = ["BusinessAccount", "CollectionsConfiguration"]
+
 
 class CollectionsConfiguration(BaseModel):
     billing_period: int
@@ -19,6 +16,7 @@ class CollectionsConfiguration(BaseModel):
 
     external_bank_account_token: Optional[str] = None
     """The external bank account token to use for auto-collections"""
+
 
 class BusinessAccount(BaseModel):
     token: str
