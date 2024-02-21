@@ -1,11 +1,10 @@
-# Meorphis Test 9 Y581b6 Node API Library
+# Meorphis Test 9 Y581b6 Node API Library!
 
 [![NPM version](https://img.shields.io/npm/v/meorphis-test-9-y581b6.svg)](https://npmjs.org/package/meorphis-test-9-y581b6)
 
 This library provides convenient access to the Meorphis Test 9 Y581b6 REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on docs.meorphis-test.com](https://docs.meorphis-test.com). The full API of this library can be found in [api.md](api.md).
-
+The REST API documentation can be found [on docs.meorphis-test-9.com](https://docs.meorphis-test-9.com). The full API of this library can be found in [api.md](api.md).
 ## Installation
 
 ```sh
