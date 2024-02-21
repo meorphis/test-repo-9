@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Meorphis Test 9 Y581b6 REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on docs.meorphis-test-9-y581b6.com](https://docs.meorphis-test-9-y581b6.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on docs.meorphis-test-9.com](https://docs.meorphis-test-9.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
