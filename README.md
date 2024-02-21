@@ -204,9 +204,9 @@ status = response.parse()  # get the object that `status.retrieve()` would have 
 print(status.message)
 ```
 
-These methods return an [`APIResponse`](https://github.com/meorphis-test/test-repo-4/tree/stainless/src/meorphis_test_7/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/meorphis-test/test-repo-4/tree/main/src/meorphis_test_7/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/meorphis-test/test-repo-4/tree/stainless/src/meorphis_test_7/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/meorphis-test/test-repo-4/tree/main/src/meorphis_test_7/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
