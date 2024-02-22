@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'meorphis-test-9-y581b6/core';
-import { Blob } from 'meorphis-test-9-y581b6/_shims/index';
-import { toFile } from 'meorphis-test-9-y581b6';
+import { multipartFormRequestOptions, createForm } from 'meorphis-test/core';
+import { Blob } from 'meorphis-test/_shims/index';
+import { toFile } from 'meorphis-test';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

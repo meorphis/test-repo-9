@@ -2,9 +2,9 @@
 
 import { castToError, Headers } from './core';
 
-export class MeorphisTest9Y581b6Error extends Error {}
+export class MeorphisTestError extends Error {}
 
-export class APIError extends MeorphisTest9Y581b6Error {
+export class APIError extends MeorphisTestError {
   readonly status: number | undefined;
   readonly headers: Headers | undefined;
   readonly error: Object | undefined;

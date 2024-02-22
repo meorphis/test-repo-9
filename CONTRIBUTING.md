@@ -55,12 +55,12 @@ cd test-repo-9
 # With yarn
 yarn link
 cd ../my-package
-yarn link meorphis-test-9-y581b6
+yarn link meorphis-test
 
 # With pnpm
 pnpm link --global
 cd ../my-package
-pnpm link -—global meorphis-test-9-y581b6
+pnpm link -—global meorphis-test
 ```
 
 ## Running tests

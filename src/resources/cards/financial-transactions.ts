@@ -1,18 +1,18 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import * as Core from 'meorphis-test-9-y581b6/core';
-import { APIResource } from 'meorphis-test-9-y581b6/resource';
-import * as FinancialTransactionsAPI from 'meorphis-test-9-y581b6/resources/cards/financial-transactions';
+import * as Core from 'meorphis-test/core';
+import { APIResource } from 'meorphis-test/resource';
+import * as FinancialTransactionsAPI from 'meorphis-test/resources/cards/financial-transactions';
 
 export class FinancialTransactions extends APIResource {
   /**
    * Get the card financial transaction for the provided token.
    */
-  retrieve(
+  getFinancialTransactionByToken(
     cardToken: string,
     financialTransactionToken: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<FinancialTransaction> {
+  ): Core.APIPromise<FinancialTransactionGetFinancialTransactionByTokenResponse> {
     return this._client.get(
       `/cards/${cardToken}/financial_transactions/${financialTransactionToken}`,
       options,
@@ -20,7 +20,7 @@ export class FinancialTransactions extends APIResource {
   }
 }
 
-export interface FinancialTransaction {
+export interface FinancialTransactionGetFinancialTransactionByTokenResponse {
   /**
    * Globally unique identifier.
    */
@@ -55,7 +55,7 @@ export interface FinancialTransaction {
   /**
    * A list of all financial events that have modified this financial transaction.
    */
-  events: Array<FinancialTransaction.Event>;
+  events: Array<FinancialTransactionGetFinancialTransactionByTokenResponse.Event>;
 
   /**
    * Pending amount of the transaction in the currency's smallest unit (e.g., cents),
@@ -95,7 +95,7 @@ export interface FinancialTransaction {
   updated: string;
 }
 
-export namespace FinancialTransaction {
+export namespace FinancialTransactionGetFinancialTransactionByTokenResponse {
   export interface Event {
     /**
      * Globally unique identifier.
@@ -183,5 +183,5 @@ export namespace FinancialTransaction {
 }
 
 export namespace FinancialTransactions {
-  export import FinancialTransaction = FinancialTransactionsAPI.FinancialTransaction;
+  export import FinancialTransactionGetFinancialTransactionByTokenResponse = FinancialTransactionsAPI.FinancialTransactionGetFinancialTransactionByTokenResponse;
 }

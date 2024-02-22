@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import MeorphisTest9Y581b6 from 'meorphis-test-9-y581b6';
+import MeorphisTest from 'meorphis-test';
 import { Response } from 'node-fetch';
 
-const meorphisTest9Y581b6 = new MeorphisTest9Y581b6({
+const meorphisTest = new MeorphisTest({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource cards', () => {
   test('create: only required params', async () => {
-    const responsePromise = meorphisTest9Y581b6.cards.create({ type: 'VIRTUAL' });
+    const responsePromise = meorphisTest.cards.create({ type: 'VIRTUAL' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,7 +21,7 @@ describe('resource cards', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await meorphisTest9Y581b6.cards.create({
+    const response = await meorphisTest.cards.create({
       type: 'VIRTUAL',
       account_token: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       card_program_token: '00000000-0000-0000-1000-000000000000',
@@ -54,7 +54,7 @@ describe('resource cards', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = meorphisTest9Y581b6.cards.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const responsePromise = meorphisTest.cards.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -67,25 +67,14 @@ describe('resource cards', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      meorphisTest9Y581b6.cards.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      meorphisTest.cards.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
         path: '/_stainless_unknown_path',
       }),
-    ).rejects.toThrow(MeorphisTest9Y581b6.NotFoundError);
+    ).rejects.toThrow(MeorphisTest.NotFoundError);
   });
 
   test('update', async () => {
-    const responsePromise = meorphisTest9Y581b6.cards.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('provision', async () => {
-    const responsePromise = meorphisTest9Y581b6.cards.provision('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
+    const responsePromise = meorphisTest.cards.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
