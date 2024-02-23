@@ -1,6 +1,6 @@
 # Meorphis Test 7 Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/meorphis-python.svg)](https://pypi.org/project/meorphis-python/)
+[![PyPI version](https://img.shields.io/pypi/v/meorphis-pythoon.svg)](https://pypi.org/project/meorphis-pythoon/)
 
 The Meorphis Test 7 Python library provides convenient access to the Meorphis Test 7 REST API from any Python 3.7+
 application. The library includes type definitions for all request params and response fields,
@@ -13,7 +13,7 @@ The REST API documentation can be found [on docs.meorphis-test-13.com](https://d
 ## Installation
 
 ```sh
-pip install --pre meorphis-python
+pip install --pre meorphis-pythoon
 ```
 
 ## Usage
