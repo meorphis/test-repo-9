@@ -1,4 +1,4 @@
-# Meorphis Test 7 Python API libraryyy
+# Meorphis Test 7 Python API library
 
 [![PyPI version](https://img.shields.io/pypi/v/meorphis-python.svg)](https://pypi.org/project/meorphis-python/)
 
