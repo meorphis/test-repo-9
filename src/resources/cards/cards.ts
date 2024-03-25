@@ -1,18 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from '/core';
-import { APIPromise } from '/core';
 import { APIResource } from '/resource';
-import { isRequestOptions } from '/core';
-import { type Response } from '/_shims/index';
-import { FinancialTransactions } from './financial-transactions';
-import { Provisions } from './provisions';
 import * as CardsAPI from '/resources/cards/cards';
 import * as FinancialTransactionsAPI from '/resources/cards/financial-transactions';
 import * as ProvisionsAPI from '/resources/cards/provisions';
 
 export class Cards extends APIResource {
-  financialTransactions: FinancialTransactionsAPI.FinancialTransactions = new FinancialTransactionsAPI.FinancialTransactions(this._client);
+  financialTransactions: FinancialTransactionsAPI.FinancialTransactions =
+    new FinancialTransactionsAPI.FinancialTransactions(this._client);
   provisions: ProvisionsAPI.Provisions = new ProvisionsAPI.Provisions(this._client);
 
   /**
@@ -21,7 +17,11 @@ export class Cards extends APIResource {
    */
   create(params: CardCreateParams, options?: Core.RequestOptions): Core.APIPromise<CardCreateResponse> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this._client.post('/cards', { body, ...options, headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers } });
+    return this._client.post('/cards', {
+      body,
+      ...options,
+      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+    });
   }
 
   /**
@@ -38,7 +38,11 @@ export class Cards extends APIResource {
    * _Note: setting a card to a `CLOSED` state is a final action that cannot be
    * undone._
    */
-  update(cardToken: string, body: CardUpdateParams, options?: Core.RequestOptions): Core.APIPromise<CardUpdateResponse> {
+  update(
+    cardToken: string,
+    body: CardUpdateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<CardUpdateResponse> {
     return this._client.patch(`/cards/${cardToken}`, { body, ...options });
   }
 }

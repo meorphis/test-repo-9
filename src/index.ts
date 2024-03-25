@@ -2,10 +2,8 @@
 
 import * as Core from './core';
 import * as Errors from './error';
-import { isRequestOptions } from './core';
 import { type Agent } from './_shims/index';
 import * as Uploads from './uploads';
-import DigestFetch from 'digest-fetch';
 import * as API from '/resources/index';
 
 const environments = {
@@ -112,7 +110,7 @@ export class MeorphisTest extends Core.APIClient {
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
       throw new Errors.MeorphisTestError(
-        'The MEORPHIS_TEST_API_KEY environment variable is missing or empty; either provide it, or instantiate the MeorphisTest client with an apiKey option, like new MeorphisTest({ apiKey: \'My API Key\' }).'
+        "The MEORPHIS_TEST_API_KEY environment variable is missing or empty; either provide it, or instantiate the MeorphisTest client with an apiKey option, like new MeorphisTest({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -125,8 +123,8 @@ export class MeorphisTest extends Core.APIClient {
 
     if (baseURL && opts.environment) {
       throw new Errors.MeorphisTestError(
-        'Ambiguous URL; The `baseURL` option (or MEORPHIS_TEST_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null'
-      )
+        'Ambiguous URL; The `baseURL` option (or MEORPHIS_TEST_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      );
     }
 
     super({
@@ -173,7 +171,21 @@ export class MeorphisTest extends Core.APIClient {
   static UnprocessableEntityError = Errors.UnprocessableEntityError;
 }
 
-export const { MeorphisTestError, APIError, APIConnectionError, APIConnectionTimeoutError, APIUserAbortError, NotFoundError, ConflictError, RateLimitError, BadRequestError, AuthenticationError, InternalServerError, PermissionDeniedError, UnprocessableEntityError } = Errors
+export const {
+  MeorphisTestError,
+  APIError,
+  APIConnectionError,
+  APIConnectionTimeoutError,
+  APIUserAbortError,
+  NotFoundError,
+  ConflictError,
+  RateLimitError,
+  BadRequestError,
+  AuthenticationError,
+  InternalServerError,
+  PermissionDeniedError,
+  UnprocessableEntityError,
+} = Errors;
 
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;

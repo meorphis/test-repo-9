@@ -1,18 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from '/core';
-import { APIPromise } from '/core';
 import { APIResource } from '/resource';
-import { isRequestOptions } from '/core';
-import { type Response } from '/_shims/index';
 import * as FinancialTransactionsAPI from '/resources/cards/financial-transactions';
 
 export class FinancialTransactions extends APIResource {
   /**
    * Get the card financial transaction for the provided token.
    */
-  getFinancialTransactionByToken(cardToken: string, financialTransactionToken: string, options?: Core.RequestOptions): Core.APIPromise<FinancialTransactionGetFinancialTransactionByTokenResponse> {
-    return this._client.get(`/cards/${cardToken}/financial_transactions/${financialTransactionToken}`, options);
+  getFinancialTransactionByToken(
+    cardToken: string,
+    financialTransactionToken: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<FinancialTransactionGetFinancialTransactionByTokenResponse> {
+    return this._client.get(
+      `/cards/${cardToken}/financial_transactions/${financialTransactionToken}`,
+      options,
+    );
   }
 }
 
@@ -152,7 +156,29 @@ export namespace FinancialTransactionGetFinancialTransactionByTokenResponse {
      * - `TRANSFER_INSUFFICIENT_FUNDS` - Declined internl transfer of funds due to
      *   insufficient balance of the sender.
      */
-    type?: 'ACH_INSUFFICIENT_FUNDS' | 'ACH_ORIGINATION_PENDING' | 'ACH_ORIGINATION_RELEASED' | 'ACH_RECEIPT_PENDING' | 'ACH_RECEIPT_RELEASED' | 'ACH_RETURN' | 'AUTHORIZATION' | 'AUTHORIZATION_ADVICE' | 'AUTHORIZATION_EXPIRY' | 'AUTHORIZATION_REVERSAL' | 'BALANCE_INQUIRY' | 'CLEARING' | 'CORRECTION_DEBIT' | 'CORRECTION_CREDIT' | 'CREDIT_AUTHORIZATION' | 'CREDIT_AUTHORIZATION_ADVICE' | 'FINANCIAL_AUTHORIZATION' | 'FINANCIAL_CREDIT_AUTHORIZATION' | 'RETURN' | 'RETURN_REVERSAL' | 'TRANSFER' | 'TRANSFER_INSUFFICIENT_FUNDS';
+    type?:
+      | 'ACH_INSUFFICIENT_FUNDS'
+      | 'ACH_ORIGINATION_PENDING'
+      | 'ACH_ORIGINATION_RELEASED'
+      | 'ACH_RECEIPT_PENDING'
+      | 'ACH_RECEIPT_RELEASED'
+      | 'ACH_RETURN'
+      | 'AUTHORIZATION'
+      | 'AUTHORIZATION_ADVICE'
+      | 'AUTHORIZATION_EXPIRY'
+      | 'AUTHORIZATION_REVERSAL'
+      | 'BALANCE_INQUIRY'
+      | 'CLEARING'
+      | 'CORRECTION_DEBIT'
+      | 'CORRECTION_CREDIT'
+      | 'CREDIT_AUTHORIZATION'
+      | 'CREDIT_AUTHORIZATION_ADVICE'
+      | 'FINANCIAL_AUTHORIZATION'
+      | 'FINANCIAL_CREDIT_AUTHORIZATION'
+      | 'RETURN'
+      | 'RETURN_REVERSAL'
+      | 'TRANSFER'
+      | 'TRANSFER_INSUFFICIENT_FUNDS';
   }
 }
 
