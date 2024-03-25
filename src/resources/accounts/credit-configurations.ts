@@ -1,9 +1,9 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'meorphis-test/core';
-import { APIResource } from 'meorphis-test/resource';
-import { isRequestOptions } from 'meorphis-test/core';
-import * as CreditConfigurationsAPI from 'meorphis-test/resources/accounts/credit-configurations';
+import * as Core from '/core';
+import { APIResource } from '/resource';
+import { isRequestOptions } from '/core';
+import * as CreditConfigurationsAPI from '/resources/accounts/credit-configurations';
 
 export class CreditConfigurations extends APIResource {
   /**

@@ -1,8 +1,8 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'meorphis-test/core';
-import { APIResource } from 'meorphis-test/resource';
-import * as FinancialTransactionsAPI from 'meorphis-test/resources/cards/financial-transactions';
+import * as Core from '/core';
+import { APIResource } from '/resource';
+import * as FinancialTransactionsAPI from '/resources/cards/financial-transactions';
 
 export class FinancialTransactions extends APIResource {
   /**
