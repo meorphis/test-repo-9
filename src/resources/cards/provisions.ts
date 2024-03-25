@@ -1,7 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from '/core';
+import { APIPromise } from '/core';
 import { APIResource } from '/resource';
+import { isRequestOptions } from '/core';
+import { type Response } from '/_shims/index';
 import * as ProvisionsAPI from '/resources/cards/provisions';
 
 export class Provisions extends APIResource {
@@ -13,17 +16,9 @@ export class Provisions extends APIResource {
    * [Contact Us](https://acme.com/contact) or your Customer Success representative
    * for more information.
    */
-  postProvision(
-    cardToken: string,
-    params: ProvisionPostProvisionParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProvisionPostProvisionResponse> {
+  postProvision(cardToken: string, params: ProvisionPostProvisionParams, options?: Core.RequestOptions): Core.APIPromise<ProvisionPostProvisionResponse> {
     const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this._client.post(`/cards/${cardToken}/provision`, {
-      body,
-      ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
-    });
+    return this._client.post(`/cards/${cardToken}/provision`, { body, ...options, headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers } });
   }
 }
 

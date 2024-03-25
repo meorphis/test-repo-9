@@ -1,13 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from '/core';
+import { APIPromise } from '/core';
 import { APIResource } from '/resource';
+import { isRequestOptions } from '/core';
+import { type Response } from '/_shims/index';
+import { CreditConfigurations } from './credit-configurations';
 import * as AccountsAPI from '/resources/accounts/accounts';
 import * as CreditConfigurationsAPI from '/resources/accounts/credit-configurations';
 
 export class Accounts extends APIResource {
-  creditConfigurations: CreditConfigurationsAPI.CreditConfigurations =
-    new CreditConfigurationsAPI.CreditConfigurations(this._client);
+  creditConfigurations: CreditConfigurationsAPI.CreditConfigurations = new CreditConfigurationsAPI.CreditConfigurations(this._client);
 
   /**
    * Get account configuration such as spend limits.
@@ -23,11 +26,7 @@ export class Accounts extends APIResource {
    * Accounts that are in the `PAUSED` state will not be able to transact or create
    * new cards.
    */
-  update(
-    accountToken: string,
-    body: AccountUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AccountUpdateResponse> {
+  update(accountToken: string, body: AccountUpdateParams, options?: Core.RequestOptions): Core.APIPromise<AccountUpdateResponse> {
     return this._client.patch(`/accounts/${accountToken}`, { body, ...options });
   }
 }

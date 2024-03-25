@@ -1,38 +1,26 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from '/core';
+import { APIPromise } from '/core';
 import { APIResource } from '/resource';
 import { isRequestOptions } from '/core';
+import { type Response } from '/_shims/index';
 import * as CreditConfigurationsAPI from '/resources/accounts/credit-configurations';
 
 export class CreditConfigurations extends APIResource {
   /**
    * Get an Account's credit configuration
    */
-  list(
-    accountToken: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditConfigurationListResponse> {
+  list(accountToken: string, options?: Core.RequestOptions): Core.APIPromise<CreditConfigurationListResponse> {
     return this._client.get(`/accounts/${accountToken}/credit_configuration`, options);
   }
 
   /**
    * Update a Business Accounts credit configuration
    */
-  patchAccountCreditConfiguration(
-    accountToken: string,
-    body?: CreditConfigurationPatchAccountCreditConfigurationParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditConfigurationPatchAccountCreditConfigurationResponse>;
-  patchAccountCreditConfiguration(
-    accountToken: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditConfigurationPatchAccountCreditConfigurationResponse>;
-  patchAccountCreditConfiguration(
-    accountToken: string,
-    body: CreditConfigurationPatchAccountCreditConfigurationParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<CreditConfigurationPatchAccountCreditConfigurationResponse> {
+  patchAccountCreditConfiguration(accountToken: string, body?: CreditConfigurationPatchAccountCreditConfigurationParams, options?: Core.RequestOptions): Core.APIPromise<CreditConfigurationPatchAccountCreditConfigurationResponse>
+  patchAccountCreditConfiguration(accountToken: string, options?: Core.RequestOptions): Core.APIPromise<CreditConfigurationPatchAccountCreditConfigurationResponse>
+  patchAccountCreditConfiguration(accountToken: string, body: CreditConfigurationPatchAccountCreditConfigurationParams | Core.RequestOptions = {}, options?: Core.RequestOptions): Core.APIPromise<CreditConfigurationPatchAccountCreditConfigurationResponse> {
     if (isRequestOptions(body)) {
       return this.patchAccountCreditConfiguration(accountToken, {}, body);
     }
