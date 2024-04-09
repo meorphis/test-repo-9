@@ -1,6 +1,6 @@
 # Meorphis Test Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/.svg)](https://npmjs.org/package/)
+[![NPM version](https://img.shields.io/npm/v/@stainless-temp/meorphis-test-8mppdo.svg)](https://npmjs.org/package/@stainless-temp/meorphis-test-8mppdo)
 
 This library provides convenient access to the Meorphis Test REST API from server-side TypeScript or JavaScript.
 
@@ -11,7 +11,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install
+npm install @stainless-temp/meorphis-test-8mppdo
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import MeorphisTest from '';
+import MeorphisTest from '@stainless-temp/meorphis-test-8mppdo';
 
 const meorphisTest = new MeorphisTest({
   environment: 'environment_1', // defaults to 'production'
@@ -44,7 +44,7 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import MeorphisTest from '';
+import MeorphisTest from '@stainless-temp/meorphis-test-8mppdo';
 
 const meorphisTest = new MeorphisTest({
   environment: 'environment_1', // defaults to 'production'
@@ -184,7 +184,7 @@ await client.post('/some/path', {
 });
 ```
 
-#### Undocumented params
+#### Undocumented request params
 
 To make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented
 parameter. This library doesn't validate at runtime that the request matches the type, so any extra values you
@@ -205,7 +205,7 @@ extra param in the body.
 If you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request
 options.
 
-#### Undocumented properties
+#### Undocumented response properties
 
 To access undocumented response properties, you may access the response object with `// @ts-expect-error` on
 the response object, or cast the response object to the requisite type. Like the request params, we do not
@@ -222,11 +222,11 @@ add the following import before your first import `from "MeorphisTest"`:
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import '/shims/web';
-import MeorphisTest from '';
+import '@stainless-temp/meorphis-test-8mppdo/shims/web';
+import MeorphisTest from '@stainless-temp/meorphis-test-8mppdo';
 ```
 
-To do the inverse, add `import "/shims/node"` (which does import polyfills).
+To do the inverse, add `import "@stainless-temp/meorphis-test-8mppdo/shims/node"` (which does import polyfills).
 This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/meorphis-test/test-repo-9/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
@@ -236,7 +236,7 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import MeorphisTest from '';
+import MeorphisTest from '@stainless-temp/meorphis-test-8mppdo';
 
 const client = new MeorphisTest({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
@@ -293,7 +293,7 @@ TypeScript >= 4.5 is supported.
 The following runtimes are supported:
 
 - Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher, using `import MeorphisTest from "npm:"`.
+- Deno v1.28.0 or higher, using `import MeorphisTest from "npm:@stainless-temp/meorphis-test-8mppdo"`.
 - Bun 1.0 or later.
 - Cloudflare Workers.
 - Vercel Edge Runtime.

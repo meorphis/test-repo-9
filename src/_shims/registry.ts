@@ -41,10 +41,14 @@ export let isFsReadStream: Shims['isFsReadStream'] | undefined = undefined;
 
 export function setShims(shims: Shims, options: { auto: boolean } = { auto: false }) {
   if (auto) {
-    throw new Error(`you must \`import '/shims/${shims.kind}'\` before importing anything else from `);
+    throw new Error(
+      `you must \`import '@stainless-temp/meorphis-test-8mppdo/shims/${shims.kind}'\` before importing anything else from @stainless-temp/meorphis-test-8mppdo`,
+    );
   }
   if (kind) {
-    throw new Error(`can't \`import '/shims/${shims.kind}'\` after \`import '/shims/${kind}'\``);
+    throw new Error(
+      `can't \`import '@stainless-temp/meorphis-test-8mppdo/shims/${shims.kind}'\` after \`import '@stainless-temp/meorphis-test-8mppdo/shims/${kind}'\``,
+    );
   }
   auto = options.auto;
   kind = shims.kind;

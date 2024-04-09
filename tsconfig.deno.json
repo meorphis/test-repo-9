@@ -6,10 +6,9 @@
     "rootDir": "./deno",
     "lib": ["es2020", "DOM"],
     "paths": {
-      "/_shims/auto/*": ["deno/_shims/auto/*-deno"],
-      "/*": ["deno/*"],
-      "": ["deno/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
+      "@stainless-temp/meorphis-test-8mppdo/_shims/auto/*": ["deno/_shims/auto/*-deno"],
+      "@stainless-temp/meorphis-test-8mppdo/*": ["deno/*"],
+      "@stainless-temp/meorphis-test-8mppdo": ["deno/index.ts"],
     },
     "noEmit": true,
     "declaration": true,

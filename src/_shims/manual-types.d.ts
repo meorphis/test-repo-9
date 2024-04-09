@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import '/shims/node'
- *   import '/shims/web'
+ *   import '@stainless-temp/meorphis-test-8mppdo/shims/node'
+ *   import '@stainless-temp/meorphis-test-8mppdo/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */
