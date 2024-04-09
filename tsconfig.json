@@ -9,10 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "/*": ["src/*"],
-      "": ["src/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
+      "@stainless-temp/meorphis-test-8mppdo/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "@stainless-temp/meorphis-test-8mppdo/*": ["src/*"],
+      "@stainless-temp/meorphis-test-8mppdo": ["src/index.ts"],
     },
     "noEmit": true,
 
