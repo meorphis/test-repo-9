@@ -5,9 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "/*": ["dist/src/*"],
-      "": ["dist/src/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
+      "@stainless-temp/meorphis-test/*": ["dist/src/*"],
+      "@stainless-temp/meorphis-test": ["dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,
