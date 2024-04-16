@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '/core';
-import { APIResource } from '/resource';
-import * as ProvisionsAPI from '/resources/cards/provisions';
+import * as Core from '@stainless-temp/meorphis-test/core';
+import { APIResource } from '@stainless-temp/meorphis-test/resource';
+import * as ProvisionsAPI from '@stainless-temp/meorphis-test/resources/cards/provisions';
 
 export class Provisions extends APIResource {
   /**
