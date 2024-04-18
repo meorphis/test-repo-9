@@ -1,19 +1,22 @@
 # Meorphis Test 7 Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/.svg)](https://pypi.org/project//)
+[![PyPI version](https://img.shields.io/pypi/v/meorphis-python.svg)](https://pypi.org/project/meorphis-python/)
 
 The Meorphis Test 7 Python library provides convenient access to the Meorphis Test 7 REST API from any Python 3.7+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
+It is generated with [Stainless](https://www.stainlessapi.com/).
+
 ## Documentation
 
-The REST API documentation can be found [on docs.meorphis-test-11.com](https://docs.meorphis-test-11.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on docs.meorphis-test-15.com](https://docs.meorphis-test-15.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-pip install --pre
+# install from PyPI
+pip install --pre meorphis-python
 ```
 
 ## Usage
@@ -56,9 +59,11 @@ client = AsyncMeorphisTest7(
     environment="environment_1",
 )
 
+
 async def main() -> None:
-  status_retrieve_response = await client.status.retrieve()
-  print(status_retrieve_response.message)
+    status_retrieve_response = await client.status.retrieve()
+    print(status_retrieve_response.message)
+
 
 asyncio.run(main())
 ```
@@ -67,10 +72,10 @@ Functionality between the synchronous and asynchronous clients is otherwise iden
 
 ## Using types
 
-Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev), which provide helper methods for things like:
+Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
 
-- Serializing back into JSON, `model.model_dump_json(indent=2, exclude_unset=True)`
-- Converting to a dictionary, `model.model_dump(exclude_unset=True)`
+- Serializing back into JSON, `model.to_json()`
+- Converting to a dictionary, `model.to_dict()`
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
@@ -93,7 +98,7 @@ try:
     client.status.retrieve()
 except meorphis_test_7.APIConnectionError as e:
     print("The server could not be reached")
-    print(e.__cause__) # an underlying Exception, likely raised within httpx.
+    print(e.__cause__)  # an underlying Exception, likely raised within httpx.
 except meorphis_test_7.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
 except meorphis_test_7.APIStatusError as e:
@@ -133,7 +138,7 @@ client = MeorphisTest7(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries = 5).status.retrieve()
+client.with_options(max_retries=5).status.retrieve()
 ```
 
 ### Timeouts
@@ -156,7 +161,7 @@ client = MeorphisTest7(
 )
 
 # Override per-request:
-client.with_options(timeout = 5 * 1000).status.retrieve()
+client.with_options(timeout=5 * 1000).status.retrieve()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -213,14 +218,49 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.status.with_streaming_response.retrieve() as response :
-    print(response.headers.get('X-My-Header'))
+with client.status.with_streaming_response.retrieve() as response:
+    print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
-      print(line)
+        print(line)
 ```
 
 The context manager is required so that the response will reliably be closed.
+
+### Making custom/undocumented requests
+
+This library is typed for convenient access the documented API.
+
+If you need to access undocumented endpoints, params, or response properties, the library can still be used.
+
+#### Undocumented endpoints
+
+To make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other
+http verbs. Options on the client will be respected (such as retries) will be respected when making this
+request.
+
+```py
+import httpx
+
+response = client.post(
+    "/foo",
+    cast_to=httpx.Response,
+    body={"my_param": True},
+)
+
+print(response.headers.get("x-foo"))
+```
+
+#### Undocumented request params
+
+If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request
+options.
+
+#### Undocumented response properties
+
+To access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You
+can also get all the extra fields on the Pydantic model as a dict with
+[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).
 
 ### Configuring the HTTP client
 
@@ -231,13 +271,15 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 - Additional [advanced](https://www.python-httpx.org/advanced/#client-instances) functionality
 
 ```python
-import httpx
-from meorphis_test_7 import MeorphisTest7
+from meorphis_test_7 import MeorphisTest7, DefaultHttpxClient
 
 client = MeorphisTest7(
     # Or use the `MEORPHIS_TEST_7_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
-    http_client=httpx.Client(proxies="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),
+    http_client=DefaultHttpxClient(
+        proxies="http://my.test.proxy.example.com",
+        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
+    ),
 )
 ```
 

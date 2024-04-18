@@ -1,31 +1,39 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
-from .credit_configuration import CreditConfiguration, AsyncCreditConfiguration
-
-from ..._compat import cached_property
-
 from ...types import AccountConfiguration, account_update_params
-
-from typing_extensions import Literal
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._base_client import SyncAPIClient, AsyncAPIClient, _merge_mappings, AsyncPaginator, make_request_options, HttpxBinaryResponseContent
-from ...types import shared_params
-from ...types import account_update_params
-from .credit_configuration import CreditConfiguration, AsyncCreditConfiguration, CreditConfigurationWithRawResponse, AsyncCreditConfigurationWithRawResponse, CreditConfigurationWithStreamingResponse, AsyncCreditConfigurationWithStreamingResponse
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._base_client import (
+    make_request_options,
+)
+from .credit_configuration import (
+    CreditConfiguration,
+    AsyncCreditConfiguration,
+    CreditConfigurationWithRawResponse,
+    AsyncCreditConfigurationWithRawResponse,
+    CreditConfigurationWithStreamingResponse,
+    AsyncCreditConfigurationWithStreamingResponse,
+)
 
 __all__ = ["Accounts", "AsyncAccounts"]
+
 
 class Accounts(SyncAPIResource):
     @cached_property
@@ -40,15 +48,17 @@ class Accounts(SyncAPIResource):
     def with_streaming_response(self) -> AccountsWithStreamingResponse:
         return AccountsWithStreamingResponse(self)
 
-    def retrieve(self,
-    account_token: str,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AccountConfiguration:
+    def retrieve(
+        self,
+        account_token: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccountConfiguration:
         """
         Get account configuration such as spend limits.
 
@@ -62,29 +72,31 @@ class Accounts(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_token:
-          raise ValueError(
-            f'Expected a non-empty value for `account_token` but received {account_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_token` but received {account_token!r}")
         return self._get(
             f"/accounts/{account_token}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccountConfiguration,
         )
 
-    def update(self,
-    account_token: str,
-    *,
-    daily_spend_limit: int | NotGiven = NOT_GIVEN,
-    lifetime_spend_limit: int | NotGiven = NOT_GIVEN,
-    monthly_spend_limit: int | NotGiven = NOT_GIVEN,
-    state: Literal["ACTIVE", "PAUSED"] | NotGiven = NOT_GIVEN,
-    verification_address: account_update_params.VerificationAddress | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AccountConfiguration:
+    def update(
+        self,
+        account_token: str,
+        *,
+        daily_spend_limit: int | NotGiven = NOT_GIVEN,
+        lifetime_spend_limit: int | NotGiven = NOT_GIVEN,
+        monthly_spend_limit: int | NotGiven = NOT_GIVEN,
+        state: Literal["ACTIVE", "PAUSED"] | NotGiven = NOT_GIVEN,
+        verification_address: account_update_params.VerificationAddress | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccountConfiguration:
         """Update account configuration such as spend limits and verification address.
 
         Can
@@ -122,21 +134,25 @@ class Accounts(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_token:
-          raise ValueError(
-            f'Expected a non-empty value for `account_token` but received {account_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_token` but received {account_token!r}")
         return self._patch(
             f"/accounts/{account_token}",
-            body=maybe_transform({
-                "daily_spend_limit": daily_spend_limit,
-                "lifetime_spend_limit": lifetime_spend_limit,
-                "monthly_spend_limit": monthly_spend_limit,
-                "state": state,
-                "verification_address": verification_address,
-            }, account_update_params.AccountUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=maybe_transform(
+                {
+                    "daily_spend_limit": daily_spend_limit,
+                    "lifetime_spend_limit": lifetime_spend_limit,
+                    "monthly_spend_limit": monthly_spend_limit,
+                    "state": state,
+                    "verification_address": verification_address,
+                },
+                account_update_params.AccountUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccountConfiguration,
         )
+
 
 class AsyncAccounts(AsyncAPIResource):
     @cached_property
@@ -151,15 +167,17 @@ class AsyncAccounts(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAccountsWithStreamingResponse:
         return AsyncAccountsWithStreamingResponse(self)
 
-    async def retrieve(self,
-    account_token: str,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AccountConfiguration:
+    async def retrieve(
+        self,
+        account_token: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccountConfiguration:
         """
         Get account configuration such as spend limits.
 
@@ -173,29 +191,31 @@ class AsyncAccounts(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_token:
-          raise ValueError(
-            f'Expected a non-empty value for `account_token` but received {account_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_token` but received {account_token!r}")
         return await self._get(
             f"/accounts/{account_token}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccountConfiguration,
         )
 
-    async def update(self,
-    account_token: str,
-    *,
-    daily_spend_limit: int | NotGiven = NOT_GIVEN,
-    lifetime_spend_limit: int | NotGiven = NOT_GIVEN,
-    monthly_spend_limit: int | NotGiven = NOT_GIVEN,
-    state: Literal["ACTIVE", "PAUSED"] | NotGiven = NOT_GIVEN,
-    verification_address: account_update_params.VerificationAddress | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AccountConfiguration:
+    async def update(
+        self,
+        account_token: str,
+        *,
+        daily_spend_limit: int | NotGiven = NOT_GIVEN,
+        lifetime_spend_limit: int | NotGiven = NOT_GIVEN,
+        monthly_spend_limit: int | NotGiven = NOT_GIVEN,
+        state: Literal["ACTIVE", "PAUSED"] | NotGiven = NOT_GIVEN,
+        verification_address: account_update_params.VerificationAddress | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AccountConfiguration:
         """Update account configuration such as spend limits and verification address.
 
         Can
@@ -233,21 +253,25 @@ class AsyncAccounts(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_token:
-          raise ValueError(
-            f'Expected a non-empty value for `account_token` but received {account_token!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_token` but received {account_token!r}")
         return await self._patch(
             f"/accounts/{account_token}",
-            body=maybe_transform({
-                "daily_spend_limit": daily_spend_limit,
-                "lifetime_spend_limit": lifetime_spend_limit,
-                "monthly_spend_limit": monthly_spend_limit,
-                "state": state,
-                "verification_address": verification_address,
-            }, account_update_params.AccountUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=await async_maybe_transform(
+                {
+                    "daily_spend_limit": daily_spend_limit,
+                    "lifetime_spend_limit": lifetime_spend_limit,
+                    "monthly_spend_limit": monthly_spend_limit,
+                    "state": state,
+                    "verification_address": verification_address,
+                },
+                account_update_params.AccountUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccountConfiguration,
         )
+
 
 class AccountsWithRawResponse:
     def __init__(self, accounts: Accounts) -> None:
@@ -264,6 +288,7 @@ class AccountsWithRawResponse:
     def credit_configuration(self) -> CreditConfigurationWithRawResponse:
         return CreditConfigurationWithRawResponse(self._accounts.credit_configuration)
 
+
 class AsyncAccountsWithRawResponse:
     def __init__(self, accounts: AsyncAccounts) -> None:
         self._accounts = accounts
@@ -279,6 +304,7 @@ class AsyncAccountsWithRawResponse:
     def credit_configuration(self) -> AsyncCreditConfigurationWithRawResponse:
         return AsyncCreditConfigurationWithRawResponse(self._accounts.credit_configuration)
 
+
 class AccountsWithStreamingResponse:
     def __init__(self, accounts: Accounts) -> None:
         self._accounts = accounts
@@ -293,6 +319,7 @@ class AccountsWithStreamingResponse:
     @cached_property
     def credit_configuration(self) -> CreditConfigurationWithStreamingResponse:
         return CreditConfigurationWithStreamingResponse(self._accounts.credit_configuration)
+
 
 class AsyncAccountsWithStreamingResponse:
     def __init__(self, accounts: AsyncAccounts) -> None:

@@ -1,13 +1,15 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
 import time
-import asyncio
 from typing import TYPE_CHECKING
 
+import anyio
+
 if TYPE_CHECKING:
-  from ._client import AsyncMeorphisTest7, MeorphisTest7
+    from ._client import MeorphisTest7, AsyncMeorphisTest7
+
 
 class SyncAPIResource:
     _client: MeorphisTest7
@@ -22,7 +24,8 @@ class SyncAPIResource:
         self._get_api_list = client.get_api_list
 
     def _sleep(self, seconds: float) -> None:
-      time.sleep(seconds)
+        time.sleep(seconds)
+
 
 class AsyncAPIResource:
     _client: AsyncMeorphisTest7
@@ -37,4 +40,4 @@ class AsyncAPIResource:
         self._get_api_list = client.get_api_list
 
     async def _sleep(self, seconds: float) -> None:
-      await asyncio.sleep(seconds)
+        await anyio.sleep(seconds)

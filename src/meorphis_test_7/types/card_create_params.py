@@ -1,16 +1,11 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Literal, Required
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from ..types import shared_params
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["CardCreateParams", "Carrier", "ShippingAddress"]
+
 
 class CardCreateParams(TypedDict, total=False):
     type: Required[Literal["VIRTUAL", "PHYSICAL", "MERCHANT_LOCKED", "SINGLE_USE"]]
@@ -142,9 +137,11 @@ class CardCreateParams(TypedDict, total=False):
       time.
     """
 
+
 class Carrier(TypedDict, total=False):
     qr_code_url: str
     """QR code url to display on the card carrier"""
+
 
 class ShippingAddress(TypedDict, total=False):
     address1: Required[str]

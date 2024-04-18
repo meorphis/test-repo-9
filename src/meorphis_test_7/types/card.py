@@ -1,18 +1,13 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
 from datetime import datetime
-
 from typing_extensions import Literal
 
-from typing import Optional, List
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from .._models import BaseModel
-from ..types import shared
 
 __all__ = ["Card", "Funding"]
+
 
 class Funding(BaseModel):
     token: str
@@ -54,6 +49,7 @@ class Funding(BaseModel):
 
     nickname: Optional[str] = None
     """The nickname given to the `FundingAccount` or `null` if it has no nickname."""
+
 
 class Card(BaseModel):
     token: str

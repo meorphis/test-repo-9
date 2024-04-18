@@ -14,15 +14,15 @@ jobs:
     
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install Rye
         run: |
           curl -sSf https://rye-up.com/get | bash
           echo "$HOME/.rye/shims" >> $GITHUB_PATH
         env:
-          RYE_VERSION: 0.15.2
-          RYE_INSTALL_OPTION: "--yes"
+          RYE_VERSION: 0.24.0
+          RYE_INSTALL_OPTION: '--yes'
 
       - name: Install dependencies
         run: |
@@ -39,3 +39,5 @@ jobs:
       - name: Ensure importable
         run: |
           rye run python -c 'import meorphis_test_7'
+
+  

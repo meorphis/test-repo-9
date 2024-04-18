@@ -1,16 +1,12 @@
-# File generated from our OpenAPI spec by Stainless.
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional, List
-
+from typing import List, Optional
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from .._models import BaseModel
-from ..types import shared
 
 __all__ = ["AccountConfiguration", "SpendLimit", "AccountHolder", "VerificationAddress"]
+
 
 class SpendLimit(BaseModel):
     daily: int
@@ -21,6 +17,7 @@ class SpendLimit(BaseModel):
 
     monthly: int
     """Monthly spend limit (in cents)."""
+
 
 class AccountHolder(BaseModel):
     token: str
@@ -38,6 +35,7 @@ class AccountHolder(BaseModel):
 
     phone_number: str
     """Phone number of the individual."""
+
 
 class VerificationAddress(BaseModel):
     address1: str
@@ -65,6 +63,7 @@ class VerificationAddress(BaseModel):
 
     address2: Optional[str] = None
     """Unit or apartment number (if applicable)."""
+
 
 class AccountConfiguration(BaseModel):
     token: str
