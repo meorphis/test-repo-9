@@ -4,7 +4,7 @@ import * as Core from './core';
 import * as Errors from './error';
 import { type Agent } from './_shims/index';
 import * as Uploads from './uploads';
-import * as API from '@stainless-temp/meorphis-test/resources/index';
+import * as API from 'test/resources/index';
 
 const environments = {
   production: 'https://api.acme.com/v1',
