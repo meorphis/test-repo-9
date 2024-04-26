@@ -1,5 +1,5 @@
-import { createResponseHeaders } from '@stainless-temp/meorphis-test/core';
-import { Headers } from '@stainless-temp/meorphis-test/_shims/index';
+import { createResponseHeaders } from 'test/core';
+import { Headers } from 'test/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

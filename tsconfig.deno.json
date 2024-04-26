@@ -6,9 +6,9 @@
     "rootDir": "./deno",
     "lib": ["es2020", "DOM"],
     "paths": {
-      "@stainless-temp/meorphis-test/_shims/auto/*": ["deno/_shims/auto/*-deno"],
-      "@stainless-temp/meorphis-test/*": ["deno/*"],
-      "@stainless-temp/meorphis-test": ["deno/index.ts"],
+      "test/_shims/auto/*": ["deno/_shims/auto/*-deno"],
+      "test/*": ["deno/*"],
+      "test": ["deno/index.ts"],
     },
     "noEmit": true,
     "declaration": true,

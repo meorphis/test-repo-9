@@ -1,12 +1,12 @@
 {
-  "name": "@stainless-temp/meorphis-test",
+  "name": "test",
   "version": "0.1.0-alpha.1",
   "description": "The official TypeScript library for the Meorphis Test API",
-  "author": "Meorphis Test <support3@acme.com>",
+  "author": "Meorphis Test <support@acme.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:meorphis-test/test-repo-9",
+  "repository": "github:stainless-sdks/test-node",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "files": [
@@ -59,8 +59,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "@stainless-temp/meorphis-test": ".",
-    "@stainless-temp/meorphis-test/*": "./src/*"
+    "test": ".",
+    "test/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {

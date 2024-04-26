@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@stainless-temp/meorphis-test/core';
-import { APIResource } from '@stainless-temp/meorphis-test/resource';
-import { isRequestOptions } from '@stainless-temp/meorphis-test/core';
-import * as CreditConfigurationsAPI from '@stainless-temp/meorphis-test/resources/accounts/credit-configurations';
+import * as Core from 'test/core';
+import { APIResource } from 'test/resource';
+import { isRequestOptions } from 'test/core';
+import * as CreditConfigurationsAPI from 'test/resources/accounts/credit-configurations';
 
 export class CreditConfigurations extends APIResource {
   /**
