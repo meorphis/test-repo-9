@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "test/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "test/*": ["src/*"],
-      "test": ["src/index.ts"],
+      "test3/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "test3/*": ["src/*"],
+      "test3": ["src/index.ts"],
     },
     "noEmit": true,
 

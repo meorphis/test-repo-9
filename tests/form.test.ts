@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'test/core';
-import { Blob } from 'test/_shims/index';
-import { toFile } from 'test';
+import { multipartFormRequestOptions, createForm } from 'test3/core';
+import { Blob } from 'test3/_shims/index';
+import { toFile } from 'test3';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

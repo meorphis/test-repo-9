@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest from 'test';
-import { APIUserAbortError } from 'test';
-import { Headers } from 'test/core';
+import MeorphisTest from 'test3';
+import { APIUserAbortError } from 'test3';
+import { Headers } from 'test3/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {

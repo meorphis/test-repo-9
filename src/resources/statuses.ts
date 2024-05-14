@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'test/core';
-import { APIResource } from 'test/resource';
-import * as StatusesAPI from 'test/resources/statuses';
+import * as Core from 'test3/core';
+import { APIResource } from 'test3/resource';
+import * as StatusesAPI from 'test3/resources/statuses';
 
 export class Statuses extends APIResource {
   /**

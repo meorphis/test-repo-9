@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'test/core';
-import { APIResource } from 'test/resource';
-import * as CardsAPI from 'test/resources/cards/cards';
-import * as FinancialTransactionsAPI from 'test/resources/cards/financial-transactions';
-import * as ProvisionsAPI from 'test/resources/cards/provisions';
+import * as Core from 'test3/core';
+import { APIResource } from 'test3/resource';
+import * as CardsAPI from 'test3/resources/cards/cards';
+import * as FinancialTransactionsAPI from 'test3/resources/cards/financial-transactions';
+import * as ProvisionsAPI from 'test3/resources/cards/provisions';
 
 export class Cards extends APIResource {
   financialTransactions: FinancialTransactionsAPI.FinancialTransactions =
