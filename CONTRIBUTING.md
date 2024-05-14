@@ -50,7 +50,7 @@ Alternatively, to link a local copy of the repo:
 ```bash
 # Clone
 git clone https://www.github.com/stainless-sdks/meorphis-test-node
-cd test3-node
+cd meorphis-test-node
 
 # With yarn
 yarn link
