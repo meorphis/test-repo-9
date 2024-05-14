@@ -1,9 +1,9 @@
 # 👋 Wondering what everything in here does?
 
-`test` supports a wide variety of runtime environments like Node.js, Deno, Bun, browsers, and various
+`test3` supports a wide variety of runtime environments like Node.js, Deno, Bun, browsers, and various
 edge runtimes, as well as both CommonJS (CJS) and EcmaScript Modules (ESM).
 
-To do this, `test` provides shims for either using `node-fetch` when in Node (because `fetch` is still experimental there) or the global `fetch` API built into the environment when not in Node.
+To do this, `test3` provides shims for either using `node-fetch` when in Node (because `fetch` is still experimental there) or the global `fetch` API built into the environment when not in Node.
 
 It uses [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) to
 automatically select the correct shims for each environment. However, conditional exports are a fairly new
@@ -15,32 +15,32 @@ getting the wrong raw `Response` type from `.asResponse()`, for example.
 
 The user can work around these issues by manually importing one of:
 
-- `import 'test/shims/node'`
-- `import 'test/shims/web'`
+- `import 'test3/shims/node'`
+- `import 'test3/shims/web'`
 
 All of the code here in `_shims` handles selecting the automatic default shims or manual overrides.
 
 ### How it works - Runtime
 
-Runtime shims get installed by calling `setShims` exported by `test/_shims/registry`.
+Runtime shims get installed by calling `setShims` exported by `test3/_shims/registry`.
 
-Manually importing `test/shims/node` or `test/shims/web`, calls `setShims` with the respective runtime shims.
+Manually importing `test3/shims/node` or `test3/shims/web`, calls `setShims` with the respective runtime shims.
 
-All client code imports shims from `test/_shims/index`, which:
+All client code imports shims from `test3/_shims/index`, which:
 
 - checks if shims have been set manually
-- if not, calls `setShims` with the shims from `test/_shims/auto/runtime`
-- re-exports the installed shims from `test/_shims/registry`.
+- if not, calls `setShims` with the shims from `test3/_shims/auto/runtime`
+- re-exports the installed shims from `test3/_shims/registry`.
 
-`test/_shims/auto/runtime` exports web runtime shims.
-If the `node` export condition is set, the export map replaces it with `test/_shims/auto/runtime-node`.
+`test3/_shims/auto/runtime` exports web runtime shims.
+If the `node` export condition is set, the export map replaces it with `test3/_shims/auto/runtime-node`.
 
 ### How it works - Type time
 
-All client code imports shim types from `test/_shims/index`, which selects the manual types from `test/_shims/manual-types` if they have been declared, otherwise it exports the auto types from `test/_shims/auto/types`.
+All client code imports shim types from `test3/_shims/index`, which selects the manual types from `test3/_shims/manual-types` if they have been declared, otherwise it exports the auto types from `test3/_shims/auto/types`.
 
-`test/_shims/manual-types` exports an empty namespace.
-Manually importing `test/shims/node` or `test/shims/web` merges declarations into this empty namespace, so they get picked up by `test/_shims/index`.
+`test3/_shims/manual-types` exports an empty namespace.
+Manually importing `test3/shims/node` or `test3/shims/web` merges declarations into this empty namespace, so they get picked up by `test3/_shims/index`.
 
-`test/_shims/auto/types` exports web type definitions.
-If the `node` export condition is set, the export map replaces it with `test/_shims/auto/types-node`, though TS only picks this up if `"moduleResolution": "nodenext"` or `"moduleResolution": "bundler"`.
+`test3/_shims/auto/types` exports web type definitions.
+If the `node` export condition is set, the export map replaces it with `test3/_shims/auto/types-node`, though TS only picks this up if `"moduleResolution": "nodenext"` or `"moduleResolution": "bundler"`.

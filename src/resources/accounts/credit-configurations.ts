@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'test/core';
-import { APIResource } from 'test/resource';
-import { isRequestOptions } from 'test/core';
-import * as CreditConfigurationsAPI from 'test/resources/accounts/credit-configurations';
+import * as Core from 'test3/core';
+import { APIResource } from 'test3/resource';
+import { isRequestOptions } from 'test3/core';
+import * as CreditConfigurationsAPI from 'test3/resources/accounts/credit-configurations';
 
 export class CreditConfigurations extends APIResource {
   /**

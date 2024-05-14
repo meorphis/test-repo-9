@@ -1,4 +1,4 @@
-import { APIClient } from 'test/core';
+import { APIClient } from 'test3/core';
 
 const { stringifyQuery } = APIClient.prototype as any;
 

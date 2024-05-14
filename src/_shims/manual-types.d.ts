@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'test/shims/node'
- *   import 'test/shims/web'
+ *   import 'test3/shims/node'
+ *   import 'test3/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */
