@@ -20,7 +20,10 @@ export class Cards extends APIResource {
     return this._client.post('/cards', {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: {
+        ...(idempotencyKey != null ? { 'Idempotency-Key': idempotencyKey } : undefined),
+        ...options?.headers,
+      },
     });
   }
 
