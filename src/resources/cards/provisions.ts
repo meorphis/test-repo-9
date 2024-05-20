@@ -22,7 +22,10 @@ export class Provisions extends APIResource {
     return this._client.post(`/cards/${cardToken}/provision`, {
       body,
       ...options,
-      headers: { 'Idempotency-Key': idempotencyKey || '', ...options?.headers },
+      headers: {
+        ...(idempotencyKey != null ? { 'Idempotency-Key': idempotencyKey } : undefined),
+        ...options?.headers,
+      },
     });
   }
 }
