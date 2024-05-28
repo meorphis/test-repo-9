@@ -1,6 +1,6 @@
 # Meorphis Test Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/test3.svg)](https://npmjs.org/package/test3)
+[![NPM version](https://img.shields.io/npm/v/test3.svg)](https://npmjs.org/package/test3) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/test3)
 
 This library provides convenient access to the Meorphis Test REST API from server-side TypeScript or JavaScript.
 
