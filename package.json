@@ -8,11 +8,10 @@
   "type": "commonjs",
   "repository": "github:stainless-sdks/meorphis-test-node",
   "license": "Apache-2.0",
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "yarn@4.2.2",
   "files": [
     "*"
   ],
-  "private": false,
   "scripts": {
     "test": "./scripts/test",
     "build": "./scripts/build",
