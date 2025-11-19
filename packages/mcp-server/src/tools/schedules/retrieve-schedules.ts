@@ -1,0 +1,55 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { isJqError, maybeFilter } from 'incident-io-2-mcp/filtering';
+import { Metadata, asErrorResult, asTextContentResult } from 'incident-io-2-mcp/tools/types';
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import IncidentIo2 from 'incident-io-2';
+
+export const metadata: Metadata = {
+  resource: 'schedules',
+  operation: 'read',
+  tags: [],
+  httpMethod: 'get',
+  httpPath: '/v2/schedules/{id}',
+  operationId: 'Schedules V2#Show',
+};
+
+export const tool: Tool = {
+  name: 'retrieve_schedules',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nGet a single schedule.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/schedule_retrieve_response',\n  $defs: {\n    schedule_retrieve_response: {\n      type: 'object',\n      properties: {\n        schedule: {\n          $ref: '#/$defs/schedule'\n        }\n      },\n      required: [        'schedule'\n      ]\n    },\n    schedule: {\n      type: 'object',\n      properties: {\n        id: {\n          type: 'string',\n          description: 'Unique internal ID of the schedule'\n        },\n        annotations: {\n          type: 'object',\n          description: 'Annotations that track metadata about this resource',\n          additionalProperties: true\n        },\n        created_at: {\n          type: 'string',\n          format: 'date-time'\n        },\n        name: {\n          type: 'string',\n          description: 'Human readable name synced from external provider'\n        },\n        team_ids: {\n          type: 'array',\n          description: 'IDs of teams that own this schedule',\n          items: {\n            type: 'string'\n          }\n        },\n        timezone: {\n          type: 'string',\n          description: 'Timezone of the schedule, as interpreted at the point of generating the report'\n        },\n        updated_at: {\n          type: 'string',\n          format: 'date-time'\n        },\n        config: {\n          type: 'object',\n          properties: {\n            rotations: {\n              type: 'array',\n              description: 'Rotas in this schedule',\n              items: {\n                type: 'object',\n                properties: {\n                  id: {\n                    type: 'string',\n                    description: 'Unique internal ID of the rotation'\n                  },\n                  handover_start_at: {\n                    type: 'string',\n                    description: 'Defines the next moment we\\'ll trigger a handover',\n                    format: 'date-time'\n                  },\n                  handovers: {\n                    type: 'array',\n                    description: 'Defines the handover intervals for this rota, in order they should apply',\n                    items: {\n                      $ref: '#/$defs/schedule_rotation_handover'\n                    }\n                  },\n                  layers: {\n                    type: 'array',\n                    description: 'Controls how many people are on-call concurrently',\n                    items: {\n                      type: 'object',\n                      properties: {\n                        id: {\n                          type: 'string',\n                          description: 'Unique identifier of the layer'\n                        },\n                        name: {\n                          type: 'string',\n                          description: 'Name of the layer'\n                        }\n                      }\n                    }\n                  },\n                  name: {\n                    type: 'string',\n                    description: 'Human readable name synced from external provider'\n                  },\n                  users: {\n                    type: 'array',\n                    description: 'Users who are available to be scheduled on this rota',\n                    items: {\n                      $ref: '#/$defs/user_v2'\n                    }\n                  },\n                  working_intervals: {\n                    type: 'array',\n                    description: 'Optional restrictions that define when to schedule people for this rota',\n                    items: {\n                      $ref: '#/$defs/schedule_rotation_working_interval'\n                    }\n                  },\n                  effective_from: {\n                    type: 'string',\n                    description: 'When this rotation config will be effective from',\n                    format: 'date-time'\n                  },\n                  scheduling_mode: {\n                    type: 'string',\n                    description: 'Scheduling algorithm to use for this rotation. \\'fair\\' balances workload by considering handover duration, while \\'sequential\\' uses simple round-robin rotation through users. Only applies when you have asymmetric handovers (e.g., 2 days then 5 days).',\n                    enum: [                      'fair',\n                      'sequential'\n                    ]\n                  },\n                  working_interval: {\n                    type: 'array',\n                    description: 'DEPRECATED: Use working_intervals instead.',\n                    items: {\n                      $ref: '#/$defs/schedule_rotation_working_interval'\n                    }\n                  }\n                },\n                required: [                  'id',\n                  'handover_start_at',\n                  'handovers',\n                  'layers',\n                  'name',\n                  'users',\n                  'working_intervals'\n                ]\n              }\n            }\n          },\n          required: [            'rotations'\n          ]\n        },\n        current_shifts: {\n          type: 'array',\n          description: 'Shifts that are on-going for this schedule, if a native schedule',\n          items: {\n            $ref: '#/$defs/schedule_entry'\n          }\n        },\n        holidays_public_config: {\n          type: 'object',\n          properties: {\n            country_codes: {\n              type: 'array',\n              description: 'ISO 3166-1 alpha-2 country codes for the countries that this schedule is configured to view holidays for',\n              items: {\n                type: 'string'\n              }\n            }\n          },\n          required: [            'country_codes'\n          ]\n        }\n      },\n      required: [        'id',\n        'annotations',\n        'created_at',\n        'name',\n        'team_ids',\n        'timezone',\n        'updated_at'\n      ]\n    },\n    schedule_rotation_handover: {\n      type: 'object',\n      properties: {\n        interval: {\n          type: 'integer'\n        },\n        interval_type: {\n          type: 'string',\n          description: 'How often a handover occurs',\n          enum: [            'hourly',\n            'daily',\n            'weekly'\n          ]\n        }\n      }\n    },\n    user_v2: {\n      type: 'object',\n      properties: {\n        id: {\n          type: 'string',\n          description: 'Unique identifier of the user'\n        },\n        name: {\n          type: 'string',\n          description: 'Name of the user'\n        },\n        role: {\n          type: 'string',\n          description: 'DEPRECATED: Role of the user as of March 9th 2023, this value is no longer updated.',\n          enum: [            'viewer',\n            'responder',\n            'administrator',\n            'owner',\n            'unset'\n          ]\n        },\n        email: {\n          type: 'string',\n          description: 'Email address of the user.'\n        },\n        slack_user_id: {\n          type: 'string',\n          description: 'Slack ID of the user'\n        }\n      },\n      required: [        'id',\n        'name',\n        'role'\n      ]\n    },\n    schedule_rotation_working_interval: {\n      type: 'object',\n      properties: {\n        end_time: {\n          type: 'string',\n          description: 'End time of the interval, in 24hr format'\n        },\n        start_time: {\n          type: 'string',\n          description: 'Start time of the interval, in 24hr format'\n        },\n        weekday: {\n          type: 'string',\n          description: 'Weekdays for use with a schedule',\n          enum: [            'monday',\n            'tuesday',\n            'wednesday',\n            'thursday',\n            'friday',\n            'saturday',\n            'sunday'\n          ]\n        }\n      },\n      required: [        'end_time',\n        'start_time',\n        'weekday'\n      ]\n    },\n    schedule_entry: {\n      type: 'object',\n      properties: {\n        end_at: {\n          type: 'string',\n          format: 'date-time'\n        },\n        start_at: {\n          type: 'string',\n          format: 'date-time'\n        },\n        entry_id: {\n          type: 'string',\n          description: 'Unique identifier of the schedule entry'\n        },\n        fingerprint: {\n          type: 'string',\n          description: 'A unique identifier for this entry, used to determine a unique shift'\n        },\n        layer_id: {\n          type: 'string',\n          description: 'If present, the layer this entry applies to on the rota'\n        },\n        rotation_id: {\n          type: 'string',\n          description: 'If present, the rotation this entry applies to on the schedule'\n        },\n        user: {\n          $ref: '#/$defs/user_v2'\n        }\n      },\n      required: [        'end_at',\n        'start_at'\n      ]\n    }\n  }\n}\n```",
+  inputSchema: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string',
+        description: 'Unique internal ID of the schedule',
+      },
+      jq_filter: {
+        type: 'string',
+        title: 'jq Filter',
+        description:
+          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
+      },
+    },
+    required: ['id'],
+  },
+  annotations: {
+    readOnlyHint: true,
+  },
+};
+
+export const handler = async (client: IncidentIo2, args: Record<string, unknown> | undefined) => {
+  const { id, jq_filter, ...body } = args as any;
+  try {
+    return asTextContentResult(await maybeFilter(jq_filter, await client.schedules.retrieve(id)));
+  } catch (error) {
+    if (isJqError(error)) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
+};
+
+export default { metadata, tool, handler };
