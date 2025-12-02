@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Metadata, asTextContentResult } from 'incident-io-2-mcp/tools/types';
+import { Metadata, asErrorResult, asTextContentResult } from 'incident-io-2-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import IncidentIo2 from 'incident-io-2';
@@ -28,7 +28,14 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: IncidentIo2, args: Record<string, unknown> | undefined) => {
-  return asTextContentResult(await client.alertSources.list());
+  try {
+    return asTextContentResult(await client.alertSources.list());
+  } catch (error) {
+    if (error instanceof IncidentIo2.APIError) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };

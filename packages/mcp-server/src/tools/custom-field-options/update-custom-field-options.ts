@@ -55,7 +55,7 @@ export const handler = async (client: IncidentIo2, args: Record<string, unknown>
       await maybeFilter(jq_filter, await client.customFieldOptions.update(id, body)),
     );
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof IncidentIo2.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;

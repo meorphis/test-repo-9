@@ -90,7 +90,7 @@ export const handler = async (client: IncidentIo2, args: Record<string, unknown>
   try {
     return asTextContentResult(await maybeFilter(jq_filter, await client.customFields.updateV1(id, body)));
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof IncidentIo2.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
