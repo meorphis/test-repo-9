@@ -39,6 +39,7 @@ export async function codeTool() {
       },
       body: JSON.stringify({
         project_name: 'incident-io-2',
+        client_opts: {},
         code,
       }),
     });
