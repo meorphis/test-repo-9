@@ -35,7 +35,10 @@ export async function codeTool() {
       headers: {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
-        client_envs: JSON.stringify({ INCIDENT_IO_2_API_KEY: readEnv('INCIDENT_IO_2_API_KEY') }),
+        client_envs: JSON.stringify({
+          INCIDENT_IO_2_API_KEY: readEnv('INCIDENT_IO_2_API_KEY'),
+          INCIDENT_IO_2_BASE_URL: readEnv('INCIDENT_IO_2_BASE_URL'),
+        }),
       },
       body: JSON.stringify({
         project_name: 'incident-io-2',
