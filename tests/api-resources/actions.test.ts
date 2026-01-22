@@ -37,7 +37,11 @@ describe('resource actions', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.actions.list(
-        { incident_id: '01FCNDV6P870EA6S7TK1DSYDG0', incident_mode: 'real', is_follow_up: true },
+        {
+          incident_id: '01FCNDV6P870EA6S7TK1DSYDG0',
+          incident_mode: 'real',
+          is_follow_up: true,
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(IncidentIo2.NotFoundError);

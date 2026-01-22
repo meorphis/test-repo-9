@@ -12,7 +12,15 @@ describe('resource workflows', () => {
   test.skip('create: only required params', async () => {
     const responsePromise = client.workflows.create({
       condition_groups: [
-        { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+        {
+          conditions: [
+            {
+              operation: 'one_of',
+              param_bindings: [{}],
+              subject: 'incident.severity',
+            },
+          ],
+        },
       ],
       continue_on_step_error: true,
       expressions: [
@@ -28,7 +36,13 @@ describe('resource workflows', () => {
       once_for: ['incident.url'],
       runs_on_incident_modes: ['standard', 'test', 'retrospective'],
       runs_on_incidents: 'newly_created',
-      steps: [{ id: 'abc123', name: 'pagerduty.escalate', param_bindings: [{}] }],
+      steps: [
+        {
+          id: 'abc123',
+          name: 'pagerduty.escalate',
+          param_bindings: [{}],
+        },
+      ],
       trigger: 'incident.updated',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -184,7 +198,15 @@ describe('resource workflows', () => {
   test.skip('update: only required params', async () => {
     const responsePromise = client.workflows.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       condition_groups: [
-        { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+        {
+          conditions: [
+            {
+              operation: 'one_of',
+              param_bindings: [{}],
+              subject: 'incident.severity',
+            },
+          ],
+        },
       ],
       continue_on_step_error: true,
       expressions: [
@@ -200,7 +222,13 @@ describe('resource workflows', () => {
       once_for: ['incident.url'],
       runs_on_incident_modes: ['standard', 'test', 'retrospective'],
       runs_on_incidents: 'newly_created',
-      steps: [{ id: 'abc123', name: 'pagerduty.escalate', param_bindings: [{}] }],
+      steps: [
+        {
+          id: 'abc123',
+          name: 'pagerduty.escalate',
+          param_bindings: [{}],
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);

@@ -43,7 +43,11 @@ describe('resource incidents', () => {
       ],
       incident_role_assignments: [
         {
-          assignee: { id: '01G0J1EXE7AXZ2C93K61WBPYEH', email: 'bob@example.com', slack_user_id: 'USER123' },
+          assignee: {
+            id: '01G0J1EXE7AXZ2C93K61WBPYEH',
+            email: 'bob@example.com',
+            slack_user_id: 'USER123',
+          },
           incident_role_id: '01FH5TZRWMNAFB0DZ23FD1TV96',
         },
       ],
@@ -88,7 +92,11 @@ describe('resource incidents', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.incidents.list(
-        { after: '01FDAG4SAP5TYPT98WGR2N7W91', page_size: 25, status: ['declined'] },
+        {
+          after: '01FDAG4SAP5TYPT98WGR2N7W91',
+          page_size: 25,
+          status: ['declined'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(IncidentIo2.NotFoundError);
@@ -133,7 +141,11 @@ describe('resource incidents', () => {
       incident_role_assignments: [
         {
           incident_role_id: '01FH5TZRWMNAFB0DZ23FD1TV96',
-          assignee: { id: '01G0J1EXE7AXZ2C93K61WBPYEH', email: 'bob@example.com', slack_user_id: 'USER123' },
+          assignee: {
+            id: '01G0J1EXE7AXZ2C93K61WBPYEH',
+            email: 'bob@example.com',
+            slack_user_id: 'USER123',
+          },
         },
       ],
       incident_status_id: '01G0J1EXE7AXZ2C93K61WBPYEH',

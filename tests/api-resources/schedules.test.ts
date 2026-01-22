@@ -36,9 +36,19 @@ describe('resource schedules', () => {
               layers: [{ name: 'Layer 1', id: '01G0J1EXE7AXZ2C93K61WBPYEH' }],
               scheduling_mode: 'fair',
               users: [
-                { id: '01G0J1EXE7AXZ2C93K61WBPYEH', email: 'bob@example.com', slack_user_id: 'USER123' },
+                {
+                  id: '01G0J1EXE7AXZ2C93K61WBPYEH',
+                  email: 'bob@example.com',
+                  slack_user_id: 'USER123',
+                },
               ],
-              working_interval: [{ end_time: '17:00', start_time: '09:00', weekday: 'monday' }],
+              working_interval: [
+                {
+                  end_time: '17:00',
+                  start_time: '09:00',
+                  weekday: 'monday',
+                },
+              ],
             },
           ],
         },
@@ -90,9 +100,19 @@ describe('resource schedules', () => {
               name: 'My Rotation',
               scheduling_mode: 'fair',
               users: [
-                { id: '01G0J1EXE7AXZ2C93K61WBPYEH', email: 'bob@example.com', slack_user_id: 'USER123' },
+                {
+                  id: '01G0J1EXE7AXZ2C93K61WBPYEH',
+                  email: 'bob@example.com',
+                  slack_user_id: 'USER123',
+                },
               ],
-              working_interval: [{ end_time: '17:00', start_time: '09:00', weekday: 'monday' }],
+              working_interval: [
+                {
+                  end_time: '17:00',
+                  start_time: '09:00',
+                  weekday: 'monday',
+                },
+              ],
             },
           ],
         },

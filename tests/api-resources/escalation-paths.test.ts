@@ -49,7 +49,12 @@ describe('resource escalationPaths', () => {
           },
           level: {
             targets: [
-              { id: 'lawrencejones', type: 'schedule', urgency: 'high', schedule_mode: 'currently_on_call' },
+              {
+                id: 'lawrencejones',
+                type: 'schedule',
+                urgency: 'high',
+                schedule_mode: 'currently_on_call',
+              },
             ],
             ack_mode: 'all',
             round_robin_config: { enabled: false, rotate_after_seconds: 120 },
@@ -59,7 +64,12 @@ describe('resource escalationPaths', () => {
           },
           notify_channel: {
             targets: [
-              { id: 'lawrencejones', type: 'schedule', urgency: 'high', schedule_mode: 'currently_on_call' },
+              {
+                id: 'lawrencejones',
+                type: 'schedule',
+                urgency: 'high',
+                schedule_mode: 'currently_on_call',
+              },
             ],
             time_to_ack_interval_condition: 'active',
             time_to_ack_seconds: 1800,
@@ -74,7 +84,13 @@ describe('resource escalationPaths', () => {
           id: 'abc123',
           name: 'abc123',
           timezone: 'abc123',
-          weekday_intervals: [{ end_time: '17:00', start_time: '09:00', weekday: 'monday' }],
+          weekday_intervals: [
+            {
+              end_time: '17:00',
+              start_time: '09:00',
+              weekday: 'monday',
+            },
+          ],
         },
       ],
     });
@@ -133,7 +149,12 @@ describe('resource escalationPaths', () => {
           },
           level: {
             targets: [
-              { id: 'lawrencejones', type: 'schedule', urgency: 'high', schedule_mode: 'currently_on_call' },
+              {
+                id: 'lawrencejones',
+                type: 'schedule',
+                urgency: 'high',
+                schedule_mode: 'currently_on_call',
+              },
             ],
             ack_mode: 'all',
             round_robin_config: { enabled: false, rotate_after_seconds: 120 },
@@ -143,7 +164,12 @@ describe('resource escalationPaths', () => {
           },
           notify_channel: {
             targets: [
-              { id: 'lawrencejones', type: 'schedule', urgency: 'high', schedule_mode: 'currently_on_call' },
+              {
+                id: 'lawrencejones',
+                type: 'schedule',
+                urgency: 'high',
+                schedule_mode: 'currently_on_call',
+              },
             ],
             time_to_ack_interval_condition: 'active',
             time_to_ack_seconds: 1800,
@@ -158,7 +184,13 @@ describe('resource escalationPaths', () => {
           id: 'abc123',
           name: 'abc123',
           timezone: 'abc123',
-          weekday_intervals: [{ end_time: '17:00', start_time: '09:00', weekday: 'monday' }],
+          weekday_intervals: [
+            {
+              end_time: '17:00',
+              start_time: '09:00',
+              weekday: 'monday',
+            },
+          ],
         },
       ],
     });

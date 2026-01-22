@@ -60,7 +60,12 @@ describe('resource catalogEntries', () => {
   // Prism tests are disabled
   test.skip('createEntryV3: required and optional params', async () => {
     const response = await client.catalogEntries.createEntryV3({
-      attribute_values: { abc123: { array_value: [{ literal: 'SEV123' }], value: { literal: 'SEV123' } } },
+      attribute_values: {
+        abc123: {
+          array_value: [{ literal: 'SEV123' }],
+          value: { literal: 'SEV123' },
+        },
+      },
       catalog_type_id: '01FCNDV6P870EA6S7TK1DSYDG0',
       name: 'Primary On-call',
       aliases: ['lawrence@incident.io', 'lawrence'],
@@ -214,7 +219,12 @@ describe('resource catalogEntries', () => {
   // Prism tests are disabled
   test.skip('updateEntryV3: required and optional params', async () => {
     const response = await client.catalogEntries.updateEntryV3('01FCNDV6P870EA6S7TK1DSYDG0', {
-      attribute_values: { abc123: { array_value: [{ literal: 'SEV123' }], value: { literal: 'SEV123' } } },
+      attribute_values: {
+        abc123: {
+          array_value: [{ literal: 'SEV123' }],
+          value: { literal: 'SEV123' },
+        },
+      },
       name: 'Primary On-call',
       aliases: ['lawrence@incident.io', 'lawrence'],
       external_id: '761722cd-d1d7-477b-ac7e-90f9e079dc33',

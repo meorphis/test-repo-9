@@ -14,7 +14,12 @@ describe('resource alertSources', () => {
       name: 'Production Web Dashboard Alerts',
       source_type: 'alertmanager',
       template: {
-        attributes: [{ alert_attribute_id: 'abc123', binding: {} }],
+        attributes: [
+          {
+            alert_attribute_id: 'abc123',
+            binding: {},
+          },
+        ],
         description: {},
         expressions: [
           {
@@ -149,7 +154,12 @@ describe('resource alertSources', () => {
     const responsePromise = client.alertSources.update('01GW2G3V0S59R238FAHPDS1R66', {
       name: 'Production Web Dashboard Alerts',
       template: {
-        attributes: [{ alert_attribute_id: 'abc123', binding: {} }],
+        attributes: [
+          {
+            alert_attribute_id: 'abc123',
+            binding: {},
+          },
+        ],
         description: {},
         expressions: [
           {

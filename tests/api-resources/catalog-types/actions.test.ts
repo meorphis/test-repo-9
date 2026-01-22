@@ -11,7 +11,13 @@ describe('resource actions', () => {
   // Prism tests are disabled
   test.skip('updateSchema: only required params', async () => {
     const responsePromise = client.catalogTypes.actions.updateSchema('01FCNDV6P870EA6S7TK1DSYDG0', {
-      attributes: [{ array: false, name: 'tier', type: 'Custom["Service"]' }],
+      attributes: [
+        {
+          array: false,
+          name: 'tier',
+          type: 'Custom["Service"]',
+        },
+      ],
       version: 1,
     });
     const rawResponse = await responsePromise.asResponse();

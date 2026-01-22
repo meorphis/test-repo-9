@@ -35,7 +35,11 @@ describe('resource scheduleOverrides', () => {
       rotation_id: '01G0J1EXE7AXZ2C93K61WBPYEH',
       schedule_id: '01G0J1EXE7AXZ2C93K61WBPYEH',
       start_at: '2021-08-17T13:00:00.000000Z',
-      user: { id: '01G0J1EXE7AXZ2C93K61WBPYEH', email: 'bob@example.com', slack_user_id: 'USER123' },
+      user: {
+        id: '01G0J1EXE7AXZ2C93K61WBPYEH',
+        email: 'bob@example.com',
+        slack_user_id: 'USER123',
+      },
     });
   });
 });

@@ -25,7 +25,11 @@ describe('resource incidentUpdates', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.incidentUpdates.list(
-        { after: '01FDAG4SAP5TYPT98WGR2N7W91', incident_id: '01G0J1EXE7AXZ2C93K61WBPYEH', page_size: 25 },
+        {
+          after: '01FDAG4SAP5TYPT98WGR2N7W91',
+          incident_id: '01G0J1EXE7AXZ2C93K61WBPYEH',
+          page_size: 25,
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(IncidentIo2.NotFoundError);

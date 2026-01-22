@@ -15,19 +15,43 @@ describe('resource alertRoutes', () => {
         {
           alert_source_id: '01FCNDV6P870EA6S7TK1DSYDG0',
           condition_groups: [
-            { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+            {
+              conditions: [
+                {
+                  operation: 'one_of',
+                  param_bindings: [{}],
+                  subject: 'incident.severity',
+                },
+              ],
+            },
           ],
         },
       ],
       channel_config: [
         {
           condition_groups: [
-            { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+            {
+              conditions: [
+                {
+                  operation: 'one_of',
+                  param_bindings: [{}],
+                  subject: 'incident.severity',
+                },
+              ],
+            },
           ],
         },
       ],
       condition_groups: [
-        { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+        {
+          conditions: [
+            {
+              operation: 'one_of',
+              param_bindings: [{}],
+              subject: 'incident.severity',
+            },
+          ],
+        },
       ],
       enabled: false,
       escalation_config: { auto_cancel_escalations: false, escalation_targets: [{}] },
@@ -42,7 +66,15 @@ describe('resource alertRoutes', () => {
       incident_config: {
         auto_decline_enabled: false,
         condition_groups: [
-          { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+          {
+            conditions: [
+              {
+                operation: 'one_of',
+                param_bindings: [{}],
+                subject: 'incident.severity',
+              },
+            ],
+          },
         ],
         defer_time_seconds: 1,
         enabled: false,
@@ -329,19 +361,43 @@ describe('resource alertRoutes', () => {
         {
           alert_source_id: '01FCNDV6P870EA6S7TK1DSYDG0',
           condition_groups: [
-            { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+            {
+              conditions: [
+                {
+                  operation: 'one_of',
+                  param_bindings: [{}],
+                  subject: 'incident.severity',
+                },
+              ],
+            },
           ],
         },
       ],
       channel_config: [
         {
           condition_groups: [
-            { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+            {
+              conditions: [
+                {
+                  operation: 'one_of',
+                  param_bindings: [{}],
+                  subject: 'incident.severity',
+                },
+              ],
+            },
           ],
         },
       ],
       condition_groups: [
-        { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+        {
+          conditions: [
+            {
+              operation: 'one_of',
+              param_bindings: [{}],
+              subject: 'incident.severity',
+            },
+          ],
+        },
       ],
       enabled: false,
       escalation_config: { auto_cancel_escalations: false, escalation_targets: [{}] },
@@ -356,7 +412,15 @@ describe('resource alertRoutes', () => {
       incident_config: {
         auto_decline_enabled: false,
         condition_groups: [
-          { conditions: [{ operation: 'one_of', param_bindings: [{}], subject: 'incident.severity' }] },
+          {
+            conditions: [
+              {
+                operation: 'one_of',
+                param_bindings: [{}],
+                subject: 'incident.severity',
+              },
+            ],
+          },
         ],
         defer_time_seconds: 1,
         enabled: false,
