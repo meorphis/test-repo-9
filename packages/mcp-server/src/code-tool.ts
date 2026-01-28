@@ -4,6 +4,7 @@ import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult }
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { IncidentIo2 } from 'incident-io-2';
 
 const prompt = `Runs JavaScript code to interact with the Incident Io 2 API.
 
@@ -54,7 +55,7 @@ export function codeTool(): McpTool {
       required: ['code'],
     },
   };
-  const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
+  const handler = async (client: IncidentIo2, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
     const intent = args.intent as string | undefined;
 
@@ -70,8 +71,8 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          INCIDENT_IO_2_API_KEY: readEnv('INCIDENT_IO_2_API_KEY'),
-          INCIDENT_IO_2_BASE_URL: readEnv('INCIDENT_IO_2_BASE_URL'),
+          INCIDENT_IO_2_API_KEY: readEnv('INCIDENT_IO_2_API_KEY') ?? client.apiKey ?? undefined,
+          INCIDENT_IO_2_BASE_URL: readEnv('INCIDENT_IO_2_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
