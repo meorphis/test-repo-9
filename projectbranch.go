@@ -1,0 +1,388 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package ericstagingco5
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"slices"
+
+	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apijson"
+	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apiquery"
+	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/requestconfig"
+	"github.com/stainless-sdks-staging/eric-staging-co-5-go/option"
+	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/param"
+	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/respjson"
+)
+
+// ProjectBranchService contains methods and other services that help with
+// interacting with the eric-staging-co-5 API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewProjectBranchService] method instead.
+type ProjectBranchService struct {
+	Options []option.RequestOption
+}
+
+// NewProjectBranchService generates a new service that applies the given options
+// to each request. These options are applied after the parent client's options (if
+// there is one), and before any request-specific options.
+func NewProjectBranchService(opts ...option.RequestOption) (r ProjectBranchService) {
+	r = ProjectBranchService{}
+	r.Options = opts
+	return
+}
+
+// Create a new branch for a project.
+//
+// The branch inherits the config files from the revision pointed to by the
+// `branch_from` parameter. In addition, if the revision is a branch name, the
+// branch will also inherit custom code changes from that branch.
+func (r *ProjectBranchService) New(ctx context.Context, project string, body ProjectBranchNewParams, opts ...option.RequestOption) (res *ProjectBranch, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if project == "" {
+		err = errors.New("missing required project parameter")
+		return
+	}
+	path := fmt.Sprintf("v0/projects/%s/branches", url.PathEscape(project))
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
+	return
+}
+
+// Retrieve a project branch by name.
+func (r *ProjectBranchService) Get(ctx context.Context, branch string, query ProjectBranchGetParams, opts ...option.RequestOption) (res *ProjectBranch, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if query.Project == "" {
+		err = errors.New("missing required project parameter")
+		return
+	}
+	if branch == "" {
+		err = errors.New("missing required branch parameter")
+		return
+	}
+	path := fmt.Sprintf("v0/projects/%s/branches/%s", url.PathEscape(query.Project), url.PathEscape(branch))
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return
+}
+
+// Retrieve a project branch by name.
+func (r *ProjectBranchService) List(ctx context.Context, project string, query ProjectBranchListParams, opts ...option.RequestOption) (res *ProjectBranchListResponse, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if project == "" {
+		err = errors.New("missing required project parameter")
+		return
+	}
+	path := fmt.Sprintf("v0/projects/%s/branches", url.PathEscape(project))
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Delete a project branch by name.
+func (r *ProjectBranchService) Delete(ctx context.Context, branch string, body ProjectBranchDeleteParams, opts ...option.RequestOption) (res *ProjectBranchDeleteResponse, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if body.Project == "" {
+		err = errors.New("missing required project parameter")
+		return
+	}
+	if branch == "" {
+		err = errors.New("missing required branch parameter")
+		return
+	}
+	path := fmt.Sprintf("v0/projects/%s/branches/%s", url.PathEscape(body.Project), url.PathEscape(branch))
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, &res, opts...)
+	return
+}
+
+// Rebase a project branch.
+//
+// The branch is rebased onto the `base` branch or commit SHA, inheriting any
+// config and custom code changes.
+func (r *ProjectBranchService) Rebase(ctx context.Context, branch string, params ProjectBranchRebaseParams, opts ...option.RequestOption) (res *ProjectBranch, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if params.Project == "" {
+		err = errors.New("missing required project parameter")
+		return
+	}
+	if branch == "" {
+		err = errors.New("missing required branch parameter")
+		return
+	}
+	path := fmt.Sprintf("v0/projects/%s/branches/%s/rebase", url.PathEscape(params.Project), url.PathEscape(branch))
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, params, &res, opts...)
+	return
+}
+
+// Reset a project branch.
+//
+// If `branch` === `main`, the branch is reset to `target_config_sha`. Otherwise,
+// the branch is reset to `main`.
+func (r *ProjectBranchService) Reset(ctx context.Context, branch string, params ProjectBranchResetParams, opts ...option.RequestOption) (res *ProjectBranch, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if params.Project == "" {
+		err = errors.New("missing required project parameter")
+		return
+	}
+	if branch == "" {
+		err = errors.New("missing required branch parameter")
+		return
+	}
+	path := fmt.Sprintf("v0/projects/%s/branches/%s/reset", url.PathEscape(params.Project), url.PathEscape(branch))
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, params, &res, opts...)
+	return
+}
+
+// A project branch names a line of development for a project. Like a Git branch,
+// it points to a Git commit with a set of config files. In addition, a project
+// branch also points to a set of custom code changes, corresponding to Git
+// branches in the staging repos.
+type ProjectBranch struct {
+	// Branch name
+	Branch string `json:"branch,required"`
+	// A Git commit that points to the latest set of config files on a given branch.
+	ConfigCommit ProjectBranchConfigCommit `json:"config_commit,required"`
+	LatestBuild  Build                     `json:"latest_build,required"`
+	// Any of "project_branch".
+	Object ProjectBranchObject `json:"object,required"`
+	Org    string              `json:"org,required"`
+	// Project name
+	Project string `json:"project,required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Branch       respjson.Field
+		ConfigCommit respjson.Field
+		LatestBuild  respjson.Field
+		Object       respjson.Field
+		Org          respjson.Field
+		Project      respjson.Field
+		ExtraFields  map[string]respjson.Field
+		raw          string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r ProjectBranch) RawJSON() string { return r.JSON.raw }
+func (r *ProjectBranch) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// A Git commit that points to the latest set of config files on a given branch.
+type ProjectBranchConfigCommit struct {
+	Repo ProjectBranchConfigCommitRepo `json:"repo,required"`
+	Sha  string                        `json:"sha,required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Repo        respjson.Field
+		Sha         respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r ProjectBranchConfigCommit) RawJSON() string { return r.JSON.raw }
+func (r *ProjectBranchConfigCommit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type ProjectBranchConfigCommitRepo struct {
+	Branch string `json:"branch,required"`
+	Name   string `json:"name,required"`
+	Owner  string `json:"owner,required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Branch      respjson.Field
+		Name        respjson.Field
+		Owner       respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r ProjectBranchConfigCommitRepo) RawJSON() string { return r.JSON.raw }
+func (r *ProjectBranchConfigCommitRepo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type ProjectBranchObject string
+
+const (
+	ProjectBranchObjectProjectBranch ProjectBranchObject = "project_branch"
+)
+
+type ProjectBranchListResponse struct {
+	Data       []ProjectBranchListResponseData `json:"data,required"`
+	HasMore    bool                            `json:"has_more,required"`
+	NextCursor string                          `json:"next_cursor"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Data        respjson.Field
+		HasMore     respjson.Field
+		NextCursor  respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r ProjectBranchListResponse) RawJSON() string { return r.JSON.raw }
+func (r *ProjectBranchListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// A project branch names a line of development for a project. Like a Git branch,
+// it points to a Git commit with a set of config files. In addition, a project
+// branch also points to a set of custom code changes, corresponding to Git
+// branches in the staging repos.
+type ProjectBranchListResponseData struct {
+	// Branch name
+	Branch string `json:"branch,required"`
+	// A Git commit that points to the latest set of config files on a given branch.
+	ConfigCommit  ProjectBranchListResponseDataConfigCommit `json:"config_commit,required"`
+	LatestBuildID string                                    `json:"latest_build_id,required"`
+	// Any of "project_branch".
+	Object string `json:"object,required"`
+	Org    string `json:"org,required"`
+	// Project name
+	Project string `json:"project,required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Branch        respjson.Field
+		ConfigCommit  respjson.Field
+		LatestBuildID respjson.Field
+		Object        respjson.Field
+		Org           respjson.Field
+		Project       respjson.Field
+		ExtraFields   map[string]respjson.Field
+		raw           string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r ProjectBranchListResponseData) RawJSON() string { return r.JSON.raw }
+func (r *ProjectBranchListResponseData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// A Git commit that points to the latest set of config files on a given branch.
+type ProjectBranchListResponseDataConfigCommit struct {
+	Repo ProjectBranchListResponseDataConfigCommitRepo `json:"repo,required"`
+	Sha  string                                        `json:"sha,required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Repo        respjson.Field
+		Sha         respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r ProjectBranchListResponseDataConfigCommit) RawJSON() string { return r.JSON.raw }
+func (r *ProjectBranchListResponseDataConfigCommit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type ProjectBranchListResponseDataConfigCommitRepo struct {
+	Branch string `json:"branch,required"`
+	Name   string `json:"name,required"`
+	Owner  string `json:"owner,required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Branch      respjson.Field
+		Name        respjson.Field
+		Owner       respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r ProjectBranchListResponseDataConfigCommitRepo) RawJSON() string { return r.JSON.raw }
+func (r *ProjectBranchListResponseDataConfigCommitRepo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type ProjectBranchDeleteResponse = any
+
+type ProjectBranchNewParams struct {
+	// Branch name
+	Branch string `json:"branch,required"`
+	// Branch or commit SHA to branch from
+	BranchFrom string `json:"branch_from,required"`
+	// Whether to throw an error if the branch already exists. Defaults to false.
+	Force param.Opt[bool] `json:"force,omitzero"`
+	paramObj
+}
+
+func (r ProjectBranchNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow ProjectBranchNewParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *ProjectBranchNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type ProjectBranchGetParams struct {
+	Project string `path:"project,required" json:"-"`
+	paramObj
+}
+
+type ProjectBranchListParams struct {
+	// Pagination cursor from a previous response
+	Cursor param.Opt[string] `query:"cursor,omitzero" json:"-"`
+	// Maximum number of items to return, defaults to 10 (maximum: 100).
+	Limit param.Opt[float64] `query:"limit,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [ProjectBranchListParams]'s query parameters as
+// `url.Values`.
+func (r ProjectBranchListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type ProjectBranchDeleteParams struct {
+	Project string `path:"project,required" json:"-"`
+	paramObj
+}
+
+type ProjectBranchRebaseParams struct {
+	Project string `path:"project,required" json:"-"`
+	// The branch or commit SHA to rebase onto. Defaults to "main".
+	Base param.Opt[string] `query:"base,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [ProjectBranchRebaseParams]'s query parameters as
+// `url.Values`.
+func (r ProjectBranchRebaseParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type ProjectBranchResetParams struct {
+	Project string `path:"project,required" json:"-"`
+	// The commit SHA to reset the main branch to. Required if resetting the main
+	// branch; disallowed otherwise.
+	TargetConfigSha param.Opt[string] `query:"target_config_sha,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [ProjectBranchResetParams]'s query parameters as
+// `url.Values`.
+func (r ProjectBranchResetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}

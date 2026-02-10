@@ -1,2 +1,4 @@
-configured_endpoints: 10
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/meorphis-test%2Fmeorphis-test-74a52b29d09d567daa7bf55d4678d3cf175449a02560484fa3450e2044d1c3e4.yml
+configured_endpoints: 24
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs-5vak/stainless-meorphis%2Feric-staging-co-5-139e55cc389ca393700b4b2cb78c03c0c641934639e631162702396901224e36.yml
+openapi_spec_hash: bdbc8f5388f88acaeff72e8f79e57e46
+config_hash: 8d0b682e1d9d859722f9d4be02e29fa9

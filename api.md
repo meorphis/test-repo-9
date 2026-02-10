@@ -1,67 +1,123 @@
-# Accounts
+# OpenAPI
 
-Types:
+Response Types:
 
-- <code><a href="./src/resources/accounts/accounts.ts">AccountRetrieveResponse</a></code>
-- <code><a href="./src/resources/accounts/accounts.ts">AccountUpdateResponse</a></code>
-
-Methods:
-
-- <code title="get /accounts/{account_token}">client.accounts.<a href="./src/resources/accounts/accounts.ts">retrieve</a>(accountToken) -> AccountRetrieveResponse</code>
-- <code title="patch /accounts/{account_token}">client.accounts.<a href="./src/resources/accounts/accounts.ts">update</a>(accountToken, { ...params }) -> AccountUpdateResponse</code>
-
-## CreditConfigurations
-
-Types:
-
-- <code><a href="./src/resources/accounts/credit-configurations.ts">CreditConfigurationListResponse</a></code>
-- <code><a href="./src/resources/accounts/credit-configurations.ts">CreditConfigurationPatchAccountCreditConfigurationResponse</a></code>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#OpenAPIGetResponse">OpenAPIGetResponse</a>
 
 Methods:
 
-- <code title="get /accounts/{account_token}/credit_configuration">client.accounts.creditConfigurations.<a href="./src/resources/accounts/credit-configurations.ts">list</a>(accountToken) -> CreditConfigurationListResponse</code>
-- <code title="patch /accounts/{account_token}/credit_configuration">client.accounts.creditConfigurations.<a href="./src/resources/accounts/credit-configurations.ts">patchAccountCreditConfiguration</a>(accountToken, { ...params }) -> CreditConfigurationPatchAccountCreditConfigurationResponse</code>
+- <code title="get /v0/openapi">client.OpenAPI.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#OpenAPIService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#OpenAPIGetResponse">OpenAPIGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
-# Cards
+# Orgs
 
-Types:
+Response Types:
 
-- <code><a href="./src/resources/cards/cards.ts">CardCreateResponse</a></code>
-- <code><a href="./src/resources/cards/cards.ts">CardRetrieveResponse</a></code>
-- <code><a href="./src/resources/cards/cards.ts">CardUpdateResponse</a></code>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Org">Org</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#OrgListResponse">OrgListResponse</a>
 
 Methods:
 
-- <code title="post /cards">client.cards.<a href="./src/resources/cards/cards.ts">create</a>({ ...params }) -> CardCreateResponse</code>
-- <code title="get /cards/{card_token}">client.cards.<a href="./src/resources/cards/cards.ts">retrieve</a>(cardToken) -> CardRetrieveResponse</code>
-- <code title="patch /cards/{card_token}">client.cards.<a href="./src/resources/cards/cards.ts">update</a>(cardToken, { ...params }) -> CardUpdateResponse</code>
+- <code title="get /v0/orgs/{org}">client.Orgs.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#OrgService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, org <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Org">Org</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v0/orgs">client.Orgs.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#OrgService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#OrgListResponse">OrgListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
-## FinancialTransactions
+# Projects
 
-Types:
+Response Types:
 
-- <code><a href="./src/resources/cards/financial-transactions.ts">FinancialTransactionGetFinancialTransactionByTokenResponse</a></code>
-
-Methods:
-
-- <code title="get /cards/{card_token}/financial_transactions/{financial_transaction_token}">client.cards.financialTransactions.<a href="./src/resources/cards/financial-transactions.ts">getFinancialTransactionByToken</a>(cardToken, financialTransactionToken) -> FinancialTransactionGetFinancialTransactionByTokenResponse</code>
-
-## Provisions
-
-Types:
-
-- <code><a href="./src/resources/cards/provisions.ts">ProvisionPostProvisionResponse</a></code>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Project">Project</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectListResponse">ProjectListResponse</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectGenerateCommitMessageResponse">ProjectGenerateCommitMessageResponse</a>
 
 Methods:
 
-- <code title="post /cards/{card_token}/provision">client.cards.provisions.<a href="./src/resources/cards/provisions.ts">postProvision</a>(cardToken, { ...params }) -> ProvisionPostProvisionResponse</code>
+- <code title="post /v0/projects">client.Projects.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectNewParams">ProjectNewParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Project">Project</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v0/projects/{project}">client.Projects.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, project <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Project">Project</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="patch /v0/projects/{project}">client.Projects.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectService.Update">Update</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, project <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectUpdateParams">ProjectUpdateParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Project">Project</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v0/projects">client.Projects.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectListParams">ProjectListParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectListResponse">ProjectListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="post /v0/projects/{project}/generate_commit_message">client.Projects.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectService.GenerateCommitMessage">GenerateCommitMessage</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, project <a href="https://pkg.go.dev/builtin#string">string</a>, params <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectGenerateCommitMessageParams">ProjectGenerateCommitMessageParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectGenerateCommitMessageResponse">ProjectGenerateCommitMessageResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
-# Statuses
+## Branches
 
-Types:
+Response Types:
 
-- <code><a href="./src/resources/statuses.ts">StatusGetStatusResponse</a></code>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranch">ProjectBranch</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchListResponse">ProjectBranchListResponse</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchDeleteResponse">ProjectBranchDeleteResponse</a>
 
 Methods:
 
-- <code title="get /status">client.statuses.<a href="./src/resources/statuses.ts">getStatus</a>() -> StatusGetStatusResponse</code>
+- <code title="post /v0/projects/{project}/branches">client.Projects.Branches.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, project <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchNewParams">ProjectBranchNewParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranch">ProjectBranch</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v0/projects/{project}/branches/{branch}">client.Projects.Branches.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, branch <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchGetParams">ProjectBranchGetParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranch">ProjectBranch</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v0/projects/{project}/branches">client.Projects.Branches.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, project <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchListParams">ProjectBranchListParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchListResponse">ProjectBranchListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="delete /v0/projects/{project}/branches/{branch}">client.Projects.Branches.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchService.Delete">Delete</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, branch <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchDeleteParams">ProjectBranchDeleteParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchDeleteResponse">ProjectBranchDeleteResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="put /v0/projects/{project}/branches/{branch}/rebase">client.Projects.Branches.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchService.Rebase">Rebase</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, branch <a href="https://pkg.go.dev/builtin#string">string</a>, params <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchRebaseParams">ProjectBranchRebaseParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranch">ProjectBranch</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="put /v0/projects/{project}/branches/{branch}/reset">client.Projects.Branches.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchService.Reset">Reset</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, branch <a href="https://pkg.go.dev/builtin#string">string</a>, params <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranchResetParams">ProjectBranchResetParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectBranch">ProjectBranch</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## Configs
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectConfigGetResponse">ProjectConfigGetResponse</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectConfigGuessResponse">ProjectConfigGuessResponse</a>
+
+Methods:
+
+- <code title="get /v0/projects/{project}/configs">client.Projects.Configs.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectConfigService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, project <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectConfigGetParams">ProjectConfigGetParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectConfigGetResponse">ProjectConfigGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="post /v0/projects/{project}/configs/guess">client.Projects.Configs.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectConfigService.Guess">Guess</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, project <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectConfigGuessParams">ProjectConfigGuessParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectConfigGuessResponse">ProjectConfigGuessResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## Snippets
+
+Params Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Target">Target</a>
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Target">Target</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectSnippetRequestResponse">ProjectSnippetRequestResponse</a>
+
+Methods:
+
+- <code title="post /v0/projects/{projectName}/snippets/request">client.Projects.Snippets.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectSnippetService.Request">Request</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectName <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectSnippetRequestParams">ProjectSnippetRequestParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#ProjectSnippetRequestResponse">ProjectSnippetRequestResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Builds
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Build">Build</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildTarget">BuildTarget</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#CheckConclusion">CheckConclusion</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#CheckStepUnion">CheckStepUnion</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Commit">Commit</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#CommitConclusion">CommitConclusion</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildListResponse">BuildListResponse</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildCompareResponse">BuildCompareResponse</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildGetDiagnosticsResponse">BuildGetDiagnosticsResponse</a>
+
+Methods:
+
+- <code title="post /v0/builds">client.Builds.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildNewParams">BuildNewParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Build">Build</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v0/builds/{buildId}">client.Builds.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, buildID <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#Build">Build</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v0/builds">client.Builds.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildListParams">BuildListParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildListResponse">BuildListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="post /v0/builds/compare">client.Builds.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildService.Compare">Compare</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildCompareParams">BuildCompareParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildCompareResponse">BuildCompareResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /v0/builds/{buildId}/diagnostics">client.Builds.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildService.GetDiagnostics">GetDiagnostics</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, buildID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildGetDiagnosticsParams">BuildGetDiagnosticsParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildGetDiagnosticsResponse">BuildGetDiagnosticsResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# BuildTargetOutputs
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildTargetOutputGetResponseUnion">BuildTargetOutputGetResponseUnion</a>
+
+Methods:
+
+- <code title="get /v0/build_target_outputs">client.BuildTargetOutputs.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildTargetOutputService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildTargetOutputGetParams">BuildTargetOutputGetParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#BuildTargetOutputGetResponseUnion">BuildTargetOutputGetResponseUnion</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Spec
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#SpecGetDecoratedSpecResponse">SpecGetDecoratedSpecResponse</a>
+
+Methods:
+
+- <code title="get /v0/spec/application/{clientId}/{projectName}">client.Spec.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#SpecService.GetDecoratedSpec">GetDecoratedSpec</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectName <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#SpecGetDecoratedSpecParams">SpecGetDecoratedSpecParams</a>) (\*<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go">ericstagingco5</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#SpecGetDecoratedSpecResponse">SpecGetDecoratedSpecResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>

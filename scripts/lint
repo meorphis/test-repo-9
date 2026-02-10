@@ -4,5 +4,8 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-echo "==> Running eslint"
-./node_modules/.bin/eslint --ext ts,js .
+echo "==> Running Go build"
+go build ./...
+
+echo "==> Checking tests compile"
+go test -run=^$ ./...
