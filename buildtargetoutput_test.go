@@ -8,9 +8,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/testutil"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/option"
+	"github.com/meorphis/test-repo-9"
+	"github.com/meorphis/test-repo-9/internal/testutil"
+	"github.com/meorphis/test-repo-9/option"
 )
 
 func TestBuildTargetOutputGetWithOptionalParams(t *testing.T) {

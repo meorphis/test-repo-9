@@ -1,8 +1,8 @@
 package sentinel_test
 
 import (
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/encoding/json/sentinel"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/param"
+	"github.com/meorphis/test-repo-9/internal/encoding/json/sentinel"
+	"github.com/meorphis/test-repo-9/packages/param"
 	"reflect"
 	"slices"
 	"testing"

@@ -3,8 +3,8 @@ package respjson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apijson"
-	rj "github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/respjson"
+	"github.com/meorphis/test-repo-9/internal/apijson"
+	rj "github.com/meorphis/test-repo-9/packages/respjson"
 	"reflect"
 	"testing"
 )

@@ -41,7 +41,7 @@ To use a local version of this library from source in another project, edit the 
 directive. This can be done through the CLI with the following:
 
 ```sh
-$ go mod edit -replace github.com/stainless-sdks-staging/eric-staging-co-5-go=/path/to/eric-staging-co-5-go
+$ go mod edit -replace github.com/meorphis/test-repo-9=/path/to/test-repo-9
 ```
 
 ## Running tests

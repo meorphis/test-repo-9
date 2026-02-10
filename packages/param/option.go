@@ -3,7 +3,7 @@ package param
 import (
 	"encoding/json"
 	"fmt"
-	shimjson "github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/encoding/json"
+	shimjson "github.com/meorphis/test-repo-9/internal/encoding/json"
 	"time"
 )
 

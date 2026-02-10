@@ -2,7 +2,7 @@ package apijson
 
 import (
 	"errors"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/param"
+	"github.com/meorphis/test-repo-9/packages/param"
 	"reflect"
 
 	"github.com/tidwall/gjson"
