@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource escalationPaths', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.escalationPaths.create({
       name: 'Urgent Support',
@@ -23,7 +23,7 @@ describe('resource escalationPaths', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.escalationPaths.create({
       name: 'Urgent Support',
@@ -96,7 +96,7 @@ describe('resource escalationPaths', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.escalationPaths.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -108,7 +108,7 @@ describe('resource escalationPaths', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.escalationPaths.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       name: 'Urgent Support',
@@ -123,7 +123,7 @@ describe('resource escalationPaths', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.escalationPaths.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       name: 'Urgent Support',
@@ -196,7 +196,7 @@ describe('resource escalationPaths', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.escalationPaths.delete('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();

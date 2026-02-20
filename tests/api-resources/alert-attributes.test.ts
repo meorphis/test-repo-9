@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource alertAttributes', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.alertAttributes.create({
       array: false,
@@ -24,7 +24,7 @@ describe('resource alertAttributes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.alertAttributes.create({
       array: false,
@@ -34,7 +34,7 @@ describe('resource alertAttributes', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.alertAttributes.retrieve('01GW2G3V0S59R238FAHPDS1R66');
     const rawResponse = await responsePromise.asResponse();
@@ -46,7 +46,7 @@ describe('resource alertAttributes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.alertAttributes.update('01GW2G3V0S59R238FAHPDS1R66', {
       array: false,
@@ -62,7 +62,7 @@ describe('resource alertAttributes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.alertAttributes.update('01GW2G3V0S59R238FAHPDS1R66', {
       array: false,
@@ -72,7 +72,7 @@ describe('resource alertAttributes', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.alertAttributes.list();
     const rawResponse = await responsePromise.asResponse();
@@ -84,7 +84,7 @@ describe('resource alertAttributes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.alertAttributes.delete('01GW2G3V0S59R238FAHPDS1R66');
     const rawResponse = await responsePromise.asResponse();

@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource catalogTypes', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.catalogTypes.create({
       description: 'Represents Kubernetes clusters that we run inside of GKE.',
@@ -23,7 +23,7 @@ describe('resource catalogTypes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.catalogTypes.create({
       description: 'Represents Kubernetes clusters that we run inside of GKE.',
@@ -39,7 +39,7 @@ describe('resource catalogTypes', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.catalogTypes.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -51,7 +51,7 @@ describe('resource catalogTypes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.catalogTypes.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'Represents Kubernetes clusters that we run inside of GKE.',
@@ -66,7 +66,7 @@ describe('resource catalogTypes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.catalogTypes.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'Represents Kubernetes clusters that we run inside of GKE.',
@@ -81,7 +81,7 @@ describe('resource catalogTypes', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.catalogTypes.list();
     const rawResponse = await responsePromise.asResponse();
@@ -93,7 +93,7 @@ describe('resource catalogTypes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('destroy', async () => {
     const responsePromise = client.catalogTypes.destroy('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();

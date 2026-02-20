@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource alertRoutes', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.alertRoutes.create({
       alert_sources: [
@@ -95,7 +95,7 @@ describe('resource alertRoutes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.alertRoutes.create({
       alert_sources: [
@@ -342,7 +342,7 @@ describe('resource alertRoutes', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.alertRoutes.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -354,7 +354,7 @@ describe('resource alertRoutes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.alertRoutes.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       alert_sources: [
@@ -441,7 +441,7 @@ describe('resource alertRoutes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.alertRoutes.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       alert_sources: [
@@ -688,7 +688,7 @@ describe('resource alertRoutes', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: only required params', async () => {
     const responsePromise = client.alertRoutes.list({ page_size: 25 });
     const rawResponse = await responsePromise.asResponse();
@@ -700,12 +700,12 @@ describe('resource alertRoutes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: required and optional params', async () => {
     const response = await client.alertRoutes.list({ page_size: 25, after: '01FCNDV6P870EA6S7TK1DSYDG0' });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.alertRoutes.delete('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();

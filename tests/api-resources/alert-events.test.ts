@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource alertEvents', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createHTTP: only required params', async () => {
     const responsePromise = client.alertEvents.createHTTP('01GW2G3V0S59R238FAHPDS1R66', {
       status: 'firing',
@@ -23,7 +23,7 @@ describe('resource alertEvents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createHTTP: required and optional params', async () => {
     const response = await client.alertEvents.createHTTP('01GW2G3V0S59R238FAHPDS1R66', {
       status: 'firing',

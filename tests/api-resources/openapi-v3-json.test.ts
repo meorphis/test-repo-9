@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource openAPIV3Json', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.openAPIV3Json.retrieve();
     const rawResponse = await responsePromise.asResponse();

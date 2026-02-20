@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource scheduleOverrides', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.scheduleOverrides.create({
       end_at: '2021-08-17T14:00:00.000000Z',
@@ -27,7 +27,7 @@ describe('resource scheduleOverrides', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.scheduleOverrides.create({
       end_at: '2021-08-17T14:00:00.000000Z',

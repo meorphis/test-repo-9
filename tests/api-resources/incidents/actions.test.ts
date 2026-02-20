@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource actions', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('edit: only required params', async () => {
     const responsePromise = client.incidents.actions.edit('01G18REBY9AYH6CMWCJ2CVCYCH', {
       incident: {},
@@ -23,7 +23,7 @@ describe('resource actions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('edit: required and optional params', async () => {
     const response = await client.incidents.actions.edit('01G18REBY9AYH6CMWCJ2CVCYCH', {
       incident: {

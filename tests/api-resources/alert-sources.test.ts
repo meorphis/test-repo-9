@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource alertSources', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.alertSources.create({
       name: 'Production Web Dashboard Alerts',
@@ -41,7 +41,7 @@ describe('resource alertSources', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.alertSources.create({
       name: 'Production Web Dashboard Alerts',
@@ -137,7 +137,7 @@ describe('resource alertSources', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.alertSources.retrieve('01GW2G3V0S59R238FAHPDS1R66');
     const rawResponse = await responsePromise.asResponse();
@@ -149,7 +149,7 @@ describe('resource alertSources', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.alertSources.update('01GW2G3V0S59R238FAHPDS1R66', {
       name: 'Production Web Dashboard Alerts',
@@ -181,7 +181,7 @@ describe('resource alertSources', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.alertSources.update('01GW2G3V0S59R238FAHPDS1R66', {
       name: 'Production Web Dashboard Alerts',
@@ -276,7 +276,7 @@ describe('resource alertSources', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.alertSources.list();
     const rawResponse = await responsePromise.asResponse();
@@ -288,7 +288,7 @@ describe('resource alertSources', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.alertSources.delete('01GW2G3V0S59R238FAHPDS1R66');
     const rawResponse = await responsePromise.asResponse();

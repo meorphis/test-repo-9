@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource catalogEntries', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createEntryV2: only required params', async () => {
     const responsePromise = client.catalogEntries.createEntryV2({
       attribute_values: { abc123: {} },
@@ -24,7 +24,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createEntryV2: required and optional params', async () => {
     const response = await client.catalogEntries.createEntryV2({
       attribute_values: {
@@ -41,7 +41,7 @@ describe('resource catalogEntries', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createEntryV3: only required params', async () => {
     const responsePromise = client.catalogEntries.createEntryV3({
       attribute_values: { abc123: {} },
@@ -57,7 +57,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createEntryV3: required and optional params', async () => {
     const response = await client.catalogEntries.createEntryV3({
       attribute_values: {
@@ -74,7 +74,7 @@ describe('resource catalogEntries', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('destroyEntryV2', async () => {
     const responsePromise = client.catalogEntries.destroyEntryV2('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -86,7 +86,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('destroyEntryV3', async () => {
     const responsePromise = client.catalogEntries.destroyEntryV3('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -98,7 +98,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listEntriesV2: only required params', async () => {
     const responsePromise = client.catalogEntries.listEntriesV2({
       catalog_type_id: '01FCNDV6P870EA6S7TK1DSYDG0',
@@ -112,7 +112,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listEntriesV2: required and optional params', async () => {
     const response = await client.catalogEntries.listEntriesV2({
       catalog_type_id: '01FCNDV6P870EA6S7TK1DSYDG0',
@@ -121,7 +121,7 @@ describe('resource catalogEntries', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listEntriesV3: only required params', async () => {
     const responsePromise = client.catalogEntries.listEntriesV3({
       catalog_type_id: '01FCNDV6P870EA6S7TK1DSYDG0',
@@ -136,7 +136,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listEntriesV3: required and optional params', async () => {
     const response = await client.catalogEntries.listEntriesV3({
       catalog_type_id: '01FCNDV6P870EA6S7TK1DSYDG0',
@@ -146,7 +146,7 @@ describe('resource catalogEntries', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('showEntryV2', async () => {
     const responsePromise = client.catalogEntries.showEntryV2('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -158,7 +158,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('showEntryV3', async () => {
     const responsePromise = client.catalogEntries.showEntryV3('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -170,7 +170,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateEntryV2: only required params', async () => {
     const responsePromise = client.catalogEntries.updateEntryV2('01FCNDV6P870EA6S7TK1DSYDG0', {
       attribute_values: { abc123: {} },
@@ -185,7 +185,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateEntryV2: required and optional params', async () => {
     const response = await client.catalogEntries.updateEntryV2('01FCNDV6P870EA6S7TK1DSYDG0', {
       attribute_values: {
@@ -201,7 +201,7 @@ describe('resource catalogEntries', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateEntryV3: only required params', async () => {
     const responsePromise = client.catalogEntries.updateEntryV3('01FCNDV6P870EA6S7TK1DSYDG0', {
       attribute_values: { abc123: {} },
@@ -216,7 +216,7 @@ describe('resource catalogEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateEntryV3: required and optional params', async () => {
     const response = await client.catalogEntries.updateEntryV3('01FCNDV6P870EA6S7TK1DSYDG0', {
       attribute_values: {

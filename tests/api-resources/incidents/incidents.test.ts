@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource incidents', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.incidents.create({ idempotency_key: 'alert-uuid', visibility: 'public' });
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource incidents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.incidents.create({
       idempotency_key: 'alert-uuid',
@@ -63,7 +63,7 @@ describe('resource incidents', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.incidents.retrieve('01FDAG4SAP5TYPT98WGR2N7W91');
     const rawResponse = await responsePromise.asResponse();
@@ -75,7 +75,7 @@ describe('resource incidents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.incidents.list();
     const rawResponse = await responsePromise.asResponse();
@@ -87,7 +87,7 @@ describe('resource incidents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -102,7 +102,7 @@ describe('resource incidents', () => {
     ).rejects.toThrow(IncidentIo2.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createV2: only required params', async () => {
     const responsePromise = client.incidents.createV2({
       idempotency_key: 'alert-uuid',
@@ -117,7 +117,7 @@ describe('resource incidents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createV2: required and optional params', async () => {
     const response = await client.incidents.createV2({
       idempotency_key: 'alert-uuid',
@@ -167,7 +167,7 @@ describe('resource incidents', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listV2', async () => {
     const responsePromise = client.incidents.listV2();
     const rawResponse = await responsePromise.asResponse();
@@ -179,7 +179,7 @@ describe('resource incidents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listV2: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -210,7 +210,7 @@ describe('resource incidents', () => {
     ).rejects.toThrow(IncidentIo2.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieveV2', async () => {
     const responsePromise = client.incidents.retrieveV2('01FDAG4SAP5TYPT98WGR2N7W91');
     const rawResponse = await responsePromise.asResponse();

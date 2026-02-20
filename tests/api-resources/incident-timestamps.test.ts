@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource incidentTimestamps', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.incidentTimestamps.retrieve('01FCNDV6P870EA6S7TK1DSYD5H');
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource incidentTimestamps', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.incidentTimestamps.list();
     const rawResponse = await responsePromise.asResponse();

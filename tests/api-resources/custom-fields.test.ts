@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource customFields', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createV1: only required params', async () => {
     const responsePromise = client.customFields.createV1({
       description: 'Which team is impacted by this issue',
@@ -27,7 +27,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createV1: required and optional params', async () => {
     const response = await client.customFields.createV1({
       description: 'Which team is impacted by this issue',
@@ -42,7 +42,7 @@ describe('resource customFields', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createV2: only required params', async () => {
     const responsePromise = client.customFields.createV2({
       description: 'Which team is impacted by this issue',
@@ -58,7 +58,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createV2: required and optional params', async () => {
     const response = await client.customFields.createV2({
       description: 'Which team is impacted by this issue',
@@ -74,7 +74,7 @@ describe('resource customFields', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('deleteV1', async () => {
     const responsePromise = client.customFields.deleteV1('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -86,7 +86,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('deleteV2', async () => {
     const responsePromise = client.customFields.deleteV2('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -98,7 +98,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listV1', async () => {
     const responsePromise = client.customFields.listV1();
     const rawResponse = await responsePromise.asResponse();
@@ -110,7 +110,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listV2', async () => {
     const responsePromise = client.customFields.listV2();
     const rawResponse = await responsePromise.asResponse();
@@ -122,7 +122,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieveV1', async () => {
     const responsePromise = client.customFields.retrieveV1('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -134,7 +134,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieveV2', async () => {
     const responsePromise = client.customFields.retrieveV2('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -146,7 +146,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateV1: only required params', async () => {
     const responsePromise = client.customFields.updateV1('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'Which team is impacted by this issue',
@@ -164,7 +164,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateV1: required and optional params', async () => {
     const response = await client.customFields.updateV1('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'Which team is impacted by this issue',
@@ -178,7 +178,7 @@ describe('resource customFields', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateV2: only required params', async () => {
     const responsePromise = client.customFields.updateV2('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'Which team is impacted by this issue',
@@ -193,7 +193,7 @@ describe('resource customFields', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateV2: required and optional params', async () => {
     const response = await client.customFields.updateV2('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'Which team is impacted by this issue',

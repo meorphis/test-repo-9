@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource incidentTypes', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.incidentTypes.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource incidentTypes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.incidentTypes.list();
     const rawResponse = await responsePromise.asResponse();

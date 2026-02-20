@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource workflows', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.workflows.create({
       condition_groups: [
@@ -54,7 +54,7 @@ describe('resource workflows', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.workflows.create({
       condition_groups: [
@@ -170,7 +170,7 @@ describe('resource workflows', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.workflows.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -182,7 +182,7 @@ describe('resource workflows', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -194,7 +194,7 @@ describe('resource workflows', () => {
     ).rejects.toThrow(IncidentIo2.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.workflows.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       condition_groups: [
@@ -239,7 +239,7 @@ describe('resource workflows', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.workflows.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       condition_groups: [
@@ -354,7 +354,7 @@ describe('resource workflows', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.workflows.list();
     const rawResponse = await responsePromise.asResponse();
@@ -366,7 +366,7 @@ describe('resource workflows', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('destroy', async () => {
     const responsePromise = client.workflows.destroy('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();

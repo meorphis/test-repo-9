@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource incidentMemberships', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.incidentMemberships.create({
       incident_id: '01ET65M7ZADYFCKD4K1AE2QNMC',
@@ -23,7 +23,7 @@ describe('resource incidentMemberships', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.incidentMemberships.create({
       incident_id: '01ET65M7ZADYFCKD4K1AE2QNMC',

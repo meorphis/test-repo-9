@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource incidentStatuses', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.incidentStatuses.create({
       category: 'live',
@@ -24,7 +24,7 @@ describe('resource incidentStatuses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.incidentStatuses.create({
       category: 'live',
@@ -33,7 +33,7 @@ describe('resource incidentStatuses', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.incidentStatuses.retrieve('01FCNDV6P870EA6S7TK1DSYD5H');
     const rawResponse = await responsePromise.asResponse();
@@ -45,7 +45,7 @@ describe('resource incidentStatuses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.incidentStatuses.update('01FCNDV6P870EA6S7TK1DSYD5H', {
       description: "Impact has been **fully mitigated**, and we're ready to learn from this incident.",
@@ -60,7 +60,7 @@ describe('resource incidentStatuses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.incidentStatuses.update('01FCNDV6P870EA6S7TK1DSYD5H', {
       description: "Impact has been **fully mitigated**, and we're ready to learn from this incident.",
@@ -68,7 +68,7 @@ describe('resource incidentStatuses', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.incidentStatuses.list();
     const rawResponse = await responsePromise.asResponse();
@@ -80,7 +80,7 @@ describe('resource incidentStatuses', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.incidentStatuses.delete('01FCNDV6P870EA6S7TK1DSYD5H');
     const rawResponse = await responsePromise.asResponse();

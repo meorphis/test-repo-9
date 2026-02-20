@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource alerts', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.alerts.retrieve('01FDAG4SAP5TYPT98WGR2N7W91');
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource alerts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: only required params', async () => {
     const responsePromise = client.alerts.list({ page_size: 25 });
     const rawResponse = await responsePromise.asResponse();
@@ -32,7 +32,7 @@ describe('resource alerts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: required and optional params', async () => {
     const response = await client.alerts.list({
       page_size: 25,

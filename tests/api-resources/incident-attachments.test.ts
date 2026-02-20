@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource incidentAttachments', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.incidentAttachments.create({
       incident_id: '01FDAG4SAP5TYPT98WGR2N7W91',
@@ -23,7 +23,7 @@ describe('resource incidentAttachments', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.incidentAttachments.create({
       incident_id: '01FDAG4SAP5TYPT98WGR2N7W91',
@@ -31,7 +31,7 @@ describe('resource incidentAttachments', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.incidentAttachments.list();
     const rawResponse = await responsePromise.asResponse();
@@ -43,7 +43,7 @@ describe('resource incidentAttachments', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -58,7 +58,7 @@ describe('resource incidentAttachments', () => {
     ).rejects.toThrow(IncidentIo2.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.incidentAttachments.delete('01FCNDV6P870EA6S7TK1DSYD5H');
     const rawResponse = await responsePromise.asResponse();

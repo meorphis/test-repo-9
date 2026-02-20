@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource openAPIJson', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.openAPIJson.retrieve();
     const rawResponse = await responsePromise.asResponse();

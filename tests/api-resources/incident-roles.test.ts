@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource incidentRoles', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.incidentRoles.create({
       description: 'The person currently coordinating the incident',
@@ -26,7 +26,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.incidentRoles.create({
       description: 'The person currently coordinating the incident',
@@ -37,7 +37,7 @@ describe('resource incidentRoles', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.incidentRoles.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -49,7 +49,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.incidentRoles.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'The person currently coordinating the incident',
@@ -66,7 +66,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.incidentRoles.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'The person currently coordinating the incident',
@@ -77,7 +77,7 @@ describe('resource incidentRoles', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.incidentRoles.list();
     const rawResponse = await responsePromise.asResponse();
@@ -89,7 +89,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.incidentRoles.delete('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -101,7 +101,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createV2: only required params', async () => {
     const responsePromise = client.incidentRoles.createV2({
       description: 'The person currently coordinating the incident',
@@ -118,7 +118,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createV2: required and optional params', async () => {
     const response = await client.incidentRoles.createV2({
       description: 'The person currently coordinating the incident',
@@ -128,7 +128,7 @@ describe('resource incidentRoles', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('deleteV2', async () => {
     const responsePromise = client.incidentRoles.deleteV2('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -140,7 +140,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listV2', async () => {
     const responsePromise = client.incidentRoles.listV2();
     const rawResponse = await responsePromise.asResponse();
@@ -152,7 +152,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieveV2', async () => {
     const responsePromise = client.incidentRoles.retrieveV2('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -164,7 +164,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateV2: only required params', async () => {
     const responsePromise = client.incidentRoles.updateV2('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'The person currently coordinating the incident',
@@ -181,7 +181,7 @@ describe('resource incidentRoles', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateV2: required and optional params', async () => {
     const response = await client.incidentRoles.updateV2('01FCNDV6P870EA6S7TK1DSYDG0', {
       description: 'The person currently coordinating the incident',

@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource incidents', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listResponseIncidents: only required params', async () => {
     const responsePromise = client.statusPages.incidents.listResponseIncidents('abc123', { id: 'abc123' });
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource incidents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listResponseIncidents: required and optional params', async () => {
     const response = await client.statusPages.incidents.listResponseIncidents('abc123', { id: 'abc123' });
   });

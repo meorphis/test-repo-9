@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource actions', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateSchema: only required params', async () => {
     const responsePromise = client.catalogTypes.actions.updateSchema('01FCNDV6P870EA6S7TK1DSYDG0', {
       attributes: [
@@ -29,7 +29,7 @@ describe('resource actions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('updateSchema: required and optional params', async () => {
     const response = await client.catalogTypes.actions.updateSchema('01FCNDV6P870EA6S7TK1DSYDG0', {
       attributes: [

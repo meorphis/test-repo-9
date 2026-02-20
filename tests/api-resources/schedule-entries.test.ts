@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource scheduleEntries', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: only required params', async () => {
     const responsePromise = client.scheduleEntries.list({ schedule_id: '01FDAG4SAP5TYPT98WGR2N7W91' });
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource scheduleEntries', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: required and optional params', async () => {
     const response = await client.scheduleEntries.list({
       schedule_id: '01FDAG4SAP5TYPT98WGR2N7W91',

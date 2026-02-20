@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource customFieldOptions', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.customFieldOptions.create({
       custom_field_id: '01FCNDV6P870EA6S7TK1DSYDG0',
@@ -23,7 +23,7 @@ describe('resource customFieldOptions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.customFieldOptions.create({
       custom_field_id: '01FCNDV6P870EA6S7TK1DSYDG0',
@@ -32,7 +32,7 @@ describe('resource customFieldOptions', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.customFieldOptions.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
@@ -44,7 +44,7 @@ describe('resource customFieldOptions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.customFieldOptions.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       sort_key: 10,
@@ -59,7 +59,7 @@ describe('resource customFieldOptions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.customFieldOptions.update('01FCNDV6P870EA6S7TK1DSYDG0', {
       sort_key: 10,
@@ -67,7 +67,7 @@ describe('resource customFieldOptions', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: only required params', async () => {
     const responsePromise = client.customFieldOptions.list({ custom_field_id: '01FCNDV6P870EA6S7TK1DSYD5H' });
     const rawResponse = await responsePromise.asResponse();
@@ -79,7 +79,7 @@ describe('resource customFieldOptions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: required and optional params', async () => {
     const response = await client.customFieldOptions.list({
       custom_field_id: '01FCNDV6P870EA6S7TK1DSYD5H',
@@ -88,7 +88,7 @@ describe('resource customFieldOptions', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.customFieldOptions.delete('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();

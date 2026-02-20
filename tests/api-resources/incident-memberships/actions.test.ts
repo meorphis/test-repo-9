@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource actions', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('revoke: only required params', async () => {
     const responsePromise = client.incidentMemberships.actions.revoke({
       incident_id: '01FCNDV6P870EA6S7TK1DSYD5H',
@@ -23,7 +23,7 @@ describe('resource actions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('revoke: required and optional params', async () => {
     const response = await client.incidentMemberships.actions.revoke({
       incident_id: '01FCNDV6P870EA6S7TK1DSYD5H',

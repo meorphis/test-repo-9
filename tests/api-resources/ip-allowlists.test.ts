@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource ipAllowlists', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.ipAllowlists.retrieve();
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource ipAllowlists', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.ipAllowlists.update({
       allowlist: [{ value: '192.0.2.0' }],
@@ -36,7 +36,7 @@ describe('resource ipAllowlists', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.ipAllowlists.update({
       allowlist: [{ value: '192.0.2.0', label: 'London HQ' }],

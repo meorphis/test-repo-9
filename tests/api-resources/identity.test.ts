@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource identity', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.identity.retrieve();
     const rawResponse = await responsePromise.asResponse();

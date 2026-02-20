@@ -8,7 +8,7 @@ const client = new IncidentIo2({
 });
 
 describe('resource catalogResources', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listV2', async () => {
     const responsePromise = client.catalogResources.listV2();
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource catalogResources', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listV3', async () => {
     const responsePromise = client.catalogResources.listV3();
     const rawResponse = await responsePromise.asResponse();
