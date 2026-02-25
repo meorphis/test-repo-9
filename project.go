@@ -97,13 +97,13 @@ func (r *ProjectService) GenerateCommitMessage(ctx context.Context, project stri
 
 // A project is a collection of SDKs generated from the same set of config files.
 type Project struct {
-	ConfigRepo  string `json:"config_repo,required"`
-	DisplayName string `json:"display_name,required"`
+	ConfigRepo  string `json:"config_repo" api:"required"`
+	DisplayName string `json:"display_name" api:"required"`
 	// Any of "project".
-	Object  ProjectObject `json:"object,required"`
-	Org     string        `json:"org,required"`
-	Slug    string        `json:"slug,required"`
-	Targets []Target      `json:"targets,required"`
+	Object  ProjectObject `json:"object" api:"required"`
+	Org     string        `json:"org" api:"required"`
+	Slug    string        `json:"slug" api:"required"`
+	Targets []Target      `json:"targets" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ConfigRepo  respjson.Field
@@ -130,8 +130,8 @@ const (
 )
 
 type ProjectListResponse struct {
-	Data       []Project `json:"data,required"`
-	HasMore    bool      `json:"has_more,required"`
+	Data       []Project `json:"data" api:"required"`
+	HasMore    bool      `json:"has_more" api:"required"`
 	NextCursor string    `json:"next_cursor"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -150,7 +150,7 @@ func (r *ProjectListResponse) UnmarshalJSON(data []byte) error {
 }
 
 type ProjectGenerateCommitMessageResponse struct {
-	AICommitMessage string `json:"ai_commit_message,required"`
+	AICommitMessage string `json:"ai_commit_message" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AICommitMessage respjson.Field
@@ -167,15 +167,15 @@ func (r *ProjectGenerateCommitMessageResponse) UnmarshalJSON(data []byte) error 
 
 type ProjectNewParams struct {
 	// Human-readable project name
-	DisplayName string `json:"display_name,required"`
+	DisplayName string `json:"display_name" api:"required"`
 	// Organization name
-	Org string `json:"org,required"`
+	Org string `json:"org" api:"required"`
 	// File contents to commit
-	Revision map[string]ProjectNewParamsRevisionUnion `json:"revision,omitzero,required"`
+	Revision map[string]ProjectNewParamsRevisionUnion `json:"revision,omitzero" api:"required"`
 	// Project name/slug
-	Slug string `json:"slug,required"`
+	Slug string `json:"slug" api:"required"`
 	// Targets to generate for
-	Targets []Target `json:"targets,omitzero,required"`
+	Targets []Target `json:"targets,omitzero" api:"required"`
 	paramObj
 }
 
@@ -206,7 +206,7 @@ func (u *ProjectNewParamsRevisionUnion) UnmarshalJSON(data []byte) error {
 // The property Content is required.
 type ProjectNewParamsRevisionContent struct {
 	// File content
-	Content string `json:"content,required"`
+	Content string `json:"content" api:"required"`
 	paramObj
 }
 
@@ -221,7 +221,7 @@ func (r *ProjectNewParamsRevisionContent) UnmarshalJSON(data []byte) error {
 // The property URL is required.
 type ProjectNewParamsRevisionURL struct {
 	// URL to fetch file content from
-	URL string `json:"url,required"`
+	URL string `json:"url" api:"required"`
 	paramObj
 }
 
@@ -268,11 +268,11 @@ type ProjectGenerateCommitMessageParams struct {
 	//
 	// Any of "python", "node", "typescript", "java", "kotlin", "go", "ruby",
 	// "terraform", "cli", "csharp", "php", "openapi", "sql".
-	Target ProjectGenerateCommitMessageParamsTarget `query:"target,omitzero,required" json:"-"`
+	Target ProjectGenerateCommitMessageParamsTarget `query:"target,omitzero" api:"required" json:"-"`
 	// Base ref for comparison
-	BaseRef string `json:"base_ref,required"`
+	BaseRef string `json:"base_ref" api:"required"`
 	// Head ref for comparison
-	HeadRef string `json:"head_ref,required"`
+	HeadRef string `json:"head_ref" api:"required"`
 	paramObj
 }
 

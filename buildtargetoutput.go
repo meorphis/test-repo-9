@@ -99,15 +99,15 @@ func (r *BuildTargetOutputGetResponseUnion) UnmarshalJSON(data []byte) error {
 
 type BuildTargetOutputGetResponseObject struct {
 	// Any of "url".
-	Output string `json:"output,required"`
+	Output string `json:"output" api:"required"`
 	// Any of "node", "typescript", "python", "go", "java", "kotlin", "ruby",
 	// "terraform", "cli", "php", "csharp", "sql", "openapi".
-	Target Target `json:"target,required"`
+	Target Target `json:"target" api:"required"`
 	// Any of "source", "dist", "wheel", "openapi-with-transforms",
 	// "openapi-with-code-samples", "openapi-sdk-spec".
-	Type BuildTargetOutputGetResponseObjectType `json:"type,required"`
+	Type BuildTargetOutputGetResponseObjectType `json:"type" api:"required"`
 	// URL for direct download
-	URL string `json:"url,required"`
+	URL string `json:"url" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Output      respjson.Field
@@ -149,15 +149,15 @@ const (
 
 type BuildTargetOutputGetParams struct {
 	// Build ID
-	BuildID string `query:"build_id,required" json:"-"`
+	BuildID string `query:"build_id" api:"required" json:"-"`
 	// SDK language target name
 	//
 	// Any of "node", "typescript", "python", "go", "java", "kotlin", "ruby",
 	// "terraform", "cli", "php", "csharp", "sql", "openapi".
-	Target BuildTargetOutputGetParamsTarget `query:"target,omitzero,required" json:"-"`
+	Target BuildTargetOutputGetParamsTarget `query:"target,omitzero" api:"required" json:"-"`
 	// Any of "source", "dist", "wheel", "openapi-with-transforms",
 	// "openapi-with-code-samples", "openapi-sdk-spec".
-	Type BuildTargetOutputGetParamsType `query:"type,omitzero,required" json:"-"`
+	Type BuildTargetOutputGetParamsType `query:"type,omitzero" api:"required" json:"-"`
 	// Output format: url (download URL) or git (temporary access token).
 	//
 	// Any of "url", "git".

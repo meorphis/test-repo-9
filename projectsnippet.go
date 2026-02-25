@@ -66,7 +66,7 @@ const (
 )
 
 type ProjectSnippetRequestResponse struct {
-	Snippet string `json:"snippet,required"`
+	Snippet string `json:"snippet" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Snippet     respjson.Field
@@ -84,10 +84,10 @@ func (r *ProjectSnippetRequestResponse) UnmarshalJSON(data []byte) error {
 type ProjectSnippetRequestParams struct {
 	// Any of "node", "typescript", "python", "go", "java", "kotlin", "ruby",
 	// "terraform", "cli", "php", "csharp", "sql", "openapi".
-	Language Target                                  `json:"language,omitzero,required"`
-	Request  ProjectSnippetRequestParamsRequestUnion `json:"request,omitzero,required"`
+	Language Target                                  `json:"language,omitzero" api:"required"`
+	Request  ProjectSnippetRequestParamsRequestUnion `json:"request,omitzero" api:"required"`
 	// Any of "next", "latest_released".
-	Version ProjectSnippetRequestParamsVersion `json:"version,omitzero,required"`
+	Version ProjectSnippetRequestParamsVersion `json:"version,omitzero" api:"required"`
 	paramObj
 }
 
@@ -117,9 +117,9 @@ func (u *ProjectSnippetRequestParamsRequestUnion) UnmarshalJSON(data []byte) err
 
 // The properties Method, Parameters, Path are required.
 type ProjectSnippetRequestParamsRequestObject struct {
-	Method     string                                              `json:"method,required"`
-	Parameters []ProjectSnippetRequestParamsRequestObjectParameter `json:"parameters,omitzero,required"`
-	Path       string                                              `json:"path,required"`
+	Method     string                                              `json:"method" api:"required"`
+	Parameters []ProjectSnippetRequestParamsRequestObjectParameter `json:"parameters,omitzero" api:"required"`
+	Path       string                                              `json:"path" api:"required"`
 	Body       ProjectSnippetRequestParamsRequestObjectBody        `json:"body,omitzero"`
 	paramObj
 }
@@ -135,8 +135,8 @@ func (r *ProjectSnippetRequestParamsRequestObject) UnmarshalJSON(data []byte) er
 // The properties In, Name are required.
 type ProjectSnippetRequestParamsRequestObjectParameter struct {
 	// Any of "path", "query", "header", "cookie".
-	In    string `json:"in,omitzero,required"`
-	Name  string `json:"name,required"`
+	In    string `json:"in,omitzero" api:"required"`
+	Name  string `json:"name" api:"required"`
 	Value any    `json:"value,omitzero"`
 	paramObj
 }

@@ -52,6 +52,6 @@ func (r *SpecService) GetDecoratedSpec(ctx context.Context, projectName string, 
 type SpecGetDecoratedSpecResponse = any
 
 type SpecGetDecoratedSpecParams struct {
-	ClientID string `path:"clientId,required" json:"-"`
+	ClientID string `path:"clientId" api:"required" json:"-"`
 	paramObj
 }
