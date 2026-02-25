@@ -12,12 +12,12 @@ import (
 	"slices"
 	"time"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apijson"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apiquery"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/requestconfig"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/option"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/param"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/respjson"
+	"github.com/meorphis/test-repo-9/internal/apijson"
+	"github.com/meorphis/test-repo-9/internal/apiquery"
+	"github.com/meorphis/test-repo-9/internal/requestconfig"
+	"github.com/meorphis/test-repo-9/option"
+	"github.com/meorphis/test-repo-9/packages/param"
+	"github.com/meorphis/test-repo-9/packages/respjson"
 )
 
 // BuildService contains methods and other services that help with interacting with
@@ -106,16 +106,16 @@ func (r *BuildService) GetDiagnostics(ctx context.Context, buildID string, query
 
 type Build struct {
 	// Build ID
-	ID             string                   `json:"id,required"`
-	ConfigCommit   string                   `json:"config_commit,required"`
-	CreatedAt      time.Time                `json:"created_at,required" format:"date-time"`
-	DocumentedSpec BuildDocumentedSpecUnion `json:"documented_spec,required"`
+	ID             string                   `json:"id" api:"required"`
+	ConfigCommit   string                   `json:"config_commit" api:"required"`
+	CreatedAt      time.Time                `json:"created_at" api:"required" format:"date-time"`
+	DocumentedSpec BuildDocumentedSpecUnion `json:"documented_spec" api:"required"`
 	// Any of "build".
-	Object    BuildObject  `json:"object,required"`
-	Org       string       `json:"org,required"`
-	Project   string       `json:"project,required"`
-	Targets   BuildTargets `json:"targets,required"`
-	UpdatedAt time.Time    `json:"updated_at,required" format:"date-time"`
+	Object    BuildObject  `json:"object" api:"required"`
+	Org       string       `json:"org" api:"required"`
+	Project   string       `json:"project" api:"required"`
+	Targets   BuildTargets `json:"targets" api:"required"`
+	UpdatedAt time.Time    `json:"updated_at" api:"required" format:"date-time"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID             respjson.Field
@@ -178,9 +178,9 @@ func (r *BuildDocumentedSpecUnion) UnmarshalJSON(data []byte) error {
 }
 
 type BuildDocumentedSpecObject struct {
-	Content string `json:"content,required"`
+	Content string `json:"content" api:"required"`
 	// Any of "content".
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Content     respjson.Field
@@ -243,12 +243,12 @@ func (r *BuildTargets) UnmarshalJSON(data []byte) error {
 }
 
 type BuildTarget struct {
-	Commit     BuildTargetCommitUnion `json:"commit,required"`
-	InstallURL string                 `json:"install_url,required"`
+	Commit     BuildTargetCommitUnion `json:"commit" api:"required"`
+	InstallURL string                 `json:"install_url" api:"required"`
 	// Any of "build_target".
-	Object BuildTargetObject `json:"object,required"`
+	Object BuildTargetObject `json:"object" api:"required"`
 	// Any of "not_started", "codegen", "postgen", "completed".
-	Status BuildTargetStatus `json:"status,required"`
+	Status BuildTargetStatus `json:"status" api:"required"`
 	Build  CheckStepUnion    `json:"build"`
 	Lint   CheckStepUnion    `json:"lint"`
 	Test   CheckStepUnion    `json:"test"`
@@ -326,7 +326,7 @@ func (r *BuildTargetCommitUnion) UnmarshalJSON(data []byte) error {
 
 type BuildTargetCommitStatus struct {
 	// Any of "not_started".
-	Status string `json:"status,required"`
+	Status string `json:"status" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Status      respjson.Field
@@ -342,16 +342,16 @@ func (r *BuildTargetCommitStatus) UnmarshalJSON(data []byte) error {
 }
 
 type BuildTargetCommitObject struct {
-	Commit Commit `json:"commit,required"`
+	Commit Commit `json:"commit" api:"required"`
 	// deprecated
-	Completed BuildTargetCommitObjectCompleted `json:"completed,required"`
+	Completed BuildTargetCommitObjectCompleted `json:"completed" api:"required"`
 	// Any of "error", "warning", "note", "success", "merge_conflict",
 	// "upstream_merge_conflict", "fatal", "payment_required", "cancelled",
 	// "timed_out", "noop", "version_bump".
-	Conclusion      CommitConclusion                       `json:"conclusion,required"`
-	MergeConflictPr BuildTargetCommitObjectMergeConflictPr `json:"merge_conflict_pr,required"`
+	Conclusion      CommitConclusion                       `json:"conclusion" api:"required"`
+	MergeConflictPr BuildTargetCommitObjectMergeConflictPr `json:"merge_conflict_pr" api:"required"`
 	// Any of "completed".
-	Status string `json:"status,required"`
+	Status string `json:"status" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Commit          respjson.Field
@@ -372,12 +372,12 @@ func (r *BuildTargetCommitObject) UnmarshalJSON(data []byte) error {
 
 // deprecated
 type BuildTargetCommitObjectCompleted struct {
-	Commit Commit `json:"commit,required"`
+	Commit Commit `json:"commit" api:"required"`
 	// Any of "error", "warning", "note", "success", "merge_conflict",
 	// "upstream_merge_conflict", "fatal", "payment_required", "cancelled",
 	// "timed_out", "noop", "version_bump".
-	Conclusion      CommitConclusion                                `json:"conclusion,required"`
-	MergeConflictPr BuildTargetCommitObjectCompletedMergeConflictPr `json:"merge_conflict_pr,required"`
+	Conclusion      CommitConclusion                                `json:"conclusion" api:"required"`
+	MergeConflictPr BuildTargetCommitObjectCompletedMergeConflictPr `json:"merge_conflict_pr" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Commit          respjson.Field
@@ -395,8 +395,8 @@ func (r *BuildTargetCommitObjectCompleted) UnmarshalJSON(data []byte) error {
 }
 
 type BuildTargetCommitObjectCompletedMergeConflictPr struct {
-	Number float64                                             `json:"number,required"`
-	Repo   BuildTargetCommitObjectCompletedMergeConflictPrRepo `json:"repo,required"`
+	Number float64                                             `json:"number" api:"required"`
+	Repo   BuildTargetCommitObjectCompletedMergeConflictPrRepo `json:"repo" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Number      respjson.Field
@@ -413,8 +413,8 @@ func (r *BuildTargetCommitObjectCompletedMergeConflictPr) UnmarshalJSON(data []b
 }
 
 type BuildTargetCommitObjectCompletedMergeConflictPrRepo struct {
-	Name  string `json:"name,required"`
-	Owner string `json:"owner,required"`
+	Name  string `json:"name" api:"required"`
+	Owner string `json:"owner" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Name        respjson.Field
@@ -431,8 +431,8 @@ func (r *BuildTargetCommitObjectCompletedMergeConflictPrRepo) UnmarshalJSON(data
 }
 
 type BuildTargetCommitObjectMergeConflictPr struct {
-	Number float64                                    `json:"number,required"`
-	Repo   BuildTargetCommitObjectMergeConflictPrRepo `json:"repo,required"`
+	Number float64                                    `json:"number" api:"required"`
+	Repo   BuildTargetCommitObjectMergeConflictPrRepo `json:"repo" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Number      respjson.Field
@@ -449,8 +449,8 @@ func (r *BuildTargetCommitObjectMergeConflictPr) UnmarshalJSON(data []byte) erro
 }
 
 type BuildTargetCommitObjectMergeConflictPrRepo struct {
-	Name  string `json:"name,required"`
-	Owner string `json:"owner,required"`
+	Name  string `json:"name" api:"required"`
+	Owner string `json:"owner" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Name        respjson.Field
@@ -543,7 +543,7 @@ func (r *CheckStepUnion) UnmarshalJSON(data []byte) error {
 
 type CheckStepStatus struct {
 	// Any of "not_started".
-	Status string `json:"status,required"`
+	Status string `json:"status" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Status      respjson.Field
@@ -560,13 +560,13 @@ func (r *CheckStepStatus) UnmarshalJSON(data []byte) error {
 
 type CheckStepObject struct {
 	// deprecated
-	Completed CheckStepObjectCompleted `json:"completed,required"`
+	Completed CheckStepObjectCompleted `json:"completed" api:"required"`
 	// Any of "success", "failure", "skipped", "cancelled", "action_required",
 	// "neutral", "timed_out".
-	Conclusion CheckConclusion `json:"conclusion,required"`
+	Conclusion CheckConclusion `json:"conclusion" api:"required"`
 	// Any of "completed".
-	Status string `json:"status,required"`
-	URL    string `json:"url,required"`
+	Status string `json:"status" api:"required"`
+	URL    string `json:"url" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Completed   respjson.Field
@@ -588,8 +588,8 @@ func (r *CheckStepObject) UnmarshalJSON(data []byte) error {
 type CheckStepObjectCompleted struct {
 	// Any of "success", "failure", "skipped", "cancelled", "action_required",
 	// "neutral", "timed_out".
-	Conclusion CheckConclusion `json:"conclusion,required"`
-	URL        string          `json:"url,required"`
+	Conclusion CheckConclusion `json:"conclusion" api:"required"`
+	URL        string          `json:"url" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Conclusion  respjson.Field
@@ -606,8 +606,8 @@ func (r *CheckStepObjectCompleted) UnmarshalJSON(data []byte) error {
 }
 
 type Commit struct {
-	Repo CommitRepo `json:"repo,required"`
-	Sha  string     `json:"sha,required"`
+	Repo CommitRepo `json:"repo" api:"required"`
+	Sha  string     `json:"sha" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Repo        respjson.Field
@@ -624,9 +624,9 @@ func (r *Commit) UnmarshalJSON(data []byte) error {
 }
 
 type CommitRepo struct {
-	Branch string `json:"branch,required"`
-	Name   string `json:"name,required"`
-	Owner  string `json:"owner,required"`
+	Branch string `json:"branch" api:"required"`
+	Name   string `json:"name" api:"required"`
+	Owner  string `json:"owner" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Branch      respjson.Field
@@ -661,8 +661,8 @@ const (
 )
 
 type BuildListResponse struct {
-	Data       []Build `json:"data,required"`
-	HasMore    bool    `json:"has_more,required"`
+	Data       []Build `json:"data" api:"required"`
+	HasMore    bool    `json:"has_more" api:"required"`
 	NextCursor string  `json:"next_cursor"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -681,8 +681,8 @@ func (r *BuildListResponse) UnmarshalJSON(data []byte) error {
 }
 
 type BuildCompareResponse struct {
-	Base Build `json:"base,required"`
-	Head Build `json:"head,required"`
+	Base Build `json:"base" api:"required"`
+	Head Build `json:"head" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Base        respjson.Field
@@ -699,8 +699,8 @@ func (r *BuildCompareResponse) UnmarshalJSON(data []byte) error {
 }
 
 type BuildGetDiagnosticsResponse struct {
-	Data       []BuildGetDiagnosticsResponseData `json:"data,required"`
-	HasMore    bool                              `json:"has_more,required"`
+	Data       []BuildGetDiagnosticsResponseData `json:"data" api:"required"`
+	HasMore    bool                              `json:"has_more" api:"required"`
 	NextCursor string                            `json:"next_cursor"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -720,16 +720,16 @@ func (r *BuildGetDiagnosticsResponse) UnmarshalJSON(data []byte) error {
 
 type BuildGetDiagnosticsResponseData struct {
 	// The kind of diagnostic.
-	Code string `json:"code,required"`
+	Code string `json:"code" api:"required"`
 	// Whether the diagnostic is ignored in the Stainless config.
-	Ignored bool `json:"ignored,required"`
+	Ignored bool `json:"ignored" api:"required"`
 	// The severity of the diagnostic.
 	//
 	// Any of "fatal", "error", "warning", "note".
-	Level string `json:"level,required"`
+	Level string `json:"level" api:"required"`
 	// A description of the diagnostic.
-	Message string                                   `json:"message,required"`
-	More    BuildGetDiagnosticsResponseDataMoreUnion `json:"more,required"`
+	Message string                                   `json:"message" api:"required"`
+	More    BuildGetDiagnosticsResponseDataMoreUnion `json:"more" api:"required"`
 	// A JSON pointer to a relevant field in the Stainless config.
 	ConfigRef string `json:"config_ref"`
 	// A JSON pointer to a relevant field in the OpenAPI spec.
@@ -792,9 +792,9 @@ func (r *BuildGetDiagnosticsResponseDataMoreUnion) UnmarshalJSON(data []byte) er
 }
 
 type BuildGetDiagnosticsResponseDataMoreObject struct {
-	Markdown string `json:"markdown,required"`
+	Markdown string `json:"markdown" api:"required"`
 	// Any of "markdown".
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Markdown    respjson.Field
@@ -812,10 +812,10 @@ func (r *BuildGetDiagnosticsResponseDataMoreObject) UnmarshalJSON(data []byte) e
 
 type BuildNewParams struct {
 	// Project name
-	Project string `json:"project,required"`
+	Project string `json:"project" api:"required"`
 	// Specifies what to build: a branch name, commit SHA, merge command
 	// ("base..head"), or file contents.
-	Revision BuildNewParamsRevisionUnion `json:"revision,omitzero,required"`
+	Revision BuildNewParamsRevisionUnion `json:"revision,omitzero" api:"required"`
 	// Whether to allow empty commits (no changes). Defaults to false.
 	AllowEmpty param.Opt[bool] `json:"allow_empty,omitzero"`
 	// The project branch to use for the build. If not specified, the branch is
@@ -879,7 +879,7 @@ func (u *BuildNewParamsRevisionMapItemUnion) UnmarshalJSON(data []byte) error {
 // The property Content is required.
 type BuildNewParamsRevisionMapItemContent struct {
 	// File content
-	Content string `json:"content,required"`
+	Content string `json:"content" api:"required"`
 	paramObj
 }
 
@@ -894,7 +894,7 @@ func (r *BuildNewParamsRevisionMapItemContent) UnmarshalJSON(data []byte) error 
 // The property URL is required.
 type BuildNewParamsRevisionMapItemURL struct {
 	// URL to fetch file content from
-	URL string `json:"url,required"`
+	URL string `json:"url" api:"required"`
 	paramObj
 }
 
@@ -936,7 +936,7 @@ func (r *BuildNewParamsTargetCommitMessages) UnmarshalJSON(data []byte) error {
 
 type BuildListParams struct {
 	// Project name
-	Project string `query:"project,required" json:"-"`
+	Project string `query:"project" api:"required" json:"-"`
 	// Branch name
 	Branch param.Opt[string] `query:"branch,omitzero" json:"-"`
 	// Pagination cursor from a previous response.
@@ -968,7 +968,7 @@ type BuildListParamsRevisionUnion struct {
 // The property Hash is required.
 type BuildListParamsRevisionMapItem struct {
 	// File content hash
-	Hash string `query:"hash,required" json:"-"`
+	Hash string `query:"hash" api:"required" json:"-"`
 	paramObj
 }
 
@@ -983,11 +983,11 @@ func (r BuildListParamsRevisionMapItem) URLQuery() (v url.Values, err error) {
 
 type BuildCompareParams struct {
 	// Parameters for the base build
-	Base BuildCompareParamsBase `json:"base,omitzero,required"`
+	Base BuildCompareParamsBase `json:"base,omitzero" api:"required"`
 	// Parameters for the head build
-	Head BuildCompareParamsHead `json:"head,omitzero,required"`
+	Head BuildCompareParamsHead `json:"head,omitzero" api:"required"`
 	// Project name
-	Project string `json:"project,required"`
+	Project string `json:"project" api:"required"`
 	// Optional list of SDK targets to build. If not specified, all configured targets
 	// will be built.
 	Targets []Target `json:"targets,omitzero"`
@@ -1008,9 +1008,9 @@ func (r *BuildCompareParams) UnmarshalJSON(data []byte) error {
 type BuildCompareParamsBase struct {
 	// Branch to use. When using a branch name as revision, this must match or be
 	// omitted.
-	Branch string `json:"branch,required"`
+	Branch string `json:"branch" api:"required"`
 	// Specifies what to build: a branch name, a commit SHA, or file contents.
-	Revision BuildCompareParamsBaseRevisionUnion `json:"revision,omitzero,required"`
+	Revision BuildCompareParamsBaseRevisionUnion `json:"revision,omitzero" api:"required"`
 	// Optional commit message to use when creating a new commit.
 	CommitMessage param.Opt[string] `json:"commit_message,omitzero"`
 	paramObj
@@ -1059,7 +1059,7 @@ func (u *BuildCompareParamsBaseRevisionMapItemUnion) UnmarshalJSON(data []byte) 
 // The property Content is required.
 type BuildCompareParamsBaseRevisionMapItemContent struct {
 	// File content
-	Content string `json:"content,required"`
+	Content string `json:"content" api:"required"`
 	paramObj
 }
 
@@ -1074,7 +1074,7 @@ func (r *BuildCompareParamsBaseRevisionMapItemContent) UnmarshalJSON(data []byte
 // The property URL is required.
 type BuildCompareParamsBaseRevisionMapItemURL struct {
 	// URL to fetch file content from
-	URL string `json:"url,required"`
+	URL string `json:"url" api:"required"`
 	paramObj
 }
 
@@ -1092,9 +1092,9 @@ func (r *BuildCompareParamsBaseRevisionMapItemURL) UnmarshalJSON(data []byte) er
 type BuildCompareParamsHead struct {
 	// Branch to use. When using a branch name as revision, this must match or be
 	// omitted.
-	Branch string `json:"branch,required"`
+	Branch string `json:"branch" api:"required"`
 	// Specifies what to build: a branch name, a commit SHA, or file contents.
-	Revision BuildCompareParamsHeadRevisionUnion `json:"revision,omitzero,required"`
+	Revision BuildCompareParamsHeadRevisionUnion `json:"revision,omitzero" api:"required"`
 	// Optional commit message to use when creating a new commit.
 	CommitMessage param.Opt[string] `json:"commit_message,omitzero"`
 	paramObj
@@ -1143,7 +1143,7 @@ func (u *BuildCompareParamsHeadRevisionMapItemUnion) UnmarshalJSON(data []byte) 
 // The property Content is required.
 type BuildCompareParamsHeadRevisionMapItemContent struct {
 	// File content
-	Content string `json:"content,required"`
+	Content string `json:"content" api:"required"`
 	paramObj
 }
 
@@ -1158,7 +1158,7 @@ func (r *BuildCompareParamsHeadRevisionMapItemContent) UnmarshalJSON(data []byte
 // The property URL is required.
 type BuildCompareParamsHeadRevisionMapItemURL struct {
 	// URL to fetch file content from
-	URL string `json:"url,required"`
+	URL string `json:"url" api:"required"`
 	paramObj
 }
 

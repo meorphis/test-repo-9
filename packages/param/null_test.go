@@ -2,7 +2,7 @@ package param_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/param"
+	"github.com/meorphis/test-repo-9/packages/param"
 	"testing"
 )
 

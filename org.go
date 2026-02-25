@@ -10,10 +10,10 @@ import (
 	"net/url"
 	"slices"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apijson"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/requestconfig"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/option"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/respjson"
+	"github.com/meorphis/test-repo-9/internal/apijson"
+	"github.com/meorphis/test-repo-9/internal/requestconfig"
+	"github.com/meorphis/test-repo-9/option"
+	"github.com/meorphis/test-repo-9/packages/respjson"
 )
 
 // OrgService contains methods and other services that help with interacting with
@@ -56,11 +56,11 @@ func (r *OrgService) List(ctx context.Context, opts ...option.RequestOption) (re
 }
 
 type Org struct {
-	DisplayName            string `json:"display_name,required"`
-	EnableAICommitMessages bool   `json:"enable_ai_commit_messages,required"`
+	DisplayName            string `json:"display_name" api:"required"`
+	EnableAICommitMessages bool   `json:"enable_ai_commit_messages" api:"required"`
 	// Any of "org".
-	Object OrgObject `json:"object,required"`
-	Slug   string    `json:"slug,required"`
+	Object OrgObject `json:"object" api:"required"`
+	Slug   string    `json:"slug" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		DisplayName            respjson.Field
@@ -85,8 +85,8 @@ const (
 )
 
 type OrgListResponse struct {
-	Data       []Org  `json:"data,required"`
-	HasMore    bool   `json:"has_more,required"`
+	Data       []Org  `json:"data" api:"required"`
+	HasMore    bool   `json:"has_more" api:"required"`
 	NextCursor string `json:"next_cursor"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {

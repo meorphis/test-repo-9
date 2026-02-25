@@ -18,10 +18,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apierror"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apiform"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apiquery"
+	"github.com/meorphis/test-repo-9/internal"
+	"github.com/meorphis/test-repo-9/internal/apierror"
+	"github.com/meorphis/test-repo-9/internal/apiform"
+	"github.com/meorphis/test-repo-9/internal/apiquery"
 )
 
 func getDefaultHeaders() map[string]string {
@@ -466,7 +466,11 @@ func (cfg *RequestConfig) Execute() (err error) {
 			res.Body.Close()
 		}
 
-		time.Sleep(retryDelay(res, retryCount))
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		case <-time.After(retryDelay(res, retryCount)):
+		}
 	}
 
 	// Save *http.Response if it is requested to, even if there was an error making the request. This is

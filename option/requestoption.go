@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/requestconfig"
+	"github.com/meorphis/test-repo-9/internal/requestconfig"
 	"github.com/tidwall/sjson"
 )
 
@@ -19,7 +19,7 @@ import (
 // which can be supplied to clients, services, and methods. You can read more about this functional
 // options pattern in our [README].
 //
-// [README]: https://pkg.go.dev/github.com/stainless-sdks-staging/eric-staging-co-5-go#readme-requestoptions
+// [README]: https://pkg.go.dev/github.com/meorphis/test-repo-9#readme-requestoptions
 type RequestOption = requestconfig.RequestOption
 
 // WithBaseURL returns a RequestOption that sets the BaseURL for the client.

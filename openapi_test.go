@@ -8,13 +8,13 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/testutil"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/option"
+	"github.com/meorphis/test-repo-9"
+	"github.com/meorphis/test-repo-9/internal/testutil"
+	"github.com/meorphis/test-repo-9/option"
 )
 
 func TestOpenAPIGet(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL

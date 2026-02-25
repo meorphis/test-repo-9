@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apijson"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/respjson"
+	"github.com/meorphis/test-repo-9/internal/apijson"
+	"github.com/meorphis/test-repo-9/packages/respjson"
 )
 
 // Error represents an error that originates from the API, i.e. when a request is

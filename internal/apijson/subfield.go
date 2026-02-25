@@ -1,7 +1,7 @@
 package apijson
 
 import (
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/respjson"
+	"github.com/meorphis/test-repo-9/packages/respjson"
 	"reflect"
 )
 

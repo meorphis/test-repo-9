@@ -7,9 +7,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/testutil"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/option"
+	"github.com/meorphis/test-repo-9"
+	"github.com/meorphis/test-repo-9/internal/testutil"
+	"github.com/meorphis/test-repo-9/option"
 )
 
 func TestUsage(t *testing.T) {
@@ -24,7 +24,7 @@ func TestUsage(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	openAPI, err := client.OpenAPI.Get(context.TODO())
 	if err != nil {
 		t.Fatalf("err should be nil: %s", err.Error())

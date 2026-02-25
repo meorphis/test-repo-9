@@ -1,4 +1,4 @@
-module github.com/stainless-sdks-staging/eric-staging-co-5-go
+module github.com/meorphis/test-repo-9
 
 go 1.22
 

@@ -2,7 +2,7 @@
 package json
 
 import (
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/encoding/json/shims"
+	"github.com/meorphis/test-repo-9/internal/encoding/json/shims"
 	"reflect"
 	"time"
 )

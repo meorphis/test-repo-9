@@ -3,8 +3,8 @@
 package ericstagingco5
 
 import (
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apierror"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/param"
+	"github.com/meorphis/test-repo-9/internal/apierror"
+	"github.com/meorphis/test-repo-9/packages/param"
 )
 
 // aliased to make [param.APIUnion] private when embedding

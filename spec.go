@@ -10,8 +10,8 @@ import (
 	"net/url"
 	"slices"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/requestconfig"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/option"
+	"github.com/meorphis/test-repo-9/internal/requestconfig"
+	"github.com/meorphis/test-repo-9/option"
 )
 
 // SpecService contains methods and other services that help with interacting with
@@ -52,6 +52,6 @@ func (r *SpecService) GetDecoratedSpec(ctx context.Context, projectName string, 
 type SpecGetDecoratedSpecResponse = any
 
 type SpecGetDecoratedSpecParams struct {
-	ClientID string `path:"clientId,required" json:"-"`
+	ClientID string `path:"clientId" api:"required" json:"-"`
 	paramObj
 }

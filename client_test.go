@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/option"
+	"github.com/meorphis/test-repo-9"
+	"github.com/meorphis/test-repo-9/internal"
+	"github.com/meorphis/test-repo-9/option"
 )
 
 type closureTransport struct {

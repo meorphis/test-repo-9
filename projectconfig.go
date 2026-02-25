@@ -10,12 +10,12 @@ import (
 	"net/url"
 	"slices"
 
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apijson"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/apiquery"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/internal/requestconfig"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/option"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/param"
-	"github.com/stainless-sdks-staging/eric-staging-co-5-go/packages/respjson"
+	"github.com/meorphis/test-repo-9/internal/apijson"
+	"github.com/meorphis/test-repo-9/internal/apiquery"
+	"github.com/meorphis/test-repo-9/internal/requestconfig"
+	"github.com/meorphis/test-repo-9/option"
+	"github.com/meorphis/test-repo-9/packages/param"
+	"github.com/meorphis/test-repo-9/packages/respjson"
 )
 
 // ProjectConfigService contains methods and other services that help with
@@ -65,7 +65,7 @@ type ProjectConfigGetResponse map[string]ProjectConfigGetResponseItem
 
 type ProjectConfigGetResponseItem struct {
 	// The file content
-	Content string `json:"content,required"`
+	Content string `json:"content" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Content     respjson.Field
@@ -84,7 +84,7 @@ type ProjectConfigGuessResponse map[string]ProjectConfigGuessResponseItem
 
 type ProjectConfigGuessResponseItem struct {
 	// The file content
-	Content string `json:"content,required"`
+	Content string `json:"content" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Content     respjson.Field
@@ -116,7 +116,7 @@ func (r ProjectConfigGetParams) URLQuery() (v url.Values, err error) {
 
 type ProjectConfigGuessParams struct {
 	// OpenAPI spec
-	Spec string `json:"spec,required"`
+	Spec string `json:"spec" api:"required"`
 	// Branch name
 	Branch param.Opt[string] `json:"branch,omitzero"`
 	paramObj
