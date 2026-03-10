@@ -5,6 +5,16 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * View incident timestamps.
+ *
+ * Each incident has a number of timestamps; some being defaults that we set on
+ * each incident for you, and other being configured for your organisation within
+ * settings.
+ *
+ * Timestamps help to communicate when a given action was taken for a specific
+ * incident, for example when it was reported, closed or fixed.
+ */
 export class IncidentTimestamps extends APIResource {
   /**
    * Get a single incident timestamp.

@@ -5,6 +5,9 @@ import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * This API currently only allows linked Response incidents for a status page incident to be listed.
+ */
 export class Incidents extends APIResource {
   /**
    * List the linked Response incidents for a status page incident.

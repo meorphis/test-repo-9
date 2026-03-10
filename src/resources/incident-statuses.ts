@@ -6,6 +6,16 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Manage incident statuses.
+ *
+ * Each incident has a status, picked from one of the statuses configured in your
+ * organisations settings.
+ *
+ * Statuses help communicate where an incident is in its lifecycle. You can use
+ * statuses when filtering incidents in the dashboard, and in workflows and announcement
+ * rules.
+ */
 export class IncidentStatuses extends APIResource {
   /**
    * Create a new incident status

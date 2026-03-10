@@ -5,6 +5,10 @@ import * as ActionsAPI from './actions';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * View and manage schedules.
+ * Manage your full schedule of on-call rotations, including the users and rotation configuration.
+ */
 export class ScheduleOverrides extends APIResource {
   /**
    * Create a new schedule override.

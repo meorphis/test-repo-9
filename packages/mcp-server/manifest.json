@@ -2,9 +2,9 @@
   "dxt_version": "0.2",
   "name": "incident-io-2-mcp",
   "version": "0.0.1",
-  "description": "The official MCP Server for the Incident Io 2 API",
+  "description": "The official MCP Server for the Incident Io 3 API",
   "author": {
-    "name": "Incident Io 2"
+    "name": "Incident Io 3"
   },
   "repository": {
     "type": "git",

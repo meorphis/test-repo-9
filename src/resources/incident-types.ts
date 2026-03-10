@@ -5,6 +5,12 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * View incident types.
+ *
+ * With incident types enabled, you can tailor your process to the situation you're
+ * responding to with different custom fields and roles for each incident type.
+ */
 export class IncidentTypes extends APIResource {
   /**
    * Get a single incident type.

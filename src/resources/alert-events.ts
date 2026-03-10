@@ -5,6 +5,14 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Create alerts within incident.io.
+ *
+ * The alerts API allows you to create alerts within incident.io by posting alert events. You
+ * can use alerts to automatically trigger incidents.
+ *
+ * To create an alert, you must first configure an alert source in the incident.io dashboard.
+ */
 export class AlertEvents extends APIResource {
   /**
    * Create an alert event using an HTTP source.

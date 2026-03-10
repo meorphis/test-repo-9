@@ -9,6 +9,11 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Manage workflows.
+ *
+ * Workflows allow you to automate certain actions and behaviors based on specific triggers.
+ */
 export class Workflows extends APIResource {
   /**
    * Create a new workflow

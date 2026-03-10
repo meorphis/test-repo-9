@@ -4,6 +4,11 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * Manage the IP allowlist.
+ *
+ * When enabled, the IP allowlist restricts authenticated traffic from the dashboard, public API and mobile app.
+ */
 export class IPAllowlists extends APIResource {
   /**
    * Show the IP allowlist for your organisation

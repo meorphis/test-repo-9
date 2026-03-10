@@ -6,6 +6,16 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Manage incident severities.
+ *
+ * Each incident has a severity, picked from one of the severities configured in your
+ * organisations settings.
+ *
+ * Severities help categorise incidents, and communicate urgency/impact. You can use
+ * severities when filtering incidents in the dashboard, and in workflows and announcement
+ * rules.
+ */
 export class Severities extends APIResource {
   /**
    * Create a new severity

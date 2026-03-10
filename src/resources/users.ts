@@ -6,6 +6,11 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * View users.
+ *
+ * Users all have a single base role, and can be assigned multiple custom roles. They can be managed via your Slack workspace or SAML provider.
+ */
 export class Users extends APIResource {
   /**
    * Get a single user.

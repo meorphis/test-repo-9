@@ -6,6 +6,16 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Manage incident follow-ups.
+ *
+ * Incidents can have follow-ups associated with them, which track work that should be done
+ * after an incident (e.g. improving some documentation, or upgrading a dependency). They can
+ * also be exported to external issue trackers.
+ *
+ * You can manage follow-ups in the incident Slack channel with <code>/incident follow-ups</code>, or on
+ * the incident homepage.
+ */
 export class FollowUps extends APIResource {
   /**
    * Get a single incident follow-up.

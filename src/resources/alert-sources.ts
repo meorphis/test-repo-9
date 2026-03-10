@@ -9,6 +9,11 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Configure your alert sources in incident.io.
+ *
+ * Alert sources are the systems that send alerts to incident.io, which can then be routed to the right people and teams.
+ */
 export class AlertSources extends APIResource {
   /**
    * Create a new alert source in your account.

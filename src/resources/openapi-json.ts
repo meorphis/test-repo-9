@@ -5,6 +5,11 @@ import { APIPromise } from '../core/api-promise';
 import { type Uploadable } from '../core/uploads';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * Miscelaneous utility endpoints.
+ *
+ * Collection of utility functions that can help build integrations against this API.
+ */
 export class OpenAPIJson extends APIResource {
   /**
    * Get the OpenAPI (v2) definition.

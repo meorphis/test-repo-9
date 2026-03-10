@@ -60,7 +60,7 @@ $ yarn link incident-io-2
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global incident-io-2
+$ pnpm link --global incident-io-2
 ```
 
 ## Running tests

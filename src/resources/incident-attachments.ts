@@ -6,6 +6,12 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Create, list and delete incident attachments.
+ *
+ * Incident Attachments allows you to connect resources from external systems into incidents.
+ * Examples include: PagerDuty incidents and GitHub pull requests.
+ */
 export class IncidentAttachments extends APIResource {
   /**
    * Attaches an external resource to an incident

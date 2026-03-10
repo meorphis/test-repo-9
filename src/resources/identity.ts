@@ -4,6 +4,11 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * Miscelaneous utility endpoints.
+ *
+ * Collection of utility functions that can help build integrations against this API.
+ */
 export class Identity extends APIResource {
   /**
    * Test if your API key is valid, and which roles it has.

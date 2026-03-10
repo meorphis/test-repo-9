@@ -11,6 +11,10 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * View and manage schedules.
+ * Manage your full schedule of on-call rotations, including the users and rotation configuration.
+ */
 export class Schedules extends APIResource {
   /**
    * Create a new schedule.

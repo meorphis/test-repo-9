@@ -6,6 +6,14 @@ import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Create and read incidents.
+ *
+ * Incidents are a core resource, on which many other resources (actions, etc) are created.
+ *
+ * Care should be taken around these endpoints, as automation that creates duplicate
+ * incidents can be distracting, and impact reporting.
+ */
 export class Actions extends APIResource {
   /**
    * Edit an existing incident.

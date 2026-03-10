@@ -8,6 +8,11 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Configure your alert routes in incident.io.
+ *
+ * Alert routes define how alerts from different sources are processed, grouped, and routed to the right teams and people.
+ */
 export class AlertRoutes extends APIResource {
   /**
    * Create a new alert route in your account.

@@ -6,6 +6,14 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Manage custom field options.
+ *
+ * Single- and multi-select custom fields have a list of all available options,
+ * which have a value, and a sort key. The value must be unique to the custom
+ * field. For example, you might have an Incident Type custom field, with options
+ * "Data breach", "Performance degradation", "API downtime", etc.
+ */
 export class CustomFieldOptions extends APIResource {
   /**
    * Create a custom field option. If the sort key is not supplied, it'll default to

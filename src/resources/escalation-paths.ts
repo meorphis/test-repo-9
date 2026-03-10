@@ -7,6 +7,12 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Create and manage escalation paths, and create, list and filter escalations.
+ *
+ * With incident.io On-call you can create escalation paths that describe how a page should
+ * be escalated to people and schedules.
+ */
 export class EscalationPaths extends APIResource {
   /**
    * Create an escalation path.

@@ -7,6 +7,13 @@ import * as IncidentsAPI from './incidents/incidents';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * List incident updates.
+ *
+ * Incident Updates allows you to see all the updates that have been shared against a
+ * particular incident. This will include any time that the Severity or Status of
+ * an incident changed, alongside any additional updates that were provided.
+ */
 export class IncidentUpdates extends APIResource {
   /**
    * List all incident updates for an organisation, or for a specific incident.

@@ -11,7 +11,7 @@ import type { APIResponseProps } from './internal/parse';
 import { getPlatformHeaders } from './internal/detect-platform';
 import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
-import * as qs from './internal/qs';
+import { stringifyQuery } from './internal/utils/query';
 import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
@@ -383,7 +383,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['INCIDENT_IO_2_BASE_URL'].
+   * Defaults to process.env['INCIDENT_IO_3_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -437,7 +437,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['INCIDENT_IO_2_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['INCIDENT_IO_3_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -450,9 +450,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Incident Io 2 API.
+ * API Client for interfacing with the Incident Io 3 API.
  */
-export class IncidentIo2 {
+export class IncidentIo3 {
   apiKey: string | null;
 
   baseURL: string;
@@ -468,10 +468,10 @@ export class IncidentIo2 {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Incident Io 2 API.
+   * API Client for interfacing with the Incident Io 3 API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['INCIDENT_IO_2_API_KEY'] ?? null]
-   * @param {string} [opts.baseURL=process.env['INCIDENT_IO_2_BASE_URL'] ?? https://api.incident.io] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['INCIDENT_IO_3_BASE_URL'] ?? https://api.incident.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -480,7 +480,7 @@ export class IncidentIo2 {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('INCIDENT_IO_2_BASE_URL'),
+    baseURL = readEnv('INCIDENT_IO_3_BASE_URL'),
     apiKey = readEnv('INCIDENT_IO_2_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
@@ -491,14 +491,14 @@ export class IncidentIo2 {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? IncidentIo2.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? IncidentIo3.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('INCIDENT_IO_2_LOG'), "process.env['INCIDENT_IO_2_LOG']", this) ??
+      parseLogLevel(readEnv('INCIDENT_IO_3_LOG'), "process.env['INCIDENT_IO_3_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -560,8 +560,8 @@ export class IncidentIo2 {
     return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
   }
 
-  protected stringifyQuery(query: Record<string, unknown>): string {
-    return qs.stringify(query, { arrayFormat: 'comma' });
+  protected stringifyQuery(query: object | Record<string, unknown>): string {
+    return stringifyQuery(query);
   }
 
   private getUserAgent(): string {
@@ -593,12 +593,13 @@ export class IncidentIo2 {
       : new URL(baseURL + (baseURL.endsWith('/') && path.startsWith('/') ? path.slice(1) : path));
 
     const defaultQuery = this.defaultQuery();
-    if (!isEmptyObj(defaultQuery)) {
-      query = { ...defaultQuery, ...query };
+    const pathQuery = Object.fromEntries(url.searchParams);
+    if (!isEmptyObj(defaultQuery) || !isEmptyObj(pathQuery)) {
+      query = { ...pathQuery, ...defaultQuery, ...query };
     }
 
     if (typeof query === 'object' && query && !Array.isArray(query)) {
-      url.search = this.stringifyQuery(query as Record<string, unknown>);
+      url.search = this.stringifyQuery(query);
     }
 
     return url.toString();
@@ -903,9 +904,9 @@ export class IncidentIo2 {
       }
     }
 
-    // If the API asks us to wait a certain amount of time (and it's a reasonable amount),
-    // just do what it says, but otherwise calculate a default
-    if (!(timeoutMillis && 0 <= timeoutMillis && timeoutMillis < 60 * 1000)) {
+    // If the API asks us to wait a certain amount of time, just do what it
+    // says, but otherwise calculate a default
+    if (timeoutMillis === undefined) {
       const maxRetries = options.maxRetries ?? this.maxRetries;
       timeoutMillis = this.calculateDefaultRetryTimeoutMillis(retriesRemaining, maxRetries);
     }
@@ -1037,17 +1038,17 @@ export class IncidentIo2 {
     ) {
       return {
         bodyHeaders: { 'content-type': 'application/x-www-form-urlencoded' },
-        body: this.stringifyQuery(body as Record<string, unknown>),
+        body: this.stringifyQuery(body),
       };
     } else {
       return this.#encoder({ body, headers });
     }
   }
 
-  static IncidentIo2 = this;
+  static IncidentIo3 = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static IncidentIo2Error = Errors.IncidentIo2Error;
+  static IncidentIo3Error = Errors.IncidentIo3Error;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -1064,79 +1065,292 @@ export class IncidentIo2 {
   static toFile = Uploads.toFile;
 
   actions: API.Actions = new API.Actions(this);
+  /**
+   * Manage custom field options.
+   *
+   * Single- and multi-select custom fields have a list of all available options,
+   * which have a value, and a sort key. The value must be unique to the custom
+   * field. For example, you might have an Incident Type custom field, with options
+   * "Data breach", "Performance degradation", "API downtime", etc.
+   */
   customFieldOptions: API.CustomFieldOptions = new API.CustomFieldOptions(this);
   customFields: API.CustomFields = new API.CustomFields(this);
+  /**
+   * Miscelaneous utility endpoints.
+   *
+   * Collection of utility functions that can help build integrations against this API.
+   *
+   */
   identity: API.Identity = new API.Identity(this);
+  /**
+   * Create, list and delete incident attachments.
+   *
+   * Incident Attachments allows you to connect resources from external systems into incidents.
+   * Examples include: PagerDuty incidents and GitHub pull requests.
+   *
+   */
   incidentAttachments: API.IncidentAttachments = new API.IncidentAttachments(this);
+  /**
+   * Manage private incident memberships
+   */
   incidentMemberships: API.IncidentMemberships = new API.IncidentMemberships(this);
+  /**
+   * View related incidents for an incident
+   */
   incidentRelationships: API.IncidentRelationships = new API.IncidentRelationships(this);
   incidentRoles: API.IncidentRoles = new API.IncidentRoles(this);
+  /**
+   * Manage incident statuses.
+   *
+   * Each incident has a status, picked from one of the statuses configured in your
+   * organisations settings.
+   *
+   * Statuses help communicate where an incident is in its lifecycle. You can use
+   * statuses when filtering incidents in the dashboard, and in workflows and announcement
+   * rules.
+   *
+   */
   incidentStatuses: API.IncidentStatuses = new API.IncidentStatuses(this);
+  /**
+   * View incident types.
+   *
+   * With incident types enabled, you can tailor your process to the situation you're
+   * responding to with different custom fields and roles for each incident type.
+   *
+   */
   incidentTypes: API.IncidentTypes = new API.IncidentTypes(this);
   incidents: API.Incidents = new API.Incidents(this);
+  /**
+   * Manage the IP allowlist.
+   *
+   * When enabled, the IP allowlist restricts authenticated traffic from the dashboard, public API and mobile app.
+   */
   ipAllowlists: API.IPAllowlists = new API.IPAllowlists(this);
+  /**
+   * Miscelaneous utility endpoints.
+   *
+   * Collection of utility functions that can help build integrations against this API.
+   *
+   */
   openAPIJson: API.OpenAPIJson = new API.OpenAPIJson(this);
+  /**
+   * Miscelaneous utility endpoints.
+   *
+   * Collection of utility functions that can help build integrations against this API.
+   *
+   */
   openAPIV3Json: API.OpenAPIV3Json = new API.OpenAPIV3Json(this);
+  /**
+   * Manage incident severities.
+   *
+   * Each incident has a severity, picked from one of the severities configured in your
+   * organisations settings.
+   *
+   * Severities help categorise incidents, and communicate urgency/impact. You can use
+   * severities when filtering incidents in the dashboard, and in workflows and announcement
+   * rules.
+   *
+   */
   severities: API.Severities = new API.Severities(this);
   statusPages: API.StatusPages = new API.StatusPages(this);
+  /**
+   * View and manage alert attributes.
+   *
+   * Alert attributes are used to parse structured data from alerts coming in via alert sources.
+   */
   alertAttributes: API.AlertAttributes = new API.AlertAttributes(this);
+  /**
+   * Create alerts within incident.io.
+   *
+   * The alerts API allows you to create alerts within incident.io by posting alert events. You
+   * can use alerts to automatically trigger incidents.
+   *
+   * To create an alert, you must first configure an alert source in the incident.io dashboard.
+   *
+   */
   alertEvents: API.AlertEvents = new API.AlertEvents(this);
+  /**
+   * Configure your alert routes in incident.io.
+   *
+   * Alert routes define how alerts from different sources are processed, grouped, and routed to the right teams and people.
+   */
   alertRoutes: API.AlertRoutes = new API.AlertRoutes(this);
+  /**
+   * Configure your alert sources in incident.io.
+   *
+   * Alert sources are the systems that send alerts to incident.io, which can then be routed to the right people and teams.
+   */
   alertSources: API.AlertSources = new API.AlertSources(this);
+  /**
+   * Read your alerts in incident.io.
+   *
+   * Alerts are events ingested from third parties by alert sources. They can trigger incidents and escalations, as configured in alert routes.
+   * To view your alerts, you can list all alerts, or show a single alert.
+   * If you'd like to view only alerts that are currently firing, you can filter by status.
+   * To view the alert that was created for an event in your external system, filter by deduplication key.
+   *
+   * If you'd like to view alerts connected to a particular incident, you can list incident alerts. You can filter by incident_id to find all alerts attached to a particular incident, or by alert_id to find the incident that a particular alert triggered.
+   *
+   */
   alerts: API.Alerts = new API.Alerts(this);
   catalogEntries: API.CatalogEntries = new API.CatalogEntries(this);
   catalogResources: API.CatalogResources = new API.CatalogResources(this);
+  /**
+   * Manage and browse catalog resources.
+   *
+   * Use the incident.io catalog to track services, teams, product features and anything
+   * else that helps build a map of your organisation. These different categories of thing
+   * become catalog types, and each instance (like a particular service or team) is a
+   * catalog entry.
+   *
+   * Each type is made up of a series of attributes, and each attribute has a type. Types
+   * can even have attributes that refer to other catalog types.
+   *
+   * We automatically create catalog types when you connect an integration, such as GitHub
+   * repositories or PagerDuty services and teams. You can use this API to create custom
+   * types, that are specifically tailored to your organisation.
+   *
+   * Examples might be a 'Service' type with an 'Alert channel' which you can point at a
+   * Slack channel, or 'Team' which specifies its 'Manager' and 'Technical Lead' as Slack
+   * users. You can then use these types to create powerful new workflows.
+   *
+   * Consider using our official [catalog importer](https://github.com/incident-io/catalog-importer).
+   * It can be used to sync catalog data from sources like local files or GitHub and push
+   * them into the incident.io catalog without having to directly interact with our public API.
+   *
+   */
   catalogTypes: API.CatalogTypes = new API.CatalogTypes(this);
+  /**
+   * Create and manage escalation paths, and create, list and filter escalations.
+   *
+   * With incident.io On-call you can create escalation paths that describe how a page should
+   * be escalated to people and schedules.
+   *
+   */
   escalationPaths: API.EscalationPaths = new API.EscalationPaths(this);
+  /**
+   * Create and manage escalation paths, and create, list and filter escalations.
+   *
+   * With incident.io On-call you can create escalation paths that describe how a page should
+   * be escalated to people and schedules.
+   *
+   */
   escalations: API.Escalations = new API.Escalations(this);
+  /**
+   * Manage incident follow-ups.
+   *
+   * Incidents can have follow-ups associated with them, which track work that should be done
+   * after an incident (e.g. improving some documentation, or upgrading a dependency). They can
+   * also be exported to external issue trackers.
+   *
+   * You can manage follow-ups in the incident Slack channel with <code>/incident follow-ups</code>, or on
+   * the incident homepage.
+   *
+   */
   followUps: API.FollowUps = new API.FollowUps(this);
+  /**
+   * Read your alerts in incident.io.
+   *
+   * Alerts are events ingested from third parties by alert sources. They can trigger incidents and escalations, as configured in alert routes.
+   * To view your alerts, you can list all alerts, or show a single alert.
+   * If you'd like to view only alerts that are currently firing, you can filter by status.
+   * To view the alert that was created for an event in your external system, filter by deduplication key.
+   *
+   * If you'd like to view alerts connected to a particular incident, you can list incident alerts. You can filter by incident_id to find all alerts attached to a particular incident, or by alert_id to find the incident that a particular alert triggered.
+   *
+   */
   incidentAlerts: API.IncidentAlerts = new API.IncidentAlerts(this);
+  /**
+   * View incident timestamps.
+   *
+   * Each incident has a number of timestamps; some being defaults that we set on
+   * each incident for you, and other being configured for your organisation within
+   * settings.
+   *
+   * Timestamps help to communicate when a given action was taken for a specific
+   * incident, for example when it was reported, closed or fixed.
+   *
+   */
   incidentTimestamps: API.IncidentTimestamps = new API.IncidentTimestamps(this);
+  /**
+   * List incident updates.
+   *
+   * Incident Updates allows you to see all the updates that have been shared against a
+   * particular incident. This will include any time that the Severity or Status of
+   * an incident changed, alongside any additional updates that were provided.
+   *
+   */
   incidentUpdates: API.IncidentUpdates = new API.IncidentUpdates(this);
+  /**
+   * View and manage schedules.
+   * Manage your full schedule of on-call rotations, including the users and rotation configuration.
+   *
+   */
   scheduleEntries: API.ScheduleEntries = new API.ScheduleEntries(this);
+  /**
+   * View and manage schedules.
+   * Manage your full schedule of on-call rotations, including the users and rotation configuration.
+   *
+   */
   scheduleOverrides: API.ScheduleOverrides = new API.ScheduleOverrides(this);
+  /**
+   * View and manage schedules.
+   * Manage your full schedule of on-call rotations, including the users and rotation configuration.
+   *
+   */
   schedules: API.Schedules = new API.Schedules(this);
+  /**
+   * View users.
+   *
+   * Users all have a single base role, and can be assigned multiple custom roles. They can be managed via your Slack workspace or SAML provider.
+   *
+   */
   users: API.Users = new API.Users(this);
+  /**
+   * Manage workflows.
+   *
+   * Workflows allow you to automate certain actions and behaviors based on specific triggers.
+   */
   workflows: API.Workflows = new API.Workflows(this);
 }
 
-IncidentIo2.Actions = Actions;
-IncidentIo2.CustomFieldOptions = CustomFieldOptions;
-IncidentIo2.CustomFields = CustomFields;
-IncidentIo2.Identity = Identity;
-IncidentIo2.IncidentAttachments = IncidentAttachments;
-IncidentIo2.IncidentMemberships = IncidentMemberships;
-IncidentIo2.IncidentRelationships = IncidentRelationships;
-IncidentIo2.IncidentRoles = IncidentRoles;
-IncidentIo2.IncidentStatuses = IncidentStatuses;
-IncidentIo2.IncidentTypes = IncidentTypes;
-IncidentIo2.Incidents = Incidents;
-IncidentIo2.IPAllowlists = IPAllowlists;
-IncidentIo2.OpenAPIJson = OpenAPIJson;
-IncidentIo2.OpenAPIV3Json = OpenAPIV3Json;
-IncidentIo2.Severities = Severities;
-IncidentIo2.StatusPages = StatusPages;
-IncidentIo2.AlertAttributes = AlertAttributes;
-IncidentIo2.AlertEvents = AlertEvents;
-IncidentIo2.AlertRoutes = AlertRoutes;
-IncidentIo2.AlertSources = AlertSources;
-IncidentIo2.Alerts = Alerts;
-IncidentIo2.CatalogEntries = CatalogEntries;
-IncidentIo2.CatalogResources = CatalogResources;
-IncidentIo2.CatalogTypes = CatalogTypes;
-IncidentIo2.EscalationPaths = EscalationPaths;
-IncidentIo2.Escalations = Escalations;
-IncidentIo2.FollowUps = FollowUps;
-IncidentIo2.IncidentAlerts = IncidentAlerts;
-IncidentIo2.IncidentTimestamps = IncidentTimestamps;
-IncidentIo2.IncidentUpdates = IncidentUpdates;
-IncidentIo2.ScheduleEntries = ScheduleEntries;
-IncidentIo2.ScheduleOverrides = ScheduleOverrides;
-IncidentIo2.Schedules = Schedules;
-IncidentIo2.Users = Users;
-IncidentIo2.Workflows = Workflows;
+IncidentIo3.Actions = Actions;
+IncidentIo3.CustomFieldOptions = CustomFieldOptions;
+IncidentIo3.CustomFields = CustomFields;
+IncidentIo3.Identity = Identity;
+IncidentIo3.IncidentAttachments = IncidentAttachments;
+IncidentIo3.IncidentMemberships = IncidentMemberships;
+IncidentIo3.IncidentRelationships = IncidentRelationships;
+IncidentIo3.IncidentRoles = IncidentRoles;
+IncidentIo3.IncidentStatuses = IncidentStatuses;
+IncidentIo3.IncidentTypes = IncidentTypes;
+IncidentIo3.Incidents = Incidents;
+IncidentIo3.IPAllowlists = IPAllowlists;
+IncidentIo3.OpenAPIJson = OpenAPIJson;
+IncidentIo3.OpenAPIV3Json = OpenAPIV3Json;
+IncidentIo3.Severities = Severities;
+IncidentIo3.StatusPages = StatusPages;
+IncidentIo3.AlertAttributes = AlertAttributes;
+IncidentIo3.AlertEvents = AlertEvents;
+IncidentIo3.AlertRoutes = AlertRoutes;
+IncidentIo3.AlertSources = AlertSources;
+IncidentIo3.Alerts = Alerts;
+IncidentIo3.CatalogEntries = CatalogEntries;
+IncidentIo3.CatalogResources = CatalogResources;
+IncidentIo3.CatalogTypes = CatalogTypes;
+IncidentIo3.EscalationPaths = EscalationPaths;
+IncidentIo3.Escalations = Escalations;
+IncidentIo3.FollowUps = FollowUps;
+IncidentIo3.IncidentAlerts = IncidentAlerts;
+IncidentIo3.IncidentTimestamps = IncidentTimestamps;
+IncidentIo3.IncidentUpdates = IncidentUpdates;
+IncidentIo3.ScheduleEntries = ScheduleEntries;
+IncidentIo3.ScheduleOverrides = ScheduleOverrides;
+IncidentIo3.Schedules = Schedules;
+IncidentIo3.Users = Users;
+IncidentIo3.Workflows = Workflows;
 
-export declare namespace IncidentIo2 {
+export declare namespace IncidentIo3 {
   export type RequestOptions = Opts.RequestOptions;
 
   export {

@@ -7,6 +7,9 @@ import { ActionRevokeParams, Actions } from './actions';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * Manage private incident memberships
+ */
 export class IncidentMemberships extends APIResource {
   actions: IncidentMembershipsActionsAPI.Actions = new IncidentMembershipsActionsAPI.Actions(this._client);
 

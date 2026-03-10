@@ -8,6 +8,16 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Read your alerts in incident.io.
+ *
+ * Alerts are events ingested from third parties by alert sources. They can trigger incidents and escalations, as configured in alert routes.
+ * To view your alerts, you can list all alerts, or show a single alert.
+ * If you'd like to view only alerts that are currently firing, you can filter by status.
+ * To view the alert that was created for an event in your external system, filter by deduplication key.
+ *
+ * If you'd like to view alerts connected to a particular incident, you can list incident alerts. You can filter by incident_id to find all alerts attached to a particular incident, or by alert_id to find the incident that a particular alert triggered.
+ */
 export class Alerts extends APIResource {
   /**
    * Show a single alert for your account

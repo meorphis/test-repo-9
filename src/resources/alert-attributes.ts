@@ -6,6 +6,11 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * View and manage alert attributes.
+ *
+ * Alert attributes are used to parse structured data from alerts coming in via alert sources.
+ */
 export class AlertAttributes extends APIResource {
   /**
    * Create a new alert attribute.

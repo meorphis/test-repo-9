@@ -5,6 +5,9 @@ import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * Manage private incident memberships
+ */
 export class Actions extends APIResource {
   /**
    * Revoke a user's membership of a private incident

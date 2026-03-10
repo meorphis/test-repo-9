@@ -6,6 +6,10 @@ import * as ActionsAPI from './actions';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * View and manage schedules.
+ * Manage your full schedule of on-call rotations, including the users and rotation configuration.
+ */
 export class ScheduleEntries extends APIResource {
   /**
    * Get a list of schedule entries. The endpoint will return all entries that

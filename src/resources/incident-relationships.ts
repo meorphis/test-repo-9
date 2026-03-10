@@ -5,6 +5,9 @@ import * as CustomFieldOptionsAPI from './custom-field-options';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * View related incidents for an incident
+ */
 export class IncidentRelationships extends APIResource {
   /**
    * List related incidents for a specific incident.
