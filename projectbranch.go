@@ -46,11 +46,11 @@ func (r *ProjectBranchService) New(ctx context.Context, project string, body Pro
 	opts = slices.Concat(r.Options, opts)
 	if project == "" {
 		err = errors.New("missing required project parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s/branches", url.PathEscape(project))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieve a project branch by name.
@@ -58,15 +58,15 @@ func (r *ProjectBranchService) Get(ctx context.Context, branch string, query Pro
 	opts = slices.Concat(r.Options, opts)
 	if query.Project == "" {
 		err = errors.New("missing required project parameter")
-		return
+		return nil, err
 	}
 	if branch == "" {
 		err = errors.New("missing required branch parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s/branches/%s", url.PathEscape(query.Project), url.PathEscape(branch))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieve a project branch by name.
@@ -74,11 +74,11 @@ func (r *ProjectBranchService) List(ctx context.Context, project string, query P
 	opts = slices.Concat(r.Options, opts)
 	if project == "" {
 		err = errors.New("missing required project parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s/branches", url.PathEscape(project))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Delete a project branch by name.
@@ -86,15 +86,15 @@ func (r *ProjectBranchService) Delete(ctx context.Context, branch string, body P
 	opts = slices.Concat(r.Options, opts)
 	if body.Project == "" {
 		err = errors.New("missing required project parameter")
-		return
+		return nil, err
 	}
 	if branch == "" {
 		err = errors.New("missing required branch parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s/branches/%s", url.PathEscape(body.Project), url.PathEscape(branch))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Rebase a project branch.
@@ -105,15 +105,15 @@ func (r *ProjectBranchService) Rebase(ctx context.Context, branch string, params
 	opts = slices.Concat(r.Options, opts)
 	if params.Project == "" {
 		err = errors.New("missing required project parameter")
-		return
+		return nil, err
 	}
 	if branch == "" {
 		err = errors.New("missing required branch parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s/branches/%s/rebase", url.PathEscape(params.Project), url.PathEscape(branch))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, params, &res, opts...)
-	return
+	return res, err
 }
 
 // Reset a project branch.
@@ -124,15 +124,15 @@ func (r *ProjectBranchService) Reset(ctx context.Context, branch string, params 
 	opts = slices.Concat(r.Options, opts)
 	if params.Project == "" {
 		err = errors.New("missing required project parameter")
-		return
+		return nil, err
 	}
 	if branch == "" {
 		err = errors.New("missing required branch parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s/branches/%s/reset", url.PathEscape(params.Project), url.PathEscape(branch))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, params, &res, opts...)
-	return
+	return res, err
 }
 
 // A project branch names a line of development for a project. Like a Git branch,

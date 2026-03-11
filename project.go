@@ -48,7 +48,7 @@ func (r *ProjectService) New(ctx context.Context, body ProjectNewParams, opts ..
 	opts = slices.Concat(r.Options, opts)
 	path := "v0/projects"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieve a project by name.
@@ -56,11 +56,11 @@ func (r *ProjectService) Get(ctx context.Context, project string, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	if project == "" {
 		err = errors.New("missing required project parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s", url.PathEscape(project))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Update a project's properties.
@@ -68,11 +68,11 @@ func (r *ProjectService) Update(ctx context.Context, project string, body Projec
 	opts = slices.Concat(r.Options, opts)
 	if project == "" {
 		err = errors.New("missing required project parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s", url.PathEscape(project))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // List projects in an organization, from oldest to newest.
@@ -80,7 +80,7 @@ func (r *ProjectService) List(ctx context.Context, query ProjectListParams, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "v0/projects"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Generates an AI commit message by comparing two git refs in the SDK repository.
@@ -88,11 +88,11 @@ func (r *ProjectService) GenerateCommitMessage(ctx context.Context, project stri
 	opts = slices.Concat(r.Options, opts)
 	if project == "" {
 		err = errors.New("missing required project parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s/generate_commit_message", url.PathEscape(project))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
-	return
+	return res, err
 }
 
 // A project is a collection of SDKs generated from the same set of config files.

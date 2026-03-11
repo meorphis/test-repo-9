@@ -40,11 +40,11 @@ func (r *ProjectSnippetService) Request(ctx context.Context, projectName string,
 	opts = slices.Concat(r.Options, opts)
 	if projectName == "" {
 		err = errors.New("missing required projectName parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/projects/%s/snippets/request", url.PathEscape(projectName))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type Target string

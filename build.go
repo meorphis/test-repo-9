@@ -47,7 +47,7 @@ func (r *BuildService) New(ctx context.Context, body BuildNewParams, opts ...opt
 	opts = slices.Concat(r.Options, opts)
 	path := "v0/builds"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieve a build by its ID.
@@ -55,11 +55,11 @@ func (r *BuildService) Get(ctx context.Context, buildID string, opts ...option.R
 	opts = slices.Concat(r.Options, opts)
 	if buildID == "" {
 		err = errors.New("missing required buildId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/builds/%s", url.PathEscape(buildID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // List user-triggered builds for a given project.
@@ -70,7 +70,7 @@ func (r *BuildService) List(ctx context.Context, query BuildListParams, opts ...
 	opts = slices.Concat(r.Options, opts)
 	path := "v0/builds"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Create two builds whose outputs can be directly compared with each other.
@@ -86,7 +86,7 @@ func (r *BuildService) Compare(ctx context.Context, body BuildCompareParams, opt
 	opts = slices.Concat(r.Options, opts)
 	path := "v0/builds/compare"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Get the list of diagnostics for a given build.
@@ -97,11 +97,11 @@ func (r *BuildService) GetDiagnostics(ctx context.Context, buildID string, query
 	opts = slices.Concat(r.Options, opts)
 	if buildID == "" {
 		err = errors.New("missing required buildId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/builds/%s/diagnostics", url.PathEscape(buildID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type Build struct {

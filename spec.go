@@ -38,15 +38,15 @@ func (r *SpecService) GetDecoratedSpec(ctx context.Context, projectName string, 
 	opts = slices.Concat(r.Options, opts)
 	if query.ClientID == "" {
 		err = errors.New("missing required clientId parameter")
-		return
+		return nil, err
 	}
 	if projectName == "" {
 		err = errors.New("missing required projectName parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("v0/spec/application/%s/%s", url.PathEscape(query.ClientID), url.PathEscape(projectName))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 type SpecGetDecoratedSpecResponse = any
