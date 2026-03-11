@@ -38,7 +38,7 @@ func TestUserAgentHeader(t *testing.T) {
 			},
 		}),
 	)
-	client.OpenAPI.Get(context.Background())
+	_, _ = client.OpenAPI.Get(context.Background())
 	if userAgent != fmt.Sprintf("EricStagingCo5/Go %s", internal.PackageVersion) {
 		t.Errorf("Expected User-Agent to be correct, but got: %#v", userAgent)
 	}
