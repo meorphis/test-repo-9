@@ -2,7 +2,7 @@
   "name": "incident-io-2-mcp",
   "version": "0.0.1",
   "description": "The official MCP Server for the Incident Io 5 API",
-  "author": "Incident Io 5 <meorphis3@gmail.com>",
+  "author": "Incident Io 5 <meorphis4@gmail.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
