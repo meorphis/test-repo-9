@@ -20,7 +20,7 @@ or products provided by Incident Io 4, please follow the respective company's se
 
 ### Incident Io 4 Terms and Policies
 
-Please contact meorphis@gmail.com for any questions or concerns regarding the security of our services.
+Please contact meorphis2@gmail.com for any questions or concerns regarding the security of our services.
 
 ---
 
