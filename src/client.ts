@@ -383,7 +383,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['INCIDENT_IO_4_BASE_URL'].
+   * Defaults to process.env['INCIDENT_IO_5_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -437,7 +437,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['INCIDENT_IO_4_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['INCIDENT_IO_5_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -450,9 +450,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Incident Io 4 API.
+ * API Client for interfacing with the Incident Io 5 API.
  */
-export class IncidentIo4 {
+export class IncidentIo5 {
   apiKey: string | null;
 
   baseURL: string;
@@ -468,10 +468,10 @@ export class IncidentIo4 {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Incident Io 4 API.
+   * API Client for interfacing with the Incident Io 5 API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['INCIDENT_IO_2_API_KEY'] ?? null]
-   * @param {string} [opts.baseURL=process.env['INCIDENT_IO_4_BASE_URL'] ?? https://api.incident.io] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['INCIDENT_IO_5_BASE_URL'] ?? https://api.incident.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -480,7 +480,7 @@ export class IncidentIo4 {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('INCIDENT_IO_4_BASE_URL'),
+    baseURL = readEnv('INCIDENT_IO_5_BASE_URL'),
     apiKey = readEnv('INCIDENT_IO_2_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
@@ -491,14 +491,14 @@ export class IncidentIo4 {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? IncidentIo4.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? IncidentIo5.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('INCIDENT_IO_4_LOG'), "process.env['INCIDENT_IO_4_LOG']", this) ??
+      parseLogLevel(readEnv('INCIDENT_IO_5_LOG'), "process.env['INCIDENT_IO_5_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -1045,10 +1045,10 @@ export class IncidentIo4 {
     }
   }
 
-  static IncidentIo4 = this;
+  static IncidentIo5 = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static IncidentIo4Error = Errors.IncidentIo4Error;
+  static IncidentIo5Error = Errors.IncidentIo5Error;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -1314,43 +1314,43 @@ export class IncidentIo4 {
   workflows: API.Workflows = new API.Workflows(this);
 }
 
-IncidentIo4.Actions = Actions;
-IncidentIo4.CustomFieldOptions = CustomFieldOptions;
-IncidentIo4.CustomFields = CustomFields;
-IncidentIo4.Identity = Identity;
-IncidentIo4.IncidentAttachments = IncidentAttachments;
-IncidentIo4.IncidentMemberships = IncidentMemberships;
-IncidentIo4.IncidentRelationships = IncidentRelationships;
-IncidentIo4.IncidentRoles = IncidentRoles;
-IncidentIo4.IncidentStatuses = IncidentStatuses;
-IncidentIo4.IncidentTypes = IncidentTypes;
-IncidentIo4.Incidents = Incidents;
-IncidentIo4.IPAllowlists = IPAllowlists;
-IncidentIo4.OpenAPIJson = OpenAPIJson;
-IncidentIo4.OpenAPIV3Json = OpenAPIV3Json;
-IncidentIo4.Severities = Severities;
-IncidentIo4.StatusPages = StatusPages;
-IncidentIo4.AlertAttributes = AlertAttributes;
-IncidentIo4.AlertEvents = AlertEvents;
-IncidentIo4.AlertRoutes = AlertRoutes;
-IncidentIo4.AlertSources = AlertSources;
-IncidentIo4.Alerts = Alerts;
-IncidentIo4.CatalogEntries = CatalogEntries;
-IncidentIo4.CatalogResources = CatalogResources;
-IncidentIo4.CatalogTypes = CatalogTypes;
-IncidentIo4.EscalationPaths = EscalationPaths;
-IncidentIo4.Escalations = Escalations;
-IncidentIo4.FollowUps = FollowUps;
-IncidentIo4.IncidentAlerts = IncidentAlerts;
-IncidentIo4.IncidentTimestamps = IncidentTimestamps;
-IncidentIo4.IncidentUpdates = IncidentUpdates;
-IncidentIo4.ScheduleEntries = ScheduleEntries;
-IncidentIo4.ScheduleOverrides = ScheduleOverrides;
-IncidentIo4.Schedules = Schedules;
-IncidentIo4.Users = Users;
-IncidentIo4.Workflows = Workflows;
+IncidentIo5.Actions = Actions;
+IncidentIo5.CustomFieldOptions = CustomFieldOptions;
+IncidentIo5.CustomFields = CustomFields;
+IncidentIo5.Identity = Identity;
+IncidentIo5.IncidentAttachments = IncidentAttachments;
+IncidentIo5.IncidentMemberships = IncidentMemberships;
+IncidentIo5.IncidentRelationships = IncidentRelationships;
+IncidentIo5.IncidentRoles = IncidentRoles;
+IncidentIo5.IncidentStatuses = IncidentStatuses;
+IncidentIo5.IncidentTypes = IncidentTypes;
+IncidentIo5.Incidents = Incidents;
+IncidentIo5.IPAllowlists = IPAllowlists;
+IncidentIo5.OpenAPIJson = OpenAPIJson;
+IncidentIo5.OpenAPIV3Json = OpenAPIV3Json;
+IncidentIo5.Severities = Severities;
+IncidentIo5.StatusPages = StatusPages;
+IncidentIo5.AlertAttributes = AlertAttributes;
+IncidentIo5.AlertEvents = AlertEvents;
+IncidentIo5.AlertRoutes = AlertRoutes;
+IncidentIo5.AlertSources = AlertSources;
+IncidentIo5.Alerts = Alerts;
+IncidentIo5.CatalogEntries = CatalogEntries;
+IncidentIo5.CatalogResources = CatalogResources;
+IncidentIo5.CatalogTypes = CatalogTypes;
+IncidentIo5.EscalationPaths = EscalationPaths;
+IncidentIo5.Escalations = Escalations;
+IncidentIo5.FollowUps = FollowUps;
+IncidentIo5.IncidentAlerts = IncidentAlerts;
+IncidentIo5.IncidentTimestamps = IncidentTimestamps;
+IncidentIo5.IncidentUpdates = IncidentUpdates;
+IncidentIo5.ScheduleEntries = ScheduleEntries;
+IncidentIo5.ScheduleOverrides = ScheduleOverrides;
+IncidentIo5.Schedules = Schedules;
+IncidentIo5.Users = Users;
+IncidentIo5.Workflows = Workflows;
 
-export declare namespace IncidentIo4 {
+export declare namespace IncidentIo5 {
   export type RequestOptions = Opts.RequestOptions;
 
   export {

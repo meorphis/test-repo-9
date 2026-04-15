@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import IncidentIo4 from 'incident-io-2';
+import IncidentIo5 from 'incident-io-2';
 
-const client = new IncidentIo4({
+const client = new IncidentIo5({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });

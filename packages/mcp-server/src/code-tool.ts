@@ -17,7 +17,7 @@ import { SdkMethod } from './methods';
 import { McpCodeExecutionMode } from './options';
 import { ClientOptions } from 'incident-io-2';
 
-const prompt = `Runs JavaScript code to interact with the Incident Io 4 API.
+const prompt = `Runs JavaScript code to interact with the Incident Io 5 API.
 
 You are a skilled TypeScript programmer writing code to interface with the service.
 Define an async function named "run" that takes a single parameter of an initialized SDK client and it will be run.
@@ -146,7 +146,7 @@ const remoteStainlessHandler = async ({
 
   const localClientEnvs = {
     INCIDENT_IO_2_API_KEY: readEnv('INCIDENT_IO_2_API_KEY') ?? client.apiKey ?? undefined,
-    INCIDENT_IO_4_BASE_URL: readEnv('INCIDENT_IO_4_BASE_URL') ?? client.baseURL ?? undefined,
+    INCIDENT_IO_5_BASE_URL: readEnv('INCIDENT_IO_5_BASE_URL') ?? client.baseURL ?? undefined,
   };
   // Merge any upstream client envs from the request header, with upstream values taking precedence.
   const mergedClientEnvs = { ...localClientEnvs, ...reqContext.upstreamClientEnvs };
