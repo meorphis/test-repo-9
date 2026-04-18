@@ -1,4 +1,4 @@
-# Incident Io 5 TypeScript MCP Server
+# Incident Io 6 TypeScript MCP Server
 
 It is generated with [Stainless](https://www.stainless.com/).
 
