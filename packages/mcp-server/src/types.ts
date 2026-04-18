@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import IncidentIo6 from 'incident-io-2';
+import IncidentIo7 from 'incident-io-2';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 
 type TextContentBlock = {
@@ -43,7 +43,7 @@ export type ToolCallResult = {
 };
 
 export type McpRequestContext = {
-  client: IncidentIo6;
+  client: IncidentIo7;
   stainlessApiKey?: string | undefined;
   upstreamClientEnvs?: Record<string, string> | undefined;
   mcpSessionId?: string | undefined;

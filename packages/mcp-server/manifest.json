@@ -2,9 +2,9 @@
   "dxt_version": "0.2",
   "name": "incident-io-2-mcp",
   "version": "0.0.1",
-  "description": "The official MCP Server for the Incident Io 6 API",
+  "description": "The official MCP Server for the Incident Io 7 API",
   "author": {
-    "name": "Incident Io 6",
+    "name": "Incident Io 7",
     "email": "meorphis4@gmail.com"
   },
   "repository": {
