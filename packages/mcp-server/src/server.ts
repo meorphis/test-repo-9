@@ -8,7 +8,7 @@ import {
   SetLevelRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { ClientOptions } from 'incident-io-2';
-import IncidentIo7 from 'incident-io-2';
+import IncidentIo13 from 'incident-io-2';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
 import { setLocalSearch } from './docs-search-tool';
@@ -72,15 +72,15 @@ export async function initMcpServer(params: {
     setLocalSearch(localSearch);
   }
 
-  let _client: IncidentIo7 | undefined;
+  let _client: IncidentIo13 | undefined;
   let _clientError: Error | undefined;
   let _logLevel: 'debug' | 'info' | 'warn' | 'error' | 'off' | undefined;
 
-  const getClient = (): IncidentIo7 => {
+  const getClient = (): IncidentIo13 => {
     if (_clientError) throw _clientError;
     if (!_client) {
       try {
-        _client = new IncidentIo7({
+        _client = new IncidentIo13({
           logger,
           ...params.clientOptions,
           defaultHeaders: {
@@ -115,7 +115,7 @@ export async function initMcpServer(params: {
       throw new Error(`Unknown tool: ${name}`);
     }
 
-    let client: IncidentIo7;
+    let client: IncidentIo13;
     try {
       client = getClient();
     } catch (error) {

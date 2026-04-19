@@ -1,4 +1,4 @@
-# Dockerfile for Incident Io 7 MCP Server
+# Dockerfile for Incident Io 13 MCP Server
 #
 # This Dockerfile builds a Docker image for the MCP Server.
 #

@@ -5,7 +5,7 @@ import util from 'node:util';
 import Fuse from 'fuse.js';
 import ts from 'typescript';
 import { WorkerOutput } from './code-tool-types';
-import { IncidentIo7, ClientOptions } from 'incident-io-2';
+import { IncidentIo13, ClientOptions } from 'incident-io-2';
 
 async function tseval(code: string) {
   return import('data:application/typescript;charset=utf-8;base64,' + Buffer.from(code).toString('base64'));
@@ -57,10 +57,10 @@ function getRunFunctionSource(code: string): {
 function getTSDiagnostics(code: string): string[] {
   const functionSource = getRunFunctionSource(code)!;
   const codeWithImport = [
-    'import { IncidentIo7 } from "incident-io-2";',
+    'import { IncidentIo13 } from "incident-io-2";',
     functionSource.type === 'declaration' ?
-      `async function run(${functionSource.client}: IncidentIo7)`
-    : `const run: (${functionSource.client}: IncidentIo7) => Promise<unknown> =`,
+      `async function run(${functionSource.client}: IncidentIo13)`
+    : `const run: (${functionSource.client}: IncidentIo13) => Promise<unknown> =`,
     functionSource.code,
   ].join('\n');
   const sourcePath = path.resolve('code.ts');
@@ -358,7 +358,7 @@ const fetch = async (req: Request): Promise<Response> => {
     );
   }
 
-  const client = new IncidentIo7({
+  const client = new IncidentIo13({
     ...opts,
   });
 

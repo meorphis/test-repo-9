@@ -1,12 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { IncidentIo7 as default } from './client';
+export { IncidentIo13 as default } from './client';
 
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './core/api-promise';
-export { IncidentIo7, type ClientOptions } from './client';
+export { IncidentIo13, type ClientOptions } from './client';
 export {
-  IncidentIo7Error,
+  IncidentIo13Error,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,

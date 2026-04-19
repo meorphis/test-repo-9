@@ -2,13 +2,13 @@
 
 import { castToError } from '../internal/errors';
 
-export class IncidentIo7Error extends Error {}
+export class IncidentIo13Error extends Error {}
 
 export class APIError<
   TStatus extends number | undefined = number | undefined,
   THeaders extends Headers | undefined = Headers | undefined,
   TError extends Object | undefined = Object | undefined,
-> extends IncidentIo7Error {
+> extends IncidentIo13Error {
   /** HTTP status for the response that caused the error */
   readonly status: TStatus;
   /** HTTP headers for the response that caused the error */

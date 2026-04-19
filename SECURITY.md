@@ -16,9 +16,9 @@ before making any information public.
 ## Reporting Non-SDK Related Security Issues
 
 If you encounter security issues that are not directly related to SDKs but pertain to the services
-or products provided by Incident Io 7, please follow the respective company's security reporting guidelines.
+or products provided by Incident Io 13, please follow the respective company's security reporting guidelines.
 
-### Incident Io 7 Terms and Policies
+### Incident Io 13 Terms and Policies
 
 Please contact meorphis6@gmail.com for any questions or concerns regarding the security of our services.
 
