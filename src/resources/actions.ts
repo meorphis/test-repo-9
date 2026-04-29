@@ -7,15 +7,6 @@ import { path } from '../internal/utils/path';
 
 export class Actions extends APIResource {
   /**
-   * Get a single incident action.
-   *
-   * @deprecated
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<ActionRetrieveResponse> {
-    return this._client.get(path`/v1/actions/${id}`, options);
-  }
-
-  /**
    * List all actions for an organisation.
    *
    * @deprecated
@@ -25,6 +16,15 @@ export class Actions extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ActionListResponse> {
     return this._client.get('/v1/actions', { query, ...options });
+  }
+
+  /**
+   * Get a single incident action.
+   *
+   * @deprecated
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<ActionRetrieveResponse> {
+    return this._client.get(path`/v1/actions/${id}`, options);
   }
 
   /**

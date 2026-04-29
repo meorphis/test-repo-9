@@ -16,6 +16,18 @@ import { path } from '../internal/utils/path';
  */
 export class AlertSources extends APIResource {
   /**
+   * List all alert sources in your account.
+   *
+   * @example
+   * ```ts
+   * const alertSources = await client.alertSources.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<AlertSourceListResponse> {
+    return this._client.get('/v2/alert_sources', options);
+  }
+
+  /**
    * Create a new alert source in your account.
    *
    * @example
@@ -44,6 +56,23 @@ export class AlertSources extends APIResource {
    */
   create(body: AlertSourceCreateParams, options?: RequestOptions): APIPromise<AlertSourceCreateResponse> {
     return this._client.post('/v2/alert_sources', { body, ...options });
+  }
+
+  /**
+   * Delete an existing alert source in your account.
+   *
+   * @example
+   * ```ts
+   * await client.alertSources.delete(
+   *   '01GW2G3V0S59R238FAHPDS1R66',
+   * );
+   * ```
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v2/alert_sources/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -92,35 +121,6 @@ export class AlertSources extends APIResource {
     options?: RequestOptions,
   ): APIPromise<AlertSourceUpdateResponse> {
     return this._client.put(path`/v2/alert_sources/${id}`, { body, ...options });
-  }
-
-  /**
-   * List all alert sources in your account.
-   *
-   * @example
-   * ```ts
-   * const alertSources = await client.alertSources.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<AlertSourceListResponse> {
-    return this._client.get('/v2/alert_sources', options);
-  }
-
-  /**
-   * Delete an existing alert source in your account.
-   *
-   * @example
-   * ```ts
-   * await client.alertSources.delete(
-   *   '01GW2G3V0S59R238FAHPDS1R66',
-   * );
-   * ```
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v2/alert_sources/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 }
 

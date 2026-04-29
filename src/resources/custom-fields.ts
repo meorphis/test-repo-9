@@ -9,6 +9,15 @@ import { path } from '../internal/utils/path';
 
 export class CustomFields extends APIResource {
   /**
+   * List all custom fields for an organisation.
+   *
+   * @deprecated
+   */
+  listV1(options?: RequestOptions): APIPromise<CustomFieldListV1Response> {
+    return this._client.get('/v1/custom_fields', options);
+  }
+
+  /**
    * Create a new custom field
    *
    * @deprecated
@@ -18,6 +27,52 @@ export class CustomFields extends APIResource {
     options?: RequestOptions,
   ): APIPromise<CustomFieldCreateV1Response> {
     return this._client.post('/v1/custom_fields', { body, ...options });
+  }
+
+  /**
+   * Delete a custom field
+   *
+   * @deprecated
+   */
+  deleteV1(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v1/custom_fields/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
+   * Get a single custom field.
+   *
+   * @deprecated
+   */
+  retrieveV1(id: string, options?: RequestOptions): APIPromise<CustomFieldRetrieveV1Response> {
+    return this._client.get(path`/v1/custom_fields/${id}`, options);
+  }
+
+  /**
+   * Update the details of a custom field
+   *
+   * @deprecated
+   */
+  updateV1(
+    id: string,
+    body: CustomFieldUpdateV1Params,
+    options?: RequestOptions,
+  ): APIPromise<CustomFieldUpdateV1Response> {
+    return this._client.put(path`/v1/custom_fields/${id}`, { body, ...options });
+  }
+
+  /**
+   * List all custom fields for an organisation.
+   *
+   * @example
+   * ```ts
+   * const response = await client.customFields.listV2();
+   * ```
+   */
+  listV2(options?: RequestOptions): APIPromise<CustomFieldListV2Response> {
+    return this._client.get('/v2/custom_fields', options);
   }
 
   /**
@@ -51,18 +106,6 @@ export class CustomFields extends APIResource {
   /**
    * Delete a custom field
    *
-   * @deprecated
-   */
-  deleteV1(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/custom_fields/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
-  }
-
-  /**
-   * Delete a custom field
-   *
    * @example
    * ```ts
    * await client.customFields.deleteV2(
@@ -78,36 +121,6 @@ export class CustomFields extends APIResource {
   }
 
   /**
-   * List all custom fields for an organisation.
-   *
-   * @deprecated
-   */
-  listV1(options?: RequestOptions): APIPromise<CustomFieldListV1Response> {
-    return this._client.get('/v1/custom_fields', options);
-  }
-
-  /**
-   * List all custom fields for an organisation.
-   *
-   * @example
-   * ```ts
-   * const response = await client.customFields.listV2();
-   * ```
-   */
-  listV2(options?: RequestOptions): APIPromise<CustomFieldListV2Response> {
-    return this._client.get('/v2/custom_fields', options);
-  }
-
-  /**
-   * Get a single custom field.
-   *
-   * @deprecated
-   */
-  retrieveV1(id: string, options?: RequestOptions): APIPromise<CustomFieldRetrieveV1Response> {
-    return this._client.get(path`/v1/custom_fields/${id}`, options);
-  }
-
-  /**
    * Get a single custom field.
    *
    * @example
@@ -119,19 +132,6 @@ export class CustomFields extends APIResource {
    */
   retrieveV2(id: string, options?: RequestOptions): APIPromise<CustomFieldRetrieveV2Response> {
     return this._client.get(path`/v2/custom_fields/${id}`, options);
-  }
-
-  /**
-   * Update the details of a custom field
-   *
-   * @deprecated
-   */
-  updateV1(
-    id: string,
-    body: CustomFieldUpdateV1Params,
-    options?: RequestOptions,
-  ): APIPromise<CustomFieldUpdateV1Response> {
-    return this._client.put(path`/v1/custom_fields/${id}`, { body, ...options });
   }
 
   /**
@@ -395,41 +395,6 @@ export interface CustomFieldCreateV1Params {
   show_in_announcement_post?: boolean;
 }
 
-export interface CustomFieldCreateV2Params {
-  /**
-   * Description of the custom field
-   */
-  description: string;
-
-  /**
-   * Type of custom field
-   */
-  field_type: 'single_select' | 'multi_select' | 'text' | 'link' | 'numeric';
-
-  /**
-   * Human readable name for the custom field
-   */
-  name: string;
-
-  /**
-   * For catalog fields, the ID of the associated catalog type
-   */
-  catalog_type_id?: string;
-
-  filter_by?: CustomFieldFilterByOptionsV2;
-
-  /**
-   * For catalog fields, the ID of the attribute used to group catalog entries (if
-   * applicable)
-   */
-  group_by_catalog_attribute_id?: string;
-
-  /**
-   * Which catalog attribute provides helptext for the options
-   */
-  helptext_catalog_attribute_id?: string;
-}
-
 export interface CustomFieldUpdateV1Params {
   /**
    * Description of the custom field
@@ -477,6 +442,41 @@ export interface CustomFieldUpdateV1Params {
   show_in_announcement_post?: boolean;
 }
 
+export interface CustomFieldCreateV2Params {
+  /**
+   * Description of the custom field
+   */
+  description: string;
+
+  /**
+   * Type of custom field
+   */
+  field_type: 'single_select' | 'multi_select' | 'text' | 'link' | 'numeric';
+
+  /**
+   * Human readable name for the custom field
+   */
+  name: string;
+
+  /**
+   * For catalog fields, the ID of the associated catalog type
+   */
+  catalog_type_id?: string;
+
+  filter_by?: CustomFieldFilterByOptionsV2;
+
+  /**
+   * For catalog fields, the ID of the attribute used to group catalog entries (if
+   * applicable)
+   */
+  group_by_catalog_attribute_id?: string;
+
+  /**
+   * Which catalog attribute provides helptext for the options
+   */
+  helptext_catalog_attribute_id?: string;
+}
+
 export interface CustomFieldUpdateV2Params {
   /**
    * Description of the custom field
@@ -516,8 +516,8 @@ export declare namespace CustomFields {
     type CustomFieldUpdateV1Response as CustomFieldUpdateV1Response,
     type CustomFieldUpdateV2Response as CustomFieldUpdateV2Response,
     type CustomFieldCreateV1Params as CustomFieldCreateV1Params,
-    type CustomFieldCreateV2Params as CustomFieldCreateV2Params,
     type CustomFieldUpdateV1Params as CustomFieldUpdateV1Params,
+    type CustomFieldCreateV2Params as CustomFieldCreateV2Params,
     type CustomFieldUpdateV2Params as CustomFieldUpdateV2Params,
   };
 }
