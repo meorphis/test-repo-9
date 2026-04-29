@@ -20,7 +20,7 @@ Use the Incident Io 13 MCP Server to enable AI assistants to interact with this 
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:stainless-sdks/incident-io-2-typescript.git
+npm install git+ssh://git@github.com:meorphis/test-repo-9.git
 ```
 
 > [!NOTE]
@@ -344,7 +344,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/incident-io-2-typescript/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/meorphis/test-repo-9/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

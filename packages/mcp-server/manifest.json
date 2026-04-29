@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/incident-io-2-typescript.git"
+    "url": "git+https://github.com/meorphis/test-repo-9.git"
   },
-  "homepage": "https://github.com/stainless-sdks/incident-io-2-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/meorphis/test-repo-9/tree/main/packages/mcp-server#readme",
   "documentation": "https://api-docs.incident.io/",
   "server": {
     "type": "node",
