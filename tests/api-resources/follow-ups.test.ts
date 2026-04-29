@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import IncidentIo13 from 'incident-io-2';
+import IncidentIo14 from 'incident-io-2';
 
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
@@ -28,7 +28,7 @@ describe('resource followUps', () => {
         { incident_id: '01FCNDV6P870EA6S7TK1DSYDG0', incident_mode: 'standard' },
         { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(IncidentIo13.NotFoundError);
+    ).rejects.toThrow(IncidentIo14.NotFoundError);
   });
 
   // Mock server tests are disabled

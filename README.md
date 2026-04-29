@@ -1,8 +1,8 @@
-# Incident Io 13 TypeScript API Library
+# Incident Io 14 TypeScript API Library
 
 [![NPM version](<https://img.shields.io/npm/v/incident-io-2.svg?label=npm%20(stable)>)](https://npmjs.org/package/incident-io-2) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/incident-io-2)
 
-This library provides convenient access to the Incident Io 13 REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Incident Io 14 REST API from server-side TypeScript or JavaScript.
 
 The REST API documentation can be found on [api-docs.incident.io](https://api-docs.incident.io/). The full API of this library can be found in [api.md](api.md).
 
@@ -10,7 +10,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## MCP Server
 
-Use the Incident Io 13 MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
+Use the Incident Io 14 MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
 
 [![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=incident-io-2-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImluY2lkZW50LWlvLTItbWNwIl0sImVudiI6eyJJTkNJREVOVF9JT18yX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)
 [![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22incident-io-2-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22incident-io-2-mcp%22%5D%2C%22env%22%3A%7B%22INCIDENT_IO_2_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)
@@ -32,9 +32,9 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import IncidentIo13 from 'incident-io-2';
+import IncidentIo14 from 'incident-io-2';
 
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   apiKey: process.env['INCIDENT_IO_2_API_KEY'], // This is the default and can be omitted
 });
 
@@ -49,13 +49,13 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import IncidentIo13 from 'incident-io-2';
+import IncidentIo14 from 'incident-io-2';
 
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   apiKey: process.env['INCIDENT_IO_2_API_KEY'], // This is the default and can be omitted
 });
 
-const actions: IncidentIo13.ActionListResponse = await client.actions.list();
+const actions: IncidentIo14.ActionListResponse = await client.actions.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -69,7 +69,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 const actions = await client.actions.list().catch(async (err) => {
-  if (err instanceof IncidentIo13.APIError) {
+  if (err instanceof IncidentIo14.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
     console.log(err.headers); // {server: 'nginx', ...}
@@ -103,7 +103,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   maxRetries: 0, // default is 2
 });
 
@@ -120,7 +120,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -146,7 +146,7 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 
 <!-- prettier-ignore -->
 ```ts
-const client = new IncidentIo13();
+const client = new IncidentIo14();
 
 const response = await client.actions.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
@@ -167,13 +167,13 @@ console.log(actions.actions);
 
 The log level can be configured in two ways:
 
-1. Via the `INCIDENT_IO_13_LOG` environment variable
+1. Via the `INCIDENT_IO_14_LOG` environment variable
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import IncidentIo13 from 'incident-io-2';
+import IncidentIo14 from 'incident-io-2';
 
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   logLevel: 'debug', // Show all log messages
 });
 ```
@@ -199,13 +199,13 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import IncidentIo13 from 'incident-io-2';
+import IncidentIo14 from 'incident-io-2';
 import pino from 'pino';
 
 const logger = pino();
 
-const client = new IncidentIo13({
-  logger: logger.child({ name: 'IncidentIo13' }),
+const client = new IncidentIo14({
+  logger: logger.child({ name: 'IncidentIo14' }),
   logLevel: 'debug', // Send all messages to pino, allowing it to filter
 });
 ```
@@ -268,10 +268,10 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import IncidentIo13 from 'incident-io-2';
+import IncidentIo14 from 'incident-io-2';
 import fetch from 'my-fetch';
 
-const client = new IncidentIo13({ fetch });
+const client = new IncidentIo14({ fetch });
 ```
 
 ### Fetch options
@@ -279,9 +279,9 @@ const client = new IncidentIo13({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import IncidentIo13 from 'incident-io-2';
+import IncidentIo14 from 'incident-io-2';
 
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   fetchOptions: {
     // `RequestInit` options
   },
@@ -296,11 +296,11 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import IncidentIo13 from 'incident-io-2';
+import IncidentIo14 from 'incident-io-2';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   fetchOptions: {
     dispatcher: proxyAgent,
   },
@@ -310,9 +310,9 @@ const client = new IncidentIo13({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import IncidentIo13 from 'incident-io-2';
+import IncidentIo14 from 'incident-io-2';
 
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   fetchOptions: {
     proxy: 'http://localhost:8888',
   },
@@ -322,10 +322,10 @@ const client = new IncidentIo13({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import IncidentIo13 from 'npm:incident-io-2';
+import IncidentIo14 from 'npm:incident-io-2';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
-const client = new IncidentIo13({
+const client = new IncidentIo14({
   fetchOptions: {
     client: httpClient,
   },
