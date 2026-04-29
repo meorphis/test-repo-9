@@ -1,12 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "include": ["dist/src"],
-  "exclude": ["dist/src/_shims/*-deno.ts"],
+  "exclude": [],
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "test3/*": ["dist/src/*"],
-      "test3": ["dist/src/index.ts"],
+      "incident-io-2/*": ["./dist/src/*"],
+      "incident-io-2": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

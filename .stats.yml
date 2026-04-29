@@ -1,2 +1,4 @@
-configured_endpoints: 10
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/meorphis-test%2Fmeorphis-test-74a52b29d09d567daa7bf55d4678d3cf175449a02560484fa3450e2044d1c3e4.yml
+configured_endpoints: 123
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/meorphis%2Fincident-io-2-1568136968310b88863bdce555b1858427256deeafbadf1cdc39bfd88fb6a826.yml
+openapi_spec_hash: 40083b2da0fe157810fb88c28b0df076
+config_hash: 5a6d003e5860cb8f4c503ebcb02d7440
