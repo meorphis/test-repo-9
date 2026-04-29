@@ -8,7 +8,7 @@ import { SdkMethod } from './methods';
 import { McpCodeExecutionMode } from './options';
 import { ClientOptions } from 'incident-io-2';
 
-const prompt = `Runs JavaScript code to interact with the Incident Io 13 API.
+const prompt = `Runs JavaScript code to interact with the Incident Io 14 API.
 
 You are a skilled TypeScript programmer writing code to interface with the service.
 Define an async function named "run" that takes a single parameter of an initialized SDK client and it will be run.
