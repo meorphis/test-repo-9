@@ -16,7 +16,7 @@ export function getDefaultFetch(): Fetch {
   }
 
   throw new Error(
-    '`fetch` is not defined as a global; Either pass `fetch` to the client, `new IncidentIo13({ fetch })` or polyfill the global, `globalThis.fetch = fetch`',
+    '`fetch` is not defined as a global; Either pass `fetch` to the client, `new IncidentIo14({ fetch })` or polyfill the global, `globalThis.fetch = fetch`',
   );
 }
 
