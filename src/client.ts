@@ -383,7 +383,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['INCIDENT_IO_13_BASE_URL'].
+   * Defaults to process.env['INCIDENT_IO_14_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -437,7 +437,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['INCIDENT_IO_13_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['INCIDENT_IO_14_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -450,9 +450,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Incident Io 13 API.
+ * API Client for interfacing with the Incident Io 14 API.
  */
-export class IncidentIo13 {
+export class IncidentIo14 {
   apiKey: string | null;
 
   baseURL: string;
@@ -468,10 +468,10 @@ export class IncidentIo13 {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Incident Io 13 API.
+   * API Client for interfacing with the Incident Io 14 API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['INCIDENT_IO_2_API_KEY'] ?? null]
-   * @param {string} [opts.baseURL=process.env['INCIDENT_IO_13_BASE_URL'] ?? https://api.incident.io] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['INCIDENT_IO_14_BASE_URL'] ?? https://api.incident.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -480,7 +480,7 @@ export class IncidentIo13 {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('INCIDENT_IO_13_BASE_URL'),
+    baseURL = readEnv('INCIDENT_IO_14_BASE_URL'),
     apiKey = readEnv('INCIDENT_IO_2_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
@@ -491,21 +491,21 @@ export class IncidentIo13 {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? IncidentIo13.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? IncidentIo14.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('INCIDENT_IO_13_LOG'), "process.env['INCIDENT_IO_13_LOG']", this) ??
+      parseLogLevel(readEnv('INCIDENT_IO_14_LOG'), "process.env['INCIDENT_IO_14_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
     this.#encoder = Opts.FallbackEncoder;
 
-    const customHeadersEnv = readEnv('INCIDENT_IO_13_CUSTOM_HEADERS');
+    const customHeadersEnv = readEnv('INCIDENT_IO_14_CUSTOM_HEADERS');
     if (customHeadersEnv) {
       const parsed: Record<string, string> = {};
       for (const line of customHeadersEnv.split('\n')) {
@@ -1057,10 +1057,10 @@ export class IncidentIo13 {
     }
   }
 
-  static IncidentIo13 = this;
+  static IncidentIo14 = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static IncidentIo13Error = Errors.IncidentIo13Error;
+  static IncidentIo14Error = Errors.IncidentIo14Error;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -1326,43 +1326,43 @@ export class IncidentIo13 {
   workflows: API.Workflows = new API.Workflows(this);
 }
 
-IncidentIo13.Actions = Actions;
-IncidentIo13.CustomFieldOptions = CustomFieldOptions;
-IncidentIo13.CustomFields = CustomFields;
-IncidentIo13.Identity = Identity;
-IncidentIo13.IncidentAttachments = IncidentAttachments;
-IncidentIo13.IncidentMemberships = IncidentMemberships;
-IncidentIo13.IncidentRelationships = IncidentRelationships;
-IncidentIo13.IncidentRoles = IncidentRoles;
-IncidentIo13.IncidentStatuses = IncidentStatuses;
-IncidentIo13.IncidentTypes = IncidentTypes;
-IncidentIo13.Incidents = Incidents;
-IncidentIo13.IPAllowlists = IPAllowlists;
-IncidentIo13.OpenAPIJson = OpenAPIJson;
-IncidentIo13.OpenAPIV3Json = OpenAPIV3Json;
-IncidentIo13.Severities = Severities;
-IncidentIo13.StatusPages = StatusPages;
-IncidentIo13.AlertAttributes = AlertAttributes;
-IncidentIo13.AlertEvents = AlertEvents;
-IncidentIo13.AlertRoutes = AlertRoutes;
-IncidentIo13.AlertSources = AlertSources;
-IncidentIo13.Alerts = Alerts;
-IncidentIo13.CatalogEntries = CatalogEntries;
-IncidentIo13.CatalogResources = CatalogResources;
-IncidentIo13.CatalogTypes = CatalogTypes;
-IncidentIo13.EscalationPaths = EscalationPaths;
-IncidentIo13.Escalations = Escalations;
-IncidentIo13.FollowUps = FollowUps;
-IncidentIo13.IncidentAlerts = IncidentAlerts;
-IncidentIo13.IncidentTimestamps = IncidentTimestamps;
-IncidentIo13.IncidentUpdates = IncidentUpdates;
-IncidentIo13.ScheduleEntries = ScheduleEntries;
-IncidentIo13.ScheduleOverrides = ScheduleOverrides;
-IncidentIo13.Schedules = Schedules;
-IncidentIo13.Users = Users;
-IncidentIo13.Workflows = Workflows;
+IncidentIo14.Actions = Actions;
+IncidentIo14.CustomFieldOptions = CustomFieldOptions;
+IncidentIo14.CustomFields = CustomFields;
+IncidentIo14.Identity = Identity;
+IncidentIo14.IncidentAttachments = IncidentAttachments;
+IncidentIo14.IncidentMemberships = IncidentMemberships;
+IncidentIo14.IncidentRelationships = IncidentRelationships;
+IncidentIo14.IncidentRoles = IncidentRoles;
+IncidentIo14.IncidentStatuses = IncidentStatuses;
+IncidentIo14.IncidentTypes = IncidentTypes;
+IncidentIo14.Incidents = Incidents;
+IncidentIo14.IPAllowlists = IPAllowlists;
+IncidentIo14.OpenAPIJson = OpenAPIJson;
+IncidentIo14.OpenAPIV3Json = OpenAPIV3Json;
+IncidentIo14.Severities = Severities;
+IncidentIo14.StatusPages = StatusPages;
+IncidentIo14.AlertAttributes = AlertAttributes;
+IncidentIo14.AlertEvents = AlertEvents;
+IncidentIo14.AlertRoutes = AlertRoutes;
+IncidentIo14.AlertSources = AlertSources;
+IncidentIo14.Alerts = Alerts;
+IncidentIo14.CatalogEntries = CatalogEntries;
+IncidentIo14.CatalogResources = CatalogResources;
+IncidentIo14.CatalogTypes = CatalogTypes;
+IncidentIo14.EscalationPaths = EscalationPaths;
+IncidentIo14.Escalations = Escalations;
+IncidentIo14.FollowUps = FollowUps;
+IncidentIo14.IncidentAlerts = IncidentAlerts;
+IncidentIo14.IncidentTimestamps = IncidentTimestamps;
+IncidentIo14.IncidentUpdates = IncidentUpdates;
+IncidentIo14.ScheduleEntries = ScheduleEntries;
+IncidentIo14.ScheduleOverrides = ScheduleOverrides;
+IncidentIo14.Schedules = Schedules;
+IncidentIo14.Users = Users;
+IncidentIo14.Workflows = Workflows;
 
-export declare namespace IncidentIo13 {
+export declare namespace IncidentIo14 {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
