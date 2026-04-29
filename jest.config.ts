@@ -7,15 +7,15 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^test3$': '<rootDir>/src/index.ts',
-    '^test3/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^test3/(.*)$': '<rootDir>/src/$1',
+    '^incident-io-2$': '<rootDir>/src/index.ts',
+    '^incident-io-2/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',
     '<rootDir>/dist/',
     '<rootDir>/deno/',
     '<rootDir>/deno_tests/',
+    '<rootDir>/packages/',
   ],
   testPathIgnorePatterns: ['scripts'],
 };
