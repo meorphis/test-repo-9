@@ -20,20 +20,6 @@ import { path } from '../internal/utils/path';
  */
 export class Alerts extends APIResource {
   /**
-   * Show a single alert for your account
-   *
-   * @example
-   * ```ts
-   * const alert = await client.alerts.retrieve(
-   *   '01FDAG4SAP5TYPT98WGR2N7W91',
-   * );
-   * ```
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<AlertRetrieveResponse> {
-    return this._client.get(path`/v2/alerts/${id}`, options);
-  }
-
-  /**
    * List all alerts for your account. This endpoint supports a number of filters,
    * which can help find alerts matching certain criteria. These filters work
    * similarly to the filters on the incidents endpoint, where a field is specified
@@ -82,6 +68,20 @@ export class Alerts extends APIResource {
    */
   list(query: AlertListParams, options?: RequestOptions): APIPromise<AlertListResponse> {
     return this._client.get('/v2/alerts', { query, ...options });
+  }
+
+  /**
+   * Show a single alert for your account
+   *
+   * @example
+   * ```ts
+   * const alert = await client.alerts.retrieve(
+   *   '01FDAG4SAP5TYPT98WGR2N7W91',
+   * );
+   * ```
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<AlertRetrieveResponse> {
+    return this._client.get(path`/v2/alerts/${id}`, options);
   }
 }
 
