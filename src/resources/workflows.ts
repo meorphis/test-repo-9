@@ -16,6 +16,18 @@ import { path } from '../internal/utils/path';
  */
 export class Workflows extends APIResource {
   /**
+   * List all workflows
+   *
+   * @example
+   * ```ts
+   * const workflows = await client.workflows.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<WorkflowListResponse> {
+    return this._client.get('/v2/workflows', options);
+  }
+
+  /**
    * Create a new workflow
    *
    * @example
@@ -66,6 +78,23 @@ export class Workflows extends APIResource {
    */
   create(body: WorkflowCreateParams, options?: RequestOptions): APIPromise<WorkflowCreateResponse> {
     return this._client.post('/v2/workflows', { body, ...options });
+  }
+
+  /**
+   * Archives a workflow
+   *
+   * @example
+   * ```ts
+   * await client.workflows.destroy(
+   *   '01FCNDV6P870EA6S7TK1DSYDG0',
+   * );
+   * ```
+   */
+  destroy(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v2/workflows/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -140,35 +169,6 @@ export class Workflows extends APIResource {
     options?: RequestOptions,
   ): APIPromise<WorkflowUpdateResponse> {
     return this._client.put(path`/v2/workflows/${id}`, { body, ...options });
-  }
-
-  /**
-   * List all workflows
-   *
-   * @example
-   * ```ts
-   * const workflows = await client.workflows.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<WorkflowListResponse> {
-    return this._client.get('/v2/workflows', options);
-  }
-
-  /**
-   * Archives a workflow
-   *
-   * @example
-   * ```ts
-   * await client.workflows.destroy(
-   *   '01FCNDV6P870EA6S7TK1DSYDG0',
-   * );
-   * ```
-   */
-  destroy(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v2/workflows/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 }
 

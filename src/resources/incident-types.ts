@@ -13,6 +13,18 @@ import { path } from '../internal/utils/path';
  */
 export class IncidentTypes extends APIResource {
   /**
+   * List all incident types for an organisation.
+   *
+   * @example
+   * ```ts
+   * const incidentTypes = await client.incidentTypes.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<IncidentTypeListResponse> {
+    return this._client.get('/v1/incident_types', options);
+  }
+
+  /**
    * Get a single incident type.
    *
    * @example
@@ -24,18 +36,6 @@ export class IncidentTypes extends APIResource {
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<IncidentTypeRetrieveResponse> {
     return this._client.get(path`/v1/incident_types/${id}`, options);
-  }
-
-  /**
-   * List all incident types for an organisation.
-   *
-   * @example
-   * ```ts
-   * const incidentTypes = await client.incidentTypes.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<IncidentTypeListResponse> {
-    return this._client.get('/v1/incident_types', options);
   }
 }
 
