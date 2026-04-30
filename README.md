@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Incident Io 13 REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [api-docs.incident.io](https://api-docs.incident.io/). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [api-docsss.incident.io](https://api-docsss.incident.io/). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
