@@ -9,6 +9,18 @@ const client = new IncidentIo13({
 
 describe('resource incidentRoles', () => {
   // Mock server tests are disabled
+  test.skip('list', async () => {
+    const responsePromise = client.incidentRoles.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.incidentRoles.create({
       description: 'The person currently coordinating the incident',
@@ -35,6 +47,18 @@ describe('resource incidentRoles', () => {
       required: false,
       shortform: 'lead',
     });
+  });
+
+  // Mock server tests are disabled
+  test.skip('delete', async () => {
+    const responsePromise = client.incidentRoles.delete('01FCNDV6P870EA6S7TK1DSYDG0');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   // Mock server tests are disabled
@@ -78,20 +102,8 @@ describe('resource incidentRoles', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.incidentRoles.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('delete', async () => {
-    const responsePromise = client.incidentRoles.delete('01FCNDV6P870EA6S7TK1DSYDG0');
+  test.skip('listV2', async () => {
+    const responsePromise = client.incidentRoles.listV2();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -131,18 +143,6 @@ describe('resource incidentRoles', () => {
   // Mock server tests are disabled
   test.skip('deleteV2', async () => {
     const responsePromise = client.incidentRoles.deleteV2('01FCNDV6P870EA6S7TK1DSYDG0');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('listV2', async () => {
-    const responsePromise = client.incidentRoles.listV2();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

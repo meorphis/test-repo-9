@@ -10,6 +10,18 @@ import { path } from '../internal/utils/path';
 
 export class CatalogEntries extends APIResource {
   /**
+   * List entries for a catalog type.
+   *
+   * @deprecated
+   */
+  listEntriesV2(
+    query: CatalogEntryListEntriesV2Params,
+    options?: RequestOptions,
+  ): APIPromise<CatalogEntryListEntriesV2Response> {
+    return this._client.get('/v2/catalog_entries', { query, ...options });
+  }
+
+  /**
    * Create an entry within the catalog. We support a maximum of 50,000 entries per
    * type.
    *
@@ -23,6 +35,58 @@ export class CatalogEntries extends APIResource {
     options?: RequestOptions,
   ): APIPromise<CatalogEntryCreateEntryV2Response> {
     return this._client.post('/v2/catalog_entries', { body, ...options });
+  }
+
+  /**
+   * Archives a catalog entry.
+   *
+   * @deprecated
+   */
+  destroyEntryV2(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v2/catalog_entries/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
+   * Show a single catalog entry.
+   *
+   * @deprecated
+   */
+  showEntryV2(id: string, options?: RequestOptions): APIPromise<CatalogEntryShowEntryV2Response> {
+    return this._client.get(path`/v2/catalog_entries/${id}`, options);
+  }
+
+  /**
+   * Updates an existing catalog entry.
+   *
+   * @deprecated
+   */
+  updateEntryV2(
+    id: string,
+    body: CatalogEntryUpdateEntryV2Params,
+    options?: RequestOptions,
+  ): APIPromise<CatalogEntryUpdateEntryV2Response> {
+    return this._client.put(path`/v2/catalog_entries/${id}`, { body, ...options });
+  }
+
+  /**
+   * List entries for a catalog type.
+   *
+   * @example
+   * ```ts
+   * const response = await client.catalogEntries.listEntriesV3({
+   *   catalog_type_id: '01FCNDV6P870EA6S7TK1DSYDG0',
+   *   page_size: 25,
+   * });
+   * ```
+   */
+  listEntriesV3(
+    query: CatalogEntryListEntriesV3Params,
+    options?: RequestOptions,
+  ): APIPromise<CatalogEntryListEntriesV3Response> {
+    return this._client.get('/v3/catalog_entries', { query, ...options });
   }
 
   /**
@@ -59,18 +123,6 @@ export class CatalogEntries extends APIResource {
   /**
    * Archives a catalog entry.
    *
-   * @deprecated
-   */
-  destroyEntryV2(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v2/catalog_entries/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
-  }
-
-  /**
-   * Archives a catalog entry.
-   *
    * @example
    * ```ts
    * await client.catalogEntries.destroyEntryV3(
@@ -86,45 +138,6 @@ export class CatalogEntries extends APIResource {
   }
 
   /**
-   * List entries for a catalog type.
-   *
-   * @deprecated
-   */
-  listEntriesV2(
-    query: CatalogEntryListEntriesV2Params,
-    options?: RequestOptions,
-  ): APIPromise<CatalogEntryListEntriesV2Response> {
-    return this._client.get('/v2/catalog_entries', { query, ...options });
-  }
-
-  /**
-   * List entries for a catalog type.
-   *
-   * @example
-   * ```ts
-   * const response = await client.catalogEntries.listEntriesV3({
-   *   catalog_type_id: '01FCNDV6P870EA6S7TK1DSYDG0',
-   *   page_size: 25,
-   * });
-   * ```
-   */
-  listEntriesV3(
-    query: CatalogEntryListEntriesV3Params,
-    options?: RequestOptions,
-  ): APIPromise<CatalogEntryListEntriesV3Response> {
-    return this._client.get('/v3/catalog_entries', { query, ...options });
-  }
-
-  /**
-   * Show a single catalog entry.
-   *
-   * @deprecated
-   */
-  showEntryV2(id: string, options?: RequestOptions): APIPromise<CatalogEntryShowEntryV2Response> {
-    return this._client.get(path`/v2/catalog_entries/${id}`, options);
-  }
-
-  /**
    * Show a single catalog entry.
    *
    * @example
@@ -136,19 +149,6 @@ export class CatalogEntries extends APIResource {
    */
   showEntryV3(id: string, options?: RequestOptions): APIPromise<CatalogEntryShowEntryV3Response> {
     return this._client.get(path`/v3/catalog_entries/${id}`, options);
-  }
-
-  /**
-   * Updates an existing catalog entry.
-   *
-   * @deprecated
-   */
-  updateEntryV2(
-    id: string,
-    body: CatalogEntryUpdateEntryV2Params,
-    options?: RequestOptions,
-  ): APIPromise<CatalogEntryUpdateEntryV2Response> {
-    return this._client.put(path`/v2/catalog_entries/${id}`, { body, ...options });
   }
 
   /**
@@ -968,6 +968,24 @@ export interface CatalogEntryUpdateEntryV3Response {
   catalog_type: CatalogTypeV3;
 }
 
+export interface CatalogEntryListEntriesV2Params {
+  /**
+   * ID of this catalog type
+   */
+  catalog_type_id: string;
+
+  /**
+   * An record's ID. This endpoint will return a list of records after this ID in
+   * relation to the API response order.
+   */
+  after?: string;
+
+  /**
+   * Integer number of records to return
+   */
+  page_size?: number;
+}
+
 export interface CatalogEntryCreateEntryV2Params {
   /**
    * Values of this entry
@@ -999,6 +1017,61 @@ export interface CatalogEntryCreateEntryV2Params {
    * When catalog type is ranked, this is used to help order things
    */
   rank?: number;
+}
+
+export interface CatalogEntryUpdateEntryV2Params {
+  /**
+   * Values of this entry
+   */
+  attribute_values: { [key: string]: WorkflowsAPI.EngineParamBindingPayload };
+
+  /**
+   * Name is the human readable name of this entry
+   */
+  name: string;
+
+  /**
+   * Optional aliases that can be used to reference this entry
+   */
+  aliases?: Array<string>;
+
+  /**
+   * An optional alternative ID for this entry, which is ensured to be unique for the
+   * type
+   */
+  external_id?: string;
+
+  /**
+   * When catalog type is ranked, this is used to help order things
+   */
+  rank?: number;
+}
+
+export interface CatalogEntryListEntriesV3Params {
+  /**
+   * ID of this catalog type
+   */
+  catalog_type_id: string;
+
+  /**
+   * The integer number of records to return
+   */
+  page_size: number;
+
+  /**
+   * An record's ID. This endpoint will return a list of records after this ID in
+   * relation to the API response order.
+   */
+  after?: string;
+
+  /**
+   * If specified, only entries with this identifier will be returned. This will
+   * search by ID, external ID, and aliases.
+   *
+   * If 'use name as identifier' is enabled for the catalog type, this will also
+   * match on name.
+   */
+  identifier?: string;
 }
 
 export interface CatalogEntryCreateEntryV3Params {
@@ -1059,79 +1132,6 @@ export namespace CatalogEntryCreateEntryV3Params {
       literal?: string;
     }
   }
-}
-
-export interface CatalogEntryListEntriesV2Params {
-  /**
-   * ID of this catalog type
-   */
-  catalog_type_id: string;
-
-  /**
-   * An record's ID. This endpoint will return a list of records after this ID in
-   * relation to the API response order.
-   */
-  after?: string;
-
-  /**
-   * Integer number of records to return
-   */
-  page_size?: number;
-}
-
-export interface CatalogEntryListEntriesV3Params {
-  /**
-   * ID of this catalog type
-   */
-  catalog_type_id: string;
-
-  /**
-   * The integer number of records to return
-   */
-  page_size: number;
-
-  /**
-   * An record's ID. This endpoint will return a list of records after this ID in
-   * relation to the API response order.
-   */
-  after?: string;
-
-  /**
-   * If specified, only entries with this identifier will be returned. This will
-   * search by ID, external ID, and aliases.
-   *
-   * If 'use name as identifier' is enabled for the catalog type, this will also
-   * match on name.
-   */
-  identifier?: string;
-}
-
-export interface CatalogEntryUpdateEntryV2Params {
-  /**
-   * Values of this entry
-   */
-  attribute_values: { [key: string]: WorkflowsAPI.EngineParamBindingPayload };
-
-  /**
-   * Name is the human readable name of this entry
-   */
-  name: string;
-
-  /**
-   * Optional aliases that can be used to reference this entry
-   */
-  aliases?: Array<string>;
-
-  /**
-   * An optional alternative ID for this entry, which is ensured to be unique for the
-   * type
-   */
-  external_id?: string;
-
-  /**
-   * When catalog type is ranked, this is used to help order things
-   */
-  rank?: number;
 }
 
 export interface CatalogEntryUpdateEntryV3Params {
@@ -1210,11 +1210,11 @@ export declare namespace CatalogEntries {
     type CatalogEntryShowEntryV3Response as CatalogEntryShowEntryV3Response,
     type CatalogEntryUpdateEntryV2Response as CatalogEntryUpdateEntryV2Response,
     type CatalogEntryUpdateEntryV3Response as CatalogEntryUpdateEntryV3Response,
-    type CatalogEntryCreateEntryV2Params as CatalogEntryCreateEntryV2Params,
-    type CatalogEntryCreateEntryV3Params as CatalogEntryCreateEntryV3Params,
     type CatalogEntryListEntriesV2Params as CatalogEntryListEntriesV2Params,
-    type CatalogEntryListEntriesV3Params as CatalogEntryListEntriesV3Params,
+    type CatalogEntryCreateEntryV2Params as CatalogEntryCreateEntryV2Params,
     type CatalogEntryUpdateEntryV2Params as CatalogEntryUpdateEntryV2Params,
+    type CatalogEntryListEntriesV3Params as CatalogEntryListEntriesV3Params,
+    type CatalogEntryCreateEntryV3Params as CatalogEntryCreateEntryV3Params,
     type CatalogEntryUpdateEntryV3Params as CatalogEntryUpdateEntryV3Params,
   };
 }

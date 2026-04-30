@@ -16,8 +16,8 @@ Types:
 
 Methods:
 
-- <code title="get /v1/actions/{id}">client.actions.<a href="./src/resources/actions.ts">retrieve</a>(id) -> ActionRetrieveResponse</code>
 - <code title="get /v1/actions">client.actions.<a href="./src/resources/actions.ts">list</a>({ ...params }) -> ActionListResponse</code>
+- <code title="get /v1/actions/{id}">client.actions.<a href="./src/resources/actions.ts">retrieve</a>(id) -> ActionRetrieveResponse</code>
 - <code title="get /v2/actions">client.actions.<a href="./src/resources/actions.ts">listV2</a>({ ...params }) -> ActionListV2Response</code>
 - <code title="get /v2/actions/{id}">client.actions.<a href="./src/resources/actions.ts">retrieveV2</a>(id) -> ActionRetrieveV2Response</code>
 
@@ -34,11 +34,11 @@ Types:
 
 Methods:
 
+- <code title="get /v1/custom_field_options">client.customFieldOptions.<a href="./src/resources/custom-field-options.ts">list</a>({ ...params }) -> CustomFieldOptionListResponse</code>
 - <code title="post /v1/custom_field_options">client.customFieldOptions.<a href="./src/resources/custom-field-options.ts">create</a>({ ...params }) -> CustomFieldOptionCreateResponse</code>
+- <code title="delete /v1/custom_field_options/{id}">client.customFieldOptions.<a href="./src/resources/custom-field-options.ts">delete</a>(id) -> void</code>
 - <code title="get /v1/custom_field_options/{id}">client.customFieldOptions.<a href="./src/resources/custom-field-options.ts">retrieve</a>(id) -> CustomFieldOptionRetrieveResponse</code>
 - <code title="put /v1/custom_field_options/{id}">client.customFieldOptions.<a href="./src/resources/custom-field-options.ts">update</a>(id, { ...params }) -> CustomFieldOptionUpdateResponse</code>
-- <code title="get /v1/custom_field_options">client.customFieldOptions.<a href="./src/resources/custom-field-options.ts">list</a>({ ...params }) -> CustomFieldOptionListResponse</code>
-- <code title="delete /v1/custom_field_options/{id}">client.customFieldOptions.<a href="./src/resources/custom-field-options.ts">delete</a>(id) -> void</code>
 
 # CustomFields
 
@@ -58,15 +58,15 @@ Types:
 
 Methods:
 
-- <code title="post /v1/custom_fields">client.customFields.<a href="./src/resources/custom-fields.ts">createV1</a>({ ...params }) -> CustomFieldCreateV1Response</code>
-- <code title="post /v2/custom_fields">client.customFields.<a href="./src/resources/custom-fields.ts">createV2</a>({ ...params }) -> CustomFieldCreateV2Response</code>
-- <code title="delete /v1/custom_fields/{id}">client.customFields.<a href="./src/resources/custom-fields.ts">deleteV1</a>(id) -> void</code>
-- <code title="delete /v2/custom_fields/{id}">client.customFields.<a href="./src/resources/custom-fields.ts">deleteV2</a>(id) -> void</code>
 - <code title="get /v1/custom_fields">client.customFields.<a href="./src/resources/custom-fields.ts">listV1</a>() -> CustomFieldListV1Response</code>
-- <code title="get /v2/custom_fields">client.customFields.<a href="./src/resources/custom-fields.ts">listV2</a>() -> CustomFieldListV2Response</code>
+- <code title="post /v1/custom_fields">client.customFields.<a href="./src/resources/custom-fields.ts">createV1</a>({ ...params }) -> CustomFieldCreateV1Response</code>
+- <code title="delete /v1/custom_fields/{id}">client.customFields.<a href="./src/resources/custom-fields.ts">deleteV1</a>(id) -> void</code>
 - <code title="get /v1/custom_fields/{id}">client.customFields.<a href="./src/resources/custom-fields.ts">retrieveV1</a>(id) -> CustomFieldRetrieveV1Response</code>
-- <code title="get /v2/custom_fields/{id}">client.customFields.<a href="./src/resources/custom-fields.ts">retrieveV2</a>(id) -> CustomFieldRetrieveV2Response</code>
 - <code title="put /v1/custom_fields/{id}">client.customFields.<a href="./src/resources/custom-fields.ts">updateV1</a>(id, { ...params }) -> CustomFieldUpdateV1Response</code>
+- <code title="get /v2/custom_fields">client.customFields.<a href="./src/resources/custom-fields.ts">listV2</a>() -> CustomFieldListV2Response</code>
+- <code title="post /v2/custom_fields">client.customFields.<a href="./src/resources/custom-fields.ts">createV2</a>({ ...params }) -> CustomFieldCreateV2Response</code>
+- <code title="delete /v2/custom_fields/{id}">client.customFields.<a href="./src/resources/custom-fields.ts">deleteV2</a>(id) -> void</code>
+- <code title="get /v2/custom_fields/{id}">client.customFields.<a href="./src/resources/custom-fields.ts">retrieveV2</a>(id) -> CustomFieldRetrieveV2Response</code>
 - <code title="put /v2/custom_fields/{id}">client.customFields.<a href="./src/resources/custom-fields.ts">updateV2</a>(id, { ...params }) -> CustomFieldUpdateV2Response</code>
 
 # Identity
@@ -89,8 +89,8 @@ Types:
 
 Methods:
 
-- <code title="post /v1/incident_attachments">client.incidentAttachments.<a href="./src/resources/incident-attachments.ts">create</a>({ ...params }) -> IncidentAttachmentCreateResponse</code>
 - <code title="get /v1/incident_attachments">client.incidentAttachments.<a href="./src/resources/incident-attachments.ts">list</a>({ ...params }) -> IncidentAttachmentListResponse</code>
+- <code title="post /v1/incident_attachments">client.incidentAttachments.<a href="./src/resources/incident-attachments.ts">create</a>({ ...params }) -> IncidentAttachmentCreateResponse</code>
 - <code title="delete /v1/incident_attachments/{id}">client.incidentAttachments.<a href="./src/resources/incident-attachments.ts">delete</a>(id) -> void</code>
 
 # IncidentMemberships
@@ -136,14 +136,14 @@ Types:
 
 Methods:
 
+- <code title="get /v1/incident_roles">client.incidentRoles.<a href="./src/resources/incident-roles.ts">list</a>() -> IncidentRoleListResponse</code>
 - <code title="post /v1/incident_roles">client.incidentRoles.<a href="./src/resources/incident-roles.ts">create</a>({ ...params }) -> IncidentRoleCreateResponse</code>
+- <code title="delete /v1/incident_roles/{id}">client.incidentRoles.<a href="./src/resources/incident-roles.ts">delete</a>(id) -> void</code>
 - <code title="get /v1/incident_roles/{id}">client.incidentRoles.<a href="./src/resources/incident-roles.ts">retrieve</a>(id) -> IncidentRoleRetrieveResponse</code>
 - <code title="put /v1/incident_roles/{id}">client.incidentRoles.<a href="./src/resources/incident-roles.ts">update</a>(id, { ...params }) -> IncidentRoleUpdateResponse</code>
-- <code title="get /v1/incident_roles">client.incidentRoles.<a href="./src/resources/incident-roles.ts">list</a>() -> IncidentRoleListResponse</code>
-- <code title="delete /v1/incident_roles/{id}">client.incidentRoles.<a href="./src/resources/incident-roles.ts">delete</a>(id) -> void</code>
+- <code title="get /v2/incident_roles">client.incidentRoles.<a href="./src/resources/incident-roles.ts">listV2</a>() -> IncidentRoleListV2Response</code>
 - <code title="post /v2/incident_roles">client.incidentRoles.<a href="./src/resources/incident-roles.ts">createV2</a>({ ...params }) -> IncidentRoleCreateV2Response</code>
 - <code title="delete /v2/incident_roles/{id}">client.incidentRoles.<a href="./src/resources/incident-roles.ts">deleteV2</a>(id) -> void</code>
-- <code title="get /v2/incident_roles">client.incidentRoles.<a href="./src/resources/incident-roles.ts">listV2</a>() -> IncidentRoleListV2Response</code>
 - <code title="get /v2/incident_roles/{id}">client.incidentRoles.<a href="./src/resources/incident-roles.ts">retrieveV2</a>(id) -> IncidentRoleRetrieveV2Response</code>
 - <code title="put /v2/incident_roles/{id}">client.incidentRoles.<a href="./src/resources/incident-roles.ts">updateV2</a>(id, { ...params }) -> IncidentRoleUpdateV2Response</code>
 
@@ -159,11 +159,11 @@ Types:
 
 Methods:
 
+- <code title="get /v1/incident_statuses">client.incidentStatuses.<a href="./src/resources/incident-statuses.ts">list</a>() -> IncidentStatusListResponse</code>
 - <code title="post /v1/incident_statuses">client.incidentStatuses.<a href="./src/resources/incident-statuses.ts">create</a>({ ...params }) -> IncidentStatusCreateResponse</code>
+- <code title="delete /v1/incident_statuses/{id}">client.incidentStatuses.<a href="./src/resources/incident-statuses.ts">delete</a>(id) -> void</code>
 - <code title="get /v1/incident_statuses/{id}">client.incidentStatuses.<a href="./src/resources/incident-statuses.ts">retrieve</a>(id) -> IncidentStatusRetrieveResponse</code>
 - <code title="put /v1/incident_statuses/{id}">client.incidentStatuses.<a href="./src/resources/incident-statuses.ts">update</a>(id, { ...params }) -> IncidentStatusUpdateResponse</code>
-- <code title="get /v1/incident_statuses">client.incidentStatuses.<a href="./src/resources/incident-statuses.ts">list</a>() -> IncidentStatusListResponse</code>
-- <code title="delete /v1/incident_statuses/{id}">client.incidentStatuses.<a href="./src/resources/incident-statuses.ts">delete</a>(id) -> void</code>
 
 # IncidentTypes
 
@@ -175,8 +175,8 @@ Types:
 
 Methods:
 
-- <code title="get /v1/incident_types/{id}">client.incidentTypes.<a href="./src/resources/incident-types.ts">retrieve</a>(id) -> IncidentTypeRetrieveResponse</code>
 - <code title="get /v1/incident_types">client.incidentTypes.<a href="./src/resources/incident-types.ts">list</a>() -> IncidentTypeListResponse</code>
+- <code title="get /v1/incident_types/{id}">client.incidentTypes.<a href="./src/resources/incident-types.ts">retrieve</a>(id) -> IncidentTypeRetrieveResponse</code>
 
 # Incidents
 
@@ -200,11 +200,11 @@ Types:
 
 Methods:
 
+- <code title="get /v1/incidents">client.incidents.<a href="./src/resources/incidents/incidents.ts">list</a>({ ...params }) -> IncidentListResponse</code>
 - <code title="post /v1/incidents">client.incidents.<a href="./src/resources/incidents/incidents.ts">create</a>({ ...params }) -> IncidentCreateResponse</code>
 - <code title="get /v1/incidents/{id}">client.incidents.<a href="./src/resources/incidents/incidents.ts">retrieve</a>(id) -> IncidentRetrieveResponse</code>
-- <code title="get /v1/incidents">client.incidents.<a href="./src/resources/incidents/incidents.ts">list</a>({ ...params }) -> IncidentListResponse</code>
-- <code title="post /v2/incidents">client.incidents.<a href="./src/resources/incidents/incidents.ts">createV2</a>({ ...params }) -> IncidentCreateV2Response</code>
 - <code title="get /v2/incidents">client.incidents.<a href="./src/resources/incidents/incidents.ts">listV2</a>({ ...params }) -> IncidentListV2Response</code>
+- <code title="post /v2/incidents">client.incidents.<a href="./src/resources/incidents/incidents.ts">createV2</a>({ ...params }) -> IncidentCreateV2Response</code>
 - <code title="get /v2/incidents/{id}">client.incidents.<a href="./src/resources/incidents/incidents.ts">retrieveV2</a>(id) -> IncidentRetrieveV2Response</code>
 
 ## Actions
@@ -263,11 +263,11 @@ Types:
 
 Methods:
 
+- <code title="get /v1/severities">client.severities.<a href="./src/resources/severities.ts">list</a>() -> SeverityListResponse</code>
 - <code title="post /v1/severities">client.severities.<a href="./src/resources/severities.ts">create</a>({ ...params }) -> SeverityCreateResponse</code>
+- <code title="delete /v1/severities/{id}">client.severities.<a href="./src/resources/severities.ts">delete</a>(id) -> void</code>
 - <code title="get /v1/severities/{id}">client.severities.<a href="./src/resources/severities.ts">retrieve</a>(id) -> SeverityRetrieveResponse</code>
 - <code title="put /v1/severities/{id}">client.severities.<a href="./src/resources/severities.ts">update</a>(id, { ...params }) -> SeverityUpdateResponse</code>
-- <code title="get /v1/severities">client.severities.<a href="./src/resources/severities.ts">list</a>() -> SeverityListResponse</code>
-- <code title="delete /v1/severities/{id}">client.severities.<a href="./src/resources/severities.ts">delete</a>(id) -> void</code>
 
 # StatusPages
 
@@ -293,11 +293,11 @@ Types:
 
 Methods:
 
+- <code title="get /v2/alert_attributes">client.alertAttributes.<a href="./src/resources/alert-attributes.ts">list</a>() -> AlertAttributeListResponse</code>
 - <code title="post /v2/alert_attributes">client.alertAttributes.<a href="./src/resources/alert-attributes.ts">create</a>({ ...params }) -> AlertAttributeCreateResponse</code>
+- <code title="delete /v2/alert_attributes/{id}">client.alertAttributes.<a href="./src/resources/alert-attributes.ts">delete</a>(id) -> void</code>
 - <code title="get /v2/alert_attributes/{id}">client.alertAttributes.<a href="./src/resources/alert-attributes.ts">retrieve</a>(id) -> AlertAttributeRetrieveResponse</code>
 - <code title="put /v2/alert_attributes/{id}">client.alertAttributes.<a href="./src/resources/alert-attributes.ts">update</a>(id, { ...params }) -> AlertAttributeUpdateResponse</code>
-- <code title="get /v2/alert_attributes">client.alertAttributes.<a href="./src/resources/alert-attributes.ts">list</a>() -> AlertAttributeListResponse</code>
-- <code title="delete /v2/alert_attributes/{id}">client.alertAttributes.<a href="./src/resources/alert-attributes.ts">delete</a>(id) -> void</code>
 
 # AlertEvents
 
@@ -339,11 +339,11 @@ Types:
 
 Methods:
 
+- <code title="get /v2/alert_routes">client.alertRoutes.<a href="./src/resources/alert-routes.ts">list</a>({ ...params }) -> AlertRouteListResponse</code>
 - <code title="post /v2/alert_routes">client.alertRoutes.<a href="./src/resources/alert-routes.ts">create</a>({ ...params }) -> AlertRouteCreateResponse</code>
+- <code title="delete /v2/alert_routes/{id}">client.alertRoutes.<a href="./src/resources/alert-routes.ts">delete</a>(id) -> void</code>
 - <code title="get /v2/alert_routes/{id}">client.alertRoutes.<a href="./src/resources/alert-routes.ts">retrieve</a>(id) -> AlertRouteRetrieveResponse</code>
 - <code title="put /v2/alert_routes/{id}">client.alertRoutes.<a href="./src/resources/alert-routes.ts">update</a>(id, { ...params }) -> AlertRouteUpdateResponse</code>
-- <code title="get /v2/alert_routes">client.alertRoutes.<a href="./src/resources/alert-routes.ts">list</a>({ ...params }) -> AlertRouteListResponse</code>
-- <code title="delete /v2/alert_routes/{id}">client.alertRoutes.<a href="./src/resources/alert-routes.ts">delete</a>(id) -> void</code>
 
 # AlertSources
 
@@ -362,11 +362,11 @@ Types:
 
 Methods:
 
+- <code title="get /v2/alert_sources">client.alertSources.<a href="./src/resources/alert-sources.ts">list</a>() -> AlertSourceListResponse</code>
 - <code title="post /v2/alert_sources">client.alertSources.<a href="./src/resources/alert-sources.ts">create</a>({ ...params }) -> AlertSourceCreateResponse</code>
+- <code title="delete /v2/alert_sources/{id}">client.alertSources.<a href="./src/resources/alert-sources.ts">delete</a>(id) -> void</code>
 - <code title="get /v2/alert_sources/{id}">client.alertSources.<a href="./src/resources/alert-sources.ts">retrieve</a>(id) -> AlertSourceRetrieveResponse</code>
 - <code title="put /v2/alert_sources/{id}">client.alertSources.<a href="./src/resources/alert-sources.ts">update</a>(id, { ...params }) -> AlertSourceUpdateResponse</code>
-- <code title="get /v2/alert_sources">client.alertSources.<a href="./src/resources/alert-sources.ts">list</a>() -> AlertSourceListResponse</code>
-- <code title="delete /v2/alert_sources/{id}">client.alertSources.<a href="./src/resources/alert-sources.ts">delete</a>(id) -> void</code>
 
 # Alerts
 
@@ -379,8 +379,8 @@ Types:
 
 Methods:
 
-- <code title="get /v2/alerts/{id}">client.alerts.<a href="./src/resources/alerts.ts">retrieve</a>(id) -> AlertRetrieveResponse</code>
 - <code title="get /v2/alerts">client.alerts.<a href="./src/resources/alerts.ts">list</a>({ ...params }) -> AlertListResponse</code>
+- <code title="get /v2/alerts/{id}">client.alerts.<a href="./src/resources/alerts.ts">retrieve</a>(id) -> AlertRetrieveResponse</code>
 
 # CatalogEntries
 
@@ -401,15 +401,15 @@ Types:
 
 Methods:
 
-- <code title="post /v2/catalog_entries">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">createEntryV2</a>({ ...params }) -> CatalogEntryCreateEntryV2Response</code>
-- <code title="post /v3/catalog_entries">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">createEntryV3</a>({ ...params }) -> CatalogEntryCreateEntryV3Response</code>
-- <code title="delete /v2/catalog_entries/{id}">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">destroyEntryV2</a>(id) -> void</code>
-- <code title="delete /v3/catalog_entries/{id}">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">destroyEntryV3</a>(id) -> void</code>
 - <code title="get /v2/catalog_entries">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">listEntriesV2</a>({ ...params }) -> CatalogEntryListEntriesV2Response</code>
-- <code title="get /v3/catalog_entries">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">listEntriesV3</a>({ ...params }) -> CatalogEntryListEntriesV3Response</code>
+- <code title="post /v2/catalog_entries">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">createEntryV2</a>({ ...params }) -> CatalogEntryCreateEntryV2Response</code>
+- <code title="delete /v2/catalog_entries/{id}">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">destroyEntryV2</a>(id) -> void</code>
 - <code title="get /v2/catalog_entries/{id}">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">showEntryV2</a>(id) -> CatalogEntryShowEntryV2Response</code>
-- <code title="get /v3/catalog_entries/{id}">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">showEntryV3</a>(id) -> CatalogEntryShowEntryV3Response</code>
 - <code title="put /v2/catalog_entries/{id}">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">updateEntryV2</a>(id, { ...params }) -> CatalogEntryUpdateEntryV2Response</code>
+- <code title="get /v3/catalog_entries">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">listEntriesV3</a>({ ...params }) -> CatalogEntryListEntriesV3Response</code>
+- <code title="post /v3/catalog_entries">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">createEntryV3</a>({ ...params }) -> CatalogEntryCreateEntryV3Response</code>
+- <code title="delete /v3/catalog_entries/{id}">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">destroyEntryV3</a>(id) -> void</code>
+- <code title="get /v3/catalog_entries/{id}">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">showEntryV3</a>(id) -> CatalogEntryShowEntryV3Response</code>
 - <code title="put /v3/catalog_entries/{id}">client.catalogEntries.<a href="./src/resources/catalog-entries.ts">updateEntryV3</a>(id, { ...params }) -> CatalogEntryUpdateEntryV3Response</code>
 
 # CatalogResources
@@ -435,11 +435,11 @@ Types:
 
 Methods:
 
+- <code title="get /v3/catalog_types">client.catalogTypes.<a href="./src/resources/catalog-types/catalog-types.ts">list</a>() -> CatalogTypeListResponse</code>
 - <code title="post /v3/catalog_types">client.catalogTypes.<a href="./src/resources/catalog-types/catalog-types.ts">create</a>({ ...params }) -> CatalogTypeCreateResponse</code>
+- <code title="delete /v3/catalog_types/{id}">client.catalogTypes.<a href="./src/resources/catalog-types/catalog-types.ts">destroy</a>(id) -> void</code>
 - <code title="get /v3/catalog_types/{id}">client.catalogTypes.<a href="./src/resources/catalog-types/catalog-types.ts">retrieve</a>(id) -> CatalogTypeRetrieveResponse</code>
 - <code title="put /v3/catalog_types/{id}">client.catalogTypes.<a href="./src/resources/catalog-types/catalog-types.ts">update</a>(id, { ...params }) -> CatalogTypeUpdateResponse</code>
-- <code title="get /v3/catalog_types">client.catalogTypes.<a href="./src/resources/catalog-types/catalog-types.ts">list</a>() -> CatalogTypeListResponse</code>
-- <code title="delete /v3/catalog_types/{id}">client.catalogTypes.<a href="./src/resources/catalog-types/catalog-types.ts">destroy</a>(id) -> void</code>
 
 ## Actions
 
@@ -468,9 +468,9 @@ Types:
 Methods:
 
 - <code title="post /v2/escalation_paths">client.escalationPaths.<a href="./src/resources/escalation-paths.ts">create</a>({ ...params }) -> EscalationPathCreateResponse</code>
+- <code title="delete /v2/escalation_paths/{id}">client.escalationPaths.<a href="./src/resources/escalation-paths.ts">delete</a>(id) -> void</code>
 - <code title="get /v2/escalation_paths/{id}">client.escalationPaths.<a href="./src/resources/escalation-paths.ts">retrieve</a>(id) -> EscalationPathRetrieveResponse</code>
 - <code title="put /v2/escalation_paths/{id}">client.escalationPaths.<a href="./src/resources/escalation-paths.ts">update</a>(id, { ...params }) -> EscalationPathUpdateResponse</code>
-- <code title="delete /v2/escalation_paths/{id}">client.escalationPaths.<a href="./src/resources/escalation-paths.ts">delete</a>(id) -> void</code>
 
 # Escalations
 
@@ -483,9 +483,9 @@ Types:
 
 Methods:
 
+- <code title="get /v2/escalations">client.escalations.<a href="./src/resources/escalations.ts">list</a>({ ...params }) -> EscalationListResponse</code>
 - <code title="post /v2/escalations">client.escalations.<a href="./src/resources/escalations.ts">create</a>({ ...params }) -> EscalationCreateResponse</code>
 - <code title="get /v2/escalations/{id}">client.escalations.<a href="./src/resources/escalations.ts">retrieve</a>(id) -> EscalationRetrieveResponse</code>
-- <code title="get /v2/escalations">client.escalations.<a href="./src/resources/escalations.ts">list</a>({ ...params }) -> EscalationListResponse</code>
 
 # FollowUps
 
@@ -498,8 +498,8 @@ Types:
 
 Methods:
 
-- <code title="get /v2/follow_ups/{id}">client.followUps.<a href="./src/resources/follow-ups.ts">retrieve</a>(id) -> FollowUpRetrieveResponse</code>
 - <code title="get /v2/follow_ups">client.followUps.<a href="./src/resources/follow-ups.ts">list</a>({ ...params }) -> FollowUpListResponse</code>
+- <code title="get /v2/follow_ups/{id}">client.followUps.<a href="./src/resources/follow-ups.ts">retrieve</a>(id) -> FollowUpRetrieveResponse</code>
 
 # IncidentAlerts
 
@@ -523,8 +523,8 @@ Types:
 
 Methods:
 
-- <code title="get /v2/incident_timestamps/{id}">client.incidentTimestamps.<a href="./src/resources/incident-timestamps.ts">retrieve</a>(id) -> IncidentTimestampRetrieveResponse</code>
 - <code title="get /v2/incident_timestamps">client.incidentTimestamps.<a href="./src/resources/incident-timestamps.ts">list</a>() -> IncidentTimestampListResponse</code>
+- <code title="get /v2/incident_timestamps/{id}">client.incidentTimestamps.<a href="./src/resources/incident-timestamps.ts">retrieve</a>(id) -> IncidentTimestampRetrieveResponse</code>
 
 # IncidentUpdates
 
@@ -573,11 +573,11 @@ Types:
 
 Methods:
 
+- <code title="get /v2/schedules">client.schedules.<a href="./src/resources/schedules.ts">list</a>({ ...params }) -> ScheduleListResponse</code>
 - <code title="post /v2/schedules">client.schedules.<a href="./src/resources/schedules.ts">create</a>({ ...params }) -> ScheduleCreateResponse</code>
+- <code title="delete /v2/schedules/{id}">client.schedules.<a href="./src/resources/schedules.ts">delete</a>(id) -> void</code>
 - <code title="get /v2/schedules/{id}">client.schedules.<a href="./src/resources/schedules.ts">retrieve</a>(id) -> ScheduleRetrieveResponse</code>
 - <code title="put /v2/schedules/{id}">client.schedules.<a href="./src/resources/schedules.ts">update</a>(id, { ...params }) -> ScheduleUpdateResponse</code>
-- <code title="get /v2/schedules">client.schedules.<a href="./src/resources/schedules.ts">list</a>({ ...params }) -> ScheduleListResponse</code>
-- <code title="delete /v2/schedules/{id}">client.schedules.<a href="./src/resources/schedules.ts">delete</a>(id) -> void</code>
 
 # Users
 
@@ -590,8 +590,8 @@ Types:
 
 Methods:
 
-- <code title="get /v2/users/{id}">client.users.<a href="./src/resources/users.ts">retrieve</a>(id) -> UserRetrieveResponse</code>
 - <code title="get /v2/users">client.users.<a href="./src/resources/users.ts">list</a>({ ...params }) -> UserListResponse</code>
+- <code title="get /v2/users/{id}">client.users.<a href="./src/resources/users.ts">retrieve</a>(id) -> UserRetrieveResponse</code>
 
 # Workflows
 
@@ -612,8 +612,8 @@ Types:
 
 Methods:
 
+- <code title="get /v2/workflows">client.workflows.<a href="./src/resources/workflows.ts">list</a>() -> WorkflowListResponse</code>
 - <code title="post /v2/workflows">client.workflows.<a href="./src/resources/workflows.ts">create</a>({ ...params }) -> WorkflowCreateResponse</code>
+- <code title="delete /v2/workflows/{id}">client.workflows.<a href="./src/resources/workflows.ts">destroy</a>(id) -> void</code>
 - <code title="get /v2/workflows/{id}">client.workflows.<a href="./src/resources/workflows.ts">retrieve</a>(id, { ...params }) -> WorkflowRetrieveResponse</code>
 - <code title="put /v2/workflows/{id}">client.workflows.<a href="./src/resources/workflows.ts">update</a>(id, { ...params }) -> WorkflowUpdateResponse</code>
-- <code title="get /v2/workflows">client.workflows.<a href="./src/resources/workflows.ts">list</a>() -> WorkflowListResponse</code>
-- <code title="delete /v2/workflows/{id}">client.workflows.<a href="./src/resources/workflows.ts">destroy</a>(id) -> void</code>

@@ -8,12 +8,33 @@ import { path } from '../internal/utils/path';
 
 export class IncidentRoles extends APIResource {
   /**
+   * List all incident roles for an organisation.
+   *
+   * @deprecated
+   */
+  list(options?: RequestOptions): APIPromise<IncidentRoleListResponse> {
+    return this._client.get('/v1/incident_roles', options);
+  }
+
+  /**
    * Create a new incident role
    *
    * @deprecated
    */
   create(body: IncidentRoleCreateParams, options?: RequestOptions): APIPromise<IncidentRoleCreateResponse> {
     return this._client.post('/v1/incident_roles', { body, ...options });
+  }
+
+  /**
+   * Removes an existing role
+   *
+   * @deprecated
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v1/incident_roles/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -41,22 +62,13 @@ export class IncidentRoles extends APIResource {
   /**
    * List all incident roles for an organisation.
    *
-   * @deprecated
+   * @example
+   * ```ts
+   * const response = await client.incidentRoles.listV2();
+   * ```
    */
-  list(options?: RequestOptions): APIPromise<IncidentRoleListResponse> {
-    return this._client.get('/v1/incident_roles', options);
-  }
-
-  /**
-   * Removes an existing role
-   *
-   * @deprecated
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/incident_roles/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  listV2(options?: RequestOptions): APIPromise<IncidentRoleListV2Response> {
+    return this._client.get('/v2/incident_roles', options);
   }
 
   /**
@@ -96,18 +108,6 @@ export class IncidentRoles extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
-  }
-
-  /**
-   * List all incident roles for an organisation.
-   *
-   * @example
-   * ```ts
-   * const response = await client.incidentRoles.listV2();
-   * ```
-   */
-  listV2(options?: RequestOptions): APIPromise<IncidentRoleListV2Response> {
-    return this._client.get('/v2/incident_roles', options);
   }
 
   /**
