@@ -13,6 +13,18 @@ import { path } from '../internal/utils/path';
  */
 export class AlertAttributes extends APIResource {
   /**
+   * List alert attributes.
+   *
+   * @example
+   * ```ts
+   * const alertAttributes = await client.alertAttributes.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<AlertAttributeListResponse> {
+    return this._client.get('/v2/alert_attributes', options);
+  }
+
+  /**
    * Create a new alert attribute.
    *
    * @example
@@ -29,6 +41,23 @@ export class AlertAttributes extends APIResource {
     options?: RequestOptions,
   ): APIPromise<AlertAttributeCreateResponse> {
     return this._client.post('/v2/alert_attributes', { body, ...options });
+  }
+
+  /**
+   * Destroy an alert attribute.
+   *
+   * @example
+   * ```ts
+   * await client.alertAttributes.delete(
+   *   '01GW2G3V0S59R238FAHPDS1R66',
+   * );
+   * ```
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v2/alert_attributes/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -67,35 +96,6 @@ export class AlertAttributes extends APIResource {
     options?: RequestOptions,
   ): APIPromise<AlertAttributeUpdateResponse> {
     return this._client.put(path`/v2/alert_attributes/${id}`, { body, ...options });
-  }
-
-  /**
-   * List alert attributes.
-   *
-   * @example
-   * ```ts
-   * const alertAttributes = await client.alertAttributes.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<AlertAttributeListResponse> {
-    return this._client.get('/v2/alert_attributes', options);
-  }
-
-  /**
-   * Destroy an alert attribute.
-   *
-   * @example
-   * ```ts
-   * await client.alertAttributes.delete(
-   *   '01GW2G3V0S59R238FAHPDS1R66',
-   * );
-   * ```
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v2/alert_attributes/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 }
 

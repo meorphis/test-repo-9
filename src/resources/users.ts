@@ -13,20 +13,6 @@ import { path } from '../internal/utils/path';
  */
 export class Users extends APIResource {
   /**
-   * Get a single user.
-   *
-   * @example
-   * ```ts
-   * const user = await client.users.retrieve(
-   *   '01FCNDV6P870EA6S7TK1DSYDG0',
-   * );
-   * ```
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<UserRetrieveResponse> {
-    return this._client.get(path`/v2/users/${id}`, options);
-  }
-
-  /**
    * List users in your account.
    *
    * @example
@@ -39,6 +25,20 @@ export class Users extends APIResource {
     options?: RequestOptions,
   ): APIPromise<UserListResponse> {
     return this._client.get('/v2/users', { query, ...options });
+  }
+
+  /**
+   * Get a single user.
+   *
+   * @example
+   * ```ts
+   * const user = await client.users.retrieve(
+   *   '01FCNDV6P870EA6S7TK1DSYDG0',
+   * );
+   * ```
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<UserRetrieveResponse> {
+    return this._client.get(path`/v2/users/${id}`, options);
   }
 }
 
