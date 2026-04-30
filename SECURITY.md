@@ -20,7 +20,7 @@ or products provided by Incident Io 13, please follow the respective company's s
 
 ### Incident Io 13 Terms and Policies
 
-Please contact meorphis6@gmail.com for any questions or concerns regarding the security of our services.
+Please contact meorphis7@gmail.com for any questions or concerns regarding the security of our services.
 
 ---
 
