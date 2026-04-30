@@ -9,18 +9,6 @@ const client = new IncidentIo13({
 
 describe('resource followUps', () => {
   // Mock server tests are disabled
-  test.skip('retrieve', async () => {
-    const responsePromise = client.followUps.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.followUps.list();
     const rawResponse = await responsePromise.asResponse();
@@ -41,5 +29,17 @@ describe('resource followUps', () => {
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(IncidentIo13.NotFoundError);
+  });
+
+  // Mock server tests are disabled
+  test.skip('retrieve', async () => {
+    const responsePromise = client.followUps.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });

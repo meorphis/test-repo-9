@@ -60,6 +60,26 @@ export class EscalationPaths extends APIResource {
   }
 
   /**
+   * Archives an escalation path.
+   *
+   * We recommend you create escalation paths in the incident.io dashboard where our
+   * path builder makes it easy to use conditions and visualise the path.
+   *
+   * @example
+   * ```ts
+   * await client.escalationPaths.delete(
+   *   '01FCNDV6P870EA6S7TK1DSYDG0',
+   * );
+   * ```
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v2/escalation_paths/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
    * Show an escalation path.
    *
    * We recommend you create escalation paths in the incident.io dashboard where our
@@ -117,26 +137,6 @@ export class EscalationPaths extends APIResource {
     options?: RequestOptions,
   ): APIPromise<EscalationPathUpdateResponse> {
     return this._client.put(path`/v2/escalation_paths/${id}`, { body, ...options });
-  }
-
-  /**
-   * Archives an escalation path.
-   *
-   * We recommend you create escalation paths in the incident.io dashboard where our
-   * path builder makes it easy to use conditions and visualise the path.
-   *
-   * @example
-   * ```ts
-   * await client.escalationPaths.delete(
-   *   '01FCNDV6P870EA6S7TK1DSYDG0',
-   * );
-   * ```
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v2/escalation_paths/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 }
 
