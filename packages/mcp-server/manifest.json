@@ -12,7 +12,7 @@
     "url": "git+https://github.com/meorphis/test-repo-9.git"
   },
   "homepage": "https://github.com/meorphis/test-repo-9/tree/main/packages/mcp-server#readme",
-  "documentation": "https://api-docs.incident.io/",
+  "documentation": "https://api-docsss.incident.io/",
   "server": {
     "type": "node",
     "entry_point": "index.js",
