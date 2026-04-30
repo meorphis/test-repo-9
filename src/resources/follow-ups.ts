@@ -18,20 +18,6 @@ import { path } from '../internal/utils/path';
  */
 export class FollowUps extends APIResource {
   /**
-   * Get a single incident follow-up.
-   *
-   * @example
-   * ```ts
-   * const followUp = await client.followUps.retrieve(
-   *   '01FCNDV6P870EA6S7TK1DSYDG0',
-   * );
-   * ```
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<FollowUpRetrieveResponse> {
-    return this._client.get(path`/v2/follow_ups/${id}`, options);
-  }
-
-  /**
    * List all follow-ups for an organisation.
    *
    * @example
@@ -44,6 +30,20 @@ export class FollowUps extends APIResource {
     options?: RequestOptions,
   ): APIPromise<FollowUpListResponse> {
     return this._client.get('/v2/follow_ups', { query, ...options });
+  }
+
+  /**
+   * Get a single incident follow-up.
+   *
+   * @example
+   * ```ts
+   * const followUp = await client.followUps.retrieve(
+   *   '01FCNDV6P870EA6S7TK1DSYDG0',
+   * );
+   * ```
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<FollowUpRetrieveResponse> {
+    return this._client.get(path`/v2/follow_ups/${id}`, options);
   }
 }
 
