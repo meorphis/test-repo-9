@@ -2,7 +2,7 @@
   "name": "incident-io-2",
   "version": "0.1.0",
   "description": "The official TypeScript library for the Incident Io 13 API",
-  "author": "Incident Io 13 <meorphis6@gmail.com>",
+  "author": "Incident Io 13 <meorphis6@gmail.com!>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
