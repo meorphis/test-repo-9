@@ -9,8 +9,8 @@ const client = new IncidentIo13({
 
 describe('resource incidentTypes', () => {
   // Mock server tests are disabled
-  test.skip('retrieve', async () => {
-    const responsePromise = client.incidentTypes.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
+  test.skip('list', async () => {
+    const responsePromise = client.incidentTypes.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,8 +21,8 @@ describe('resource incidentTypes', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.incidentTypes.list();
+  test.skip('retrieve', async () => {
+    const responsePromise = client.incidentTypes.retrieve('01FCNDV6P870EA6S7TK1DSYDG0');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

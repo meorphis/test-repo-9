@@ -14,6 +14,24 @@ import { path } from '../internal/utils/path';
  */
 export class IncidentAttachments extends APIResource {
   /**
+   * List all incident attachments for a given external resource or incident. You
+   * must provide either a specific incident ID or a specific external resource type
+   * and external ID.
+   *
+   * @example
+   * ```ts
+   * const incidentAttachments =
+   *   await client.incidentAttachments.list();
+   * ```
+   */
+  list(
+    query: IncidentAttachmentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<IncidentAttachmentListResponse> {
+    return this._client.get('/v1/incident_attachments', { query, ...options });
+  }
+
+  /**
    * Attaches an external resource to an incident
    *
    * @example
@@ -33,24 +51,6 @@ export class IncidentAttachments extends APIResource {
     options?: RequestOptions,
   ): APIPromise<IncidentAttachmentCreateResponse> {
     return this._client.post('/v1/incident_attachments', { body, ...options });
-  }
-
-  /**
-   * List all incident attachments for a given external resource or incident. You
-   * must provide either a specific incident ID or a specific external resource type
-   * and external ID.
-   *
-   * @example
-   * ```ts
-   * const incidentAttachments =
-   *   await client.incidentAttachments.list();
-   * ```
-   */
-  list(
-    query: IncidentAttachmentListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<IncidentAttachmentListResponse> {
-    return this._client.get('/v1/incident_attachments', { query, ...options });
   }
 
   /**
@@ -132,6 +132,38 @@ export interface IncidentAttachmentListResponse {
   incident_attachments: Array<IncidentAttachment>;
 }
 
+export interface IncidentAttachmentListParams {
+  /**
+   * ID of the resource in the external system
+   */
+  external_id?: string;
+
+  /**
+   * Incident that this attachment is against
+   */
+  incident_id?: string;
+
+  /**
+   * E.g. PagerDuty: the external system that holds the resource
+   */
+  resource_type?:
+    | 'pager_duty_incident'
+    | 'opsgenie_alert'
+    | 'datadog_monitor_alert'
+    | 'github_pull_request'
+    | 'gitlab_merge_request'
+    | 'sentry_issue'
+    | 'jira_issue'
+    | 'jsm_alert'
+    | 'atlassian_statuspage_incident'
+    | 'zendesk_ticket'
+    | 'google_calendar_event'
+    | 'outlook_calendar_event'
+    | 'slack_file'
+    | 'scrubbed'
+    | 'statuspage_incident';
+}
+
 export interface IncidentAttachmentCreateParams {
   /**
    * ID of the incident to add an attachment to
@@ -170,44 +202,12 @@ export namespace IncidentAttachmentCreateParams {
   }
 }
 
-export interface IncidentAttachmentListParams {
-  /**
-   * ID of the resource in the external system
-   */
-  external_id?: string;
-
-  /**
-   * Incident that this attachment is against
-   */
-  incident_id?: string;
-
-  /**
-   * E.g. PagerDuty: the external system that holds the resource
-   */
-  resource_type?:
-    | 'pager_duty_incident'
-    | 'opsgenie_alert'
-    | 'datadog_monitor_alert'
-    | 'github_pull_request'
-    | 'gitlab_merge_request'
-    | 'sentry_issue'
-    | 'jira_issue'
-    | 'jsm_alert'
-    | 'atlassian_statuspage_incident'
-    | 'zendesk_ticket'
-    | 'google_calendar_event'
-    | 'outlook_calendar_event'
-    | 'slack_file'
-    | 'scrubbed'
-    | 'statuspage_incident';
-}
-
 export declare namespace IncidentAttachments {
   export {
     type IncidentAttachment as IncidentAttachment,
     type IncidentAttachmentCreateResponse as IncidentAttachmentCreateResponse,
     type IncidentAttachmentListResponse as IncidentAttachmentListResponse,
-    type IncidentAttachmentCreateParams as IncidentAttachmentCreateParams,
     type IncidentAttachmentListParams as IncidentAttachmentListParams,
+    type IncidentAttachmentCreateParams as IncidentAttachmentCreateParams,
   };
 }

@@ -16,58 +16,6 @@ import { path } from '../internal/utils/path';
  */
 export class Escalations extends APIResource {
   /**
-   * Create an escalation.
-   *
-   * An escalation pages people, either according to an escalation path, or directly
-   * to specific users. You must provide either an escalation_path_id OR user_ids,
-   * but not both.
-   *
-   * When escalating via an escalation path, the escalation will follow the
-   * configured path with its levels and timeouts, using your default
-   * [alert priority](https://app.incident.io/~/settings/alerts/configuration/priorities).
-   *
-   * When escalating directly to users, they will receive a high-urgency
-   * notification, based on their notification rules.
-   *
-   * This endpoint is rate-limited to 60 requests per minute, since it is intended
-   * for interactive use cases (for example someone clicking a "escalate to team"
-   * button in your internal developer platform). To escalate based on automated
-   * alerts, we recommend sending events to an alert source instead.
-   *
-   * @example
-   * ```ts
-   * const escalation = await client.escalations.create({
-   *   idempotency_key: '2024-01-15-abc123',
-   *   title: 'Production database experiencing high CPU',
-   *   description:
-   *     'Database CPU has been above 90% for 5 minutes',
-   *   escalation_path_id: '01H0J1EXE7AXZ2C93K61WBPYEH',
-   *   user_ids: [
-   *     '01H0J1EXE7AXZ2C93K61WBPYEH',
-   *     '01H0J1EXE7AXZ2C93K61WBPYEI',
-   *   ],
-   * });
-   * ```
-   */
-  create(body: EscalationCreateParams, options?: RequestOptions): APIPromise<EscalationCreateResponse> {
-    return this._client.post('/v2/escalations', { body, ...options });
-  }
-
-  /**
-   * Show a specific escalation.
-   *
-   * @example
-   * ```ts
-   * const escalation = await client.escalations.retrieve(
-   *   '01G0J1EXE7AXZ2C93K61WBPYEH',
-   * );
-   * ```
-   */
-  retrieve(id: string, options?: RequestOptions): APIPromise<EscalationRetrieveResponse> {
-    return this._client.get(path`/v2/escalations/${id}`, options);
-  }
-
-  /**
    * List all escalations for your account.
    *
    * This endpoint supports a number of filters, which can help find escalations
@@ -132,6 +80,58 @@ export class Escalations extends APIResource {
     options?: RequestOptions,
   ): APIPromise<EscalationListResponse> {
     return this._client.get('/v2/escalations', { query, ...options });
+  }
+
+  /**
+   * Create an escalation.
+   *
+   * An escalation pages people, either according to an escalation path, or directly
+   * to specific users. You must provide either an escalation_path_id OR user_ids,
+   * but not both.
+   *
+   * When escalating via an escalation path, the escalation will follow the
+   * configured path with its levels and timeouts, using your default
+   * [alert priority](https://app.incident.io/~/settings/alerts/configuration/priorities).
+   *
+   * When escalating directly to users, they will receive a high-urgency
+   * notification, based on their notification rules.
+   *
+   * This endpoint is rate-limited to 60 requests per minute, since it is intended
+   * for interactive use cases (for example someone clicking a "escalate to team"
+   * button in your internal developer platform). To escalate based on automated
+   * alerts, we recommend sending events to an alert source instead.
+   *
+   * @example
+   * ```ts
+   * const escalation = await client.escalations.create({
+   *   idempotency_key: '2024-01-15-abc123',
+   *   title: 'Production database experiencing high CPU',
+   *   description:
+   *     'Database CPU has been above 90% for 5 minutes',
+   *   escalation_path_id: '01H0J1EXE7AXZ2C93K61WBPYEH',
+   *   user_ids: [
+   *     '01H0J1EXE7AXZ2C93K61WBPYEH',
+   *     '01H0J1EXE7AXZ2C93K61WBPYEI',
+   *   ],
+   * });
+   * ```
+   */
+  create(body: EscalationCreateParams, options?: RequestOptions): APIPromise<EscalationCreateResponse> {
+    return this._client.post('/v2/escalations', { body, ...options });
+  }
+
+  /**
+   * Show a specific escalation.
+   *
+   * @example
+   * ```ts
+   * const escalation = await client.escalations.retrieve(
+   *   '01G0J1EXE7AXZ2C93K61WBPYEH',
+   * );
+   * ```
+   */
+  retrieve(id: string, options?: RequestOptions): APIPromise<EscalationRetrieveResponse> {
+    return this._client.get(path`/v2/escalations/${id}`, options);
   }
 }
 
@@ -297,35 +297,6 @@ export interface EscalationListResponse {
   pagination_meta: AlertRoutesAPI.PaginationMetaResult;
 }
 
-export interface EscalationCreateParams {
-  /**
-   * Unique key to prevent duplicate escalations. If this key has already been used,
-   * the existing escalation will be returned.
-   */
-  idempotency_key: string;
-
-  /**
-   * The title of the escalation. This message will be included in all notifications
-   * about this escalation.
-   */
-  title: string;
-
-  /**
-   * Additional details about the escalation
-   */
-  description?: string;
-
-  /**
-   * ID of the escalation path to follow
-   */
-  escalation_path_id?: string;
-
-  /**
-   * IDs of users to escalate directly to
-   */
-  user_ids?: Array<string>;
-}
-
 export interface EscalationListParams {
   /**
    * An escalation's ID. This endpoint will return a list of escalations after this
@@ -369,13 +340,42 @@ export interface EscalationListParams {
   updated_at?: { [key: string]: Array<string> };
 }
 
+export interface EscalationCreateParams {
+  /**
+   * Unique key to prevent duplicate escalations. If this key has already been used,
+   * the existing escalation will be returned.
+   */
+  idempotency_key: string;
+
+  /**
+   * The title of the escalation. This message will be included in all notifications
+   * about this escalation.
+   */
+  title: string;
+
+  /**
+   * Additional details about the escalation
+   */
+  description?: string;
+
+  /**
+   * ID of the escalation path to follow
+   */
+  escalation_path_id?: string;
+
+  /**
+   * IDs of users to escalate directly to
+   */
+  user_ids?: Array<string>;
+}
+
 export declare namespace Escalations {
   export {
     type EscalationV2 as EscalationV2,
     type EscalationCreateResponse as EscalationCreateResponse,
     type EscalationRetrieveResponse as EscalationRetrieveResponse,
     type EscalationListResponse as EscalationListResponse,
-    type EscalationCreateParams as EscalationCreateParams,
     type EscalationListParams as EscalationListParams,
+    type EscalationCreateParams as EscalationCreateParams,
   };
 }
