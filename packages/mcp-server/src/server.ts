@@ -28,7 +28,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'incident_io_2_api',
-      version: '0.0.1',
+      version: '0.1.0',
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
@@ -182,7 +182,7 @@ export function selectTools(options?: McpOptions): McpTool[] {
     includedTools.push(
       codeTool({
         blockedMethods: blockedMethodsForCodeTool(options),
-        codeExecutionMode: options?.codeExecutionMode ?? 'stainless-sandbox',
+        codeExecutionMode: options?.codeExecutionMode ?? 'local',
       }),
     );
   }

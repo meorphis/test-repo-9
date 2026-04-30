@@ -9,6 +9,18 @@ const client = new IncidentIo13({
 
 describe('resource alertSources', () => {
   // Mock server tests are disabled
+  test.skip('list', async () => {
+    const responsePromise = client.alertSources.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.alertSources.create({
       name: 'Production Web Dashboard Alerts',
@@ -135,6 +147,18 @@ describe('resource alertSources', () => {
       },
       jira_options: { project_ids: ['01GBSQF3FHF7FWZQNWGHAVQ804', '10043'] },
     });
+  });
+
+  // Mock server tests are disabled
+  test.skip('delete', async () => {
+    const responsePromise = client.alertSources.delete('01GW2G3V0S59R238FAHPDS1R66');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   // Mock server tests are disabled
@@ -274,29 +298,5 @@ describe('resource alertSources', () => {
       },
       jira_options: { project_ids: ['01GBSQF3FHF7FWZQNWGHAVQ804', '10043'] },
     });
-  });
-
-  // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.alertSources.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('delete', async () => {
-    const responsePromise = client.alertSources.delete('01GW2G3V0S59R238FAHPDS1R66');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });

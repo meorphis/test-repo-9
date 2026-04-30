@@ -18,6 +18,19 @@ import { path } from '../internal/utils/path';
  */
 export class IncidentStatuses extends APIResource {
   /**
+   * List all incident statuses for an organisation.
+   *
+   * @example
+   * ```ts
+   * const incidentStatuses =
+   *   await client.incidentStatuses.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<IncidentStatusListResponse> {
+    return this._client.get('/v1/incident_statuses', options);
+  }
+
+  /**
    * Create a new incident status
    *
    * @example
@@ -37,6 +50,23 @@ export class IncidentStatuses extends APIResource {
     options?: RequestOptions,
   ): APIPromise<IncidentStatusCreateResponse> {
     return this._client.post('/v1/incident_statuses', { body, ...options });
+  }
+
+  /**
+   * Delete an incident status
+   *
+   * @example
+   * ```ts
+   * await client.incidentStatuses.delete(
+   *   '01FCNDV6P870EA6S7TK1DSYD5H',
+   * );
+   * ```
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v1/incident_statuses/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -75,36 +105,6 @@ export class IncidentStatuses extends APIResource {
     options?: RequestOptions,
   ): APIPromise<IncidentStatusUpdateResponse> {
     return this._client.put(path`/v1/incident_statuses/${id}`, { body, ...options });
-  }
-
-  /**
-   * List all incident statuses for an organisation.
-   *
-   * @example
-   * ```ts
-   * const incidentStatuses =
-   *   await client.incidentStatuses.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<IncidentStatusListResponse> {
-    return this._client.get('/v1/incident_statuses', options);
-  }
-
-  /**
-   * Delete an incident status
-   *
-   * @example
-   * ```ts
-   * await client.incidentStatuses.delete(
-   *   '01FCNDV6P870EA6S7TK1DSYD5H',
-   * );
-   * ```
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/incident_statuses/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 }
 

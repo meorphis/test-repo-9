@@ -17,6 +17,19 @@ import { path } from '../internal/utils/path';
  */
 export class IncidentTimestamps extends APIResource {
   /**
+   * List all incident timestamps for an organisation.
+   *
+   * @example
+   * ```ts
+   * const incidentTimestamps =
+   *   await client.incidentTimestamps.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<IncidentTimestampListResponse> {
+    return this._client.get('/v2/incident_timestamps', options);
+  }
+
+  /**
    * Get a single incident timestamp.
    *
    * @example
@@ -29,19 +42,6 @@ export class IncidentTimestamps extends APIResource {
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<IncidentTimestampRetrieveResponse> {
     return this._client.get(path`/v2/incident_timestamps/${id}`, options);
-  }
-
-  /**
-   * List all incident timestamps for an organisation.
-   *
-   * @example
-   * ```ts
-   * const incidentTimestamps =
-   *   await client.incidentTimestamps.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<IncidentTimestampListResponse> {
-    return this._client.get('/v2/incident_timestamps', options);
   }
 }
 
