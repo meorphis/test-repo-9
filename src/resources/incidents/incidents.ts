@@ -20,6 +20,18 @@ export class Incidents extends APIResource {
   actions: IncidentsActionsAPI.Actions = new IncidentsActionsAPI.Actions(this._client);
 
   /**
+   * List all incidents for an organisation.
+   *
+   * @deprecated
+   */
+  list(
+    query: IncidentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<IncidentListResponse> {
+    return this._client.get('/v1/incidents', { query, ...options });
+  }
+
+  /**
    * Create a new incident.
    *
    * @deprecated
@@ -35,69 +47,6 @@ export class Incidents extends APIResource {
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<IncidentRetrieveResponse> {
     return this._client.get(path`/v1/incidents/${id}`, options);
-  }
-
-  /**
-   * List all incidents for an organisation.
-   *
-   * @deprecated
-   */
-  list(
-    query: IncidentListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<IncidentListResponse> {
-    return this._client.get('/v1/incidents', { query, ...options });
-  }
-
-  /**
-   * Create a new incident.
-   *
-   * Note that if the incident mode is set to "retrospective" then the new incident
-   * will not be announced in Slack.
-   *
-   * @example
-   * ```ts
-   * const response = await client.incidents.createV2({
-   *   idempotency_key: 'alert-uuid',
-   *   visibility: 'public',
-   *   custom_field_entries: [
-   *     {
-   *       custom_field_id: '01FCNDV6P870EA6S7TK1DSYDG0',
-   *       values: [
-   *         { ... },
-   *       ],
-   *     },
-   *   ],
-   *   incident_role_assignments: [
-   *     {
-   *       assignee: { ... },
-   *       incident_role_id: '01FH5TZRWMNAFB0DZ23FD1TV96',
-   *     },
-   *   ],
-   *   incident_status_id: '01G0J1EXE7AXZ2C93K61WBPYEH',
-   *   incident_timestamp_values: [
-   *     {
-   *       incident_timestamp_id: '01FCNDV6P870EA6S7TK1DSYD5H',
-   *       value: '2021-08-17T13:28:57.801578Z',
-   *     },
-   *   ],
-   *   incident_type_id: '01FH5TZRWMNAFB0DZ23FD1TV96',
-   *   mode: 'standard',
-   *   name: 'Our database is sad',
-   *   retrospective_incident_options: {
-   *     external_id: 123,
-   *     postmortem_document_url: 'https://docs.google.com/my_doc_id',
-   *     slack_channel_id: 'abc123',
-   *   },
-   *   severity_id: '01FH5TZRWMNAFB0DZ23FD1TV96',
-   *   slack_channel_name_override: 'inc-123-database-down',
-   *   slack_team_id: 'T02A1FSLE8J',
-   *   summary: "Our database is really really sad, and we don't know why yet.",
-   * });
-   * ```
-   */
-  createV2(body: IncidentCreateV2Params, options?: RequestOptions): APIPromise<IncidentCreateV2Response> {
-    return this._client.post('/v2/incidents', { body, ...options });
   }
 
   /**
@@ -252,6 +201,57 @@ export class Incidents extends APIResource {
     options?: RequestOptions,
   ): APIPromise<IncidentListV2Response> {
     return this._client.get('/v2/incidents', { query, ...options });
+  }
+
+  /**
+   * Create a new incident.
+   *
+   * Note that if the incident mode is set to "retrospective" then the new incident
+   * will not be announced in Slack.
+   *
+   * @example
+   * ```ts
+   * const response = await client.incidents.createV2({
+   *   idempotency_key: 'alert-uuid',
+   *   visibility: 'public',
+   *   custom_field_entries: [
+   *     {
+   *       custom_field_id: '01FCNDV6P870EA6S7TK1DSYDG0',
+   *       values: [
+   *         { ... },
+   *       ],
+   *     },
+   *   ],
+   *   incident_role_assignments: [
+   *     {
+   *       assignee: { ... },
+   *       incident_role_id: '01FH5TZRWMNAFB0DZ23FD1TV96',
+   *     },
+   *   ],
+   *   incident_status_id: '01G0J1EXE7AXZ2C93K61WBPYEH',
+   *   incident_timestamp_values: [
+   *     {
+   *       incident_timestamp_id: '01FCNDV6P870EA6S7TK1DSYD5H',
+   *       value: '2021-08-17T13:28:57.801578Z',
+   *     },
+   *   ],
+   *   incident_type_id: '01FH5TZRWMNAFB0DZ23FD1TV96',
+   *   mode: 'standard',
+   *   name: 'Our database is sad',
+   *   retrospective_incident_options: {
+   *     external_id: 123,
+   *     postmortem_document_url: 'https://docs.google.com/my_doc_id',
+   *     slack_channel_id: 'abc123',
+   *   },
+   *   severity_id: '01FH5TZRWMNAFB0DZ23FD1TV96',
+   *   slack_channel_name_override: 'inc-123-database-down',
+   *   slack_team_id: 'T02A1FSLE8J',
+   *   summary: "Our database is really really sad, and we don't know why yet.",
+   * });
+   * ```
+   */
+  createV2(body: IncidentCreateV2Params, options?: RequestOptions): APIPromise<IncidentCreateV2Response> {
+    return this._client.post('/v2/incidents', { body, ...options });
   }
 
   /**
@@ -1086,6 +1086,24 @@ export interface IncidentRetrieveV2Response {
   incident: IncidentV2;
 }
 
+export interface IncidentListParams {
+  /**
+   * An record's ID. This endpoint will return a list of records after this ID in
+   * relation to the API response order.
+   */
+  after?: string;
+
+  /**
+   * Integer number of records to return
+   */
+  page_size?: number;
+
+  /**
+   * Filter for incidents in these statuses
+   */
+  status?: Array<string>;
+}
+
 export interface IncidentCreateParams {
   /**
    * Unique string used to de-duplicate incident create requests
@@ -1240,12 +1258,42 @@ export namespace IncidentCreateParams {
   }
 }
 
-export interface IncidentListParams {
+export interface IncidentListV2Params {
   /**
-   * An record's ID. This endpoint will return a list of records after this ID in
+   * An incident's ID. This endpoint will return a list of incidents after this ID in
    * relation to the API response order.
    */
   after?: string;
+
+  /**
+   * Filter on incident created at timestamp. The accepted operators are 'gte', 'lte'
+   * and 'date_range'.
+   */
+  created_at?: { [key: string]: Array<string> };
+
+  /**
+   * Filter on an incident custom field. Custom field ID should be sent, followed by
+   * the operator and values. Accepted operator will depend on the custom field type.
+   */
+  custom_field?: { [key: string]: { [key: string]: Array<string> } };
+
+  /**
+   * Filter on an incident role. Role ID should be sent, followed by the operator and
+   * values. The accepted operators are 'one_of', 'is_blank'.
+   */
+  incident_role?: { [key: string]: { [key: string]: Array<string> } };
+
+  /**
+   * Filter on incident type. The accepted operators are 'one_of, or 'not_in'.
+   */
+  incident_type?: { [key: string]: Array<string> };
+
+  /**
+   * Filter on incident mode. The accepted operator is 'one_of'. If this is not
+   * provided, this value defaults to `{"one_of": ["standard", "retrospective"] }`,
+   * meaning that test and tutorial incidents are not included.
+   */
+  mode?: { [key: string]: Array<string> };
 
   /**
    * Integer number of records to return
@@ -1253,9 +1301,27 @@ export interface IncidentListParams {
   page_size?: number;
 
   /**
-   * Filter for incidents in these statuses
+   * Filter on incident severity. The accepted operators are 'one_of', 'not_in',
+   * 'gte', 'lte'.
    */
-  status?: Array<string>;
+  severity?: { [key: string]: Array<string> };
+
+  /**
+   * Filter on incident status. The accepted operators are 'one_of', or 'not_in'.
+   */
+  status?: { [key: string]: Array<string> };
+
+  /**
+   * Filter on the category of the incidents status. The accepted operators are
+   * 'one_of', or 'not_in'.
+   */
+  status_category?: { [key: string]: Array<string> };
+
+  /**
+   * Filter on incident updated at timestamp. The accepted operators are 'gte', 'lte'
+   * and 'date_range'.
+   */
+  updated_at?: { [key: string]: Array<string> };
 }
 
 export interface IncidentCreateV2Params {
@@ -1352,72 +1418,6 @@ export namespace IncidentCreateV2Params {
   }
 }
 
-export interface IncidentListV2Params {
-  /**
-   * An incident's ID. This endpoint will return a list of incidents after this ID in
-   * relation to the API response order.
-   */
-  after?: string;
-
-  /**
-   * Filter on incident created at timestamp. The accepted operators are 'gte', 'lte'
-   * and 'date_range'.
-   */
-  created_at?: { [key: string]: Array<string> };
-
-  /**
-   * Filter on an incident custom field. Custom field ID should be sent, followed by
-   * the operator and values. Accepted operator will depend on the custom field type.
-   */
-  custom_field?: { [key: string]: { [key: string]: Array<string> } };
-
-  /**
-   * Filter on an incident role. Role ID should be sent, followed by the operator and
-   * values. The accepted operators are 'one_of', 'is_blank'.
-   */
-  incident_role?: { [key: string]: { [key: string]: Array<string> } };
-
-  /**
-   * Filter on incident type. The accepted operators are 'one_of, or 'not_in'.
-   */
-  incident_type?: { [key: string]: Array<string> };
-
-  /**
-   * Filter on incident mode. The accepted operator is 'one_of'. If this is not
-   * provided, this value defaults to `{"one_of": ["standard", "retrospective"] }`,
-   * meaning that test and tutorial incidents are not included.
-   */
-  mode?: { [key: string]: Array<string> };
-
-  /**
-   * Integer number of records to return
-   */
-  page_size?: number;
-
-  /**
-   * Filter on incident severity. The accepted operators are 'one_of', 'not_in',
-   * 'gte', 'lte'.
-   */
-  severity?: { [key: string]: Array<string> };
-
-  /**
-   * Filter on incident status. The accepted operators are 'one_of', or 'not_in'.
-   */
-  status?: { [key: string]: Array<string> };
-
-  /**
-   * Filter on the category of the incidents status. The accepted operators are
-   * 'one_of', or 'not_in'.
-   */
-  status_category?: { [key: string]: Array<string> };
-
-  /**
-   * Filter on incident updated at timestamp. The accepted operators are 'gte', 'lte'
-   * and 'date_range'.
-   */
-  updated_at?: { [key: string]: Array<string> };
-}
-
 Incidents.Actions = Actions;
 
 export declare namespace Incidents {
@@ -1437,10 +1437,10 @@ export declare namespace Incidents {
     type IncidentCreateV2Response as IncidentCreateV2Response,
     type IncidentListV2Response as IncidentListV2Response,
     type IncidentRetrieveV2Response as IncidentRetrieveV2Response,
-    type IncidentCreateParams as IncidentCreateParams,
     type IncidentListParams as IncidentListParams,
-    type IncidentCreateV2Params as IncidentCreateV2Params,
+    type IncidentCreateParams as IncidentCreateParams,
     type IncidentListV2Params as IncidentListV2Params,
+    type IncidentCreateV2Params as IncidentCreateV2Params,
   };
 
   export {

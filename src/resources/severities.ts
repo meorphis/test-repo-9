@@ -18,6 +18,18 @@ import { path } from '../internal/utils/path';
  */
 export class Severities extends APIResource {
   /**
+   * List all incident severities for an organisation.
+   *
+   * @example
+   * ```ts
+   * const severities = await client.severities.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<SeverityListResponse> {
+    return this._client.get('/v1/severities', options);
+  }
+
+  /**
    * Create a new severity
    *
    * @example
@@ -31,6 +43,23 @@ export class Severities extends APIResource {
    */
   create(body: SeverityCreateParams, options?: RequestOptions): APIPromise<SeverityCreateResponse> {
     return this._client.post('/v1/severities', { body, ...options });
+  }
+
+  /**
+   * Delete a severity
+   *
+   * @example
+   * ```ts
+   * await client.severities.delete(
+   *   '01FCNDV6P870EA6S7TK1DSYDG0',
+   * );
+   * ```
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v1/severities/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -68,35 +97,6 @@ export class Severities extends APIResource {
     options?: RequestOptions,
   ): APIPromise<SeverityUpdateResponse> {
     return this._client.put(path`/v1/severities/${id}`, { body, ...options });
-  }
-
-  /**
-   * List all incident severities for an organisation.
-   *
-   * @example
-   * ```ts
-   * const severities = await client.severities.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<SeverityListResponse> {
-    return this._client.get('/v1/severities', options);
-  }
-
-  /**
-   * Delete a severity
-   *
-   * @example
-   * ```ts
-   * await client.severities.delete(
-   *   '01FCNDV6P870EA6S7TK1DSYDG0',
-   * );
-   * ```
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/severities/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 }
 
