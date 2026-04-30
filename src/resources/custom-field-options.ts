@@ -16,6 +16,24 @@ import { path } from '../internal/utils/path';
  */
 export class CustomFieldOptions extends APIResource {
   /**
+   * Show custom field options for a custom field
+   *
+   * @example
+   * ```ts
+   * const customFieldOptions =
+   *   await client.customFieldOptions.list({
+   *     custom_field_id: '01FCNDV6P870EA6S7TK1DSYD5H',
+   *   });
+   * ```
+   */
+  list(
+    query: CustomFieldOptionListParams,
+    options?: RequestOptions,
+  ): APIPromise<CustomFieldOptionListResponse> {
+    return this._client.get('/v1/custom_field_options', { query, ...options });
+  }
+
+  /**
    * Create a custom field option. If the sort key is not supplied, it'll default to
    * 1000, so the option appears near the end of the list.
    *
@@ -34,6 +52,23 @@ export class CustomFieldOptions extends APIResource {
     options?: RequestOptions,
   ): APIPromise<CustomFieldOptionCreateResponse> {
     return this._client.post('/v1/custom_field_options', { body, ...options });
+  }
+
+  /**
+   * Delete a custom field option
+   *
+   * @example
+   * ```ts
+   * await client.customFieldOptions.delete(
+   *   '01FCNDV6P870EA6S7TK1DSYDG0',
+   * );
+   * ```
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v1/custom_field_options/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -69,41 +104,6 @@ export class CustomFieldOptions extends APIResource {
     options?: RequestOptions,
   ): APIPromise<CustomFieldOptionUpdateResponse> {
     return this._client.put(path`/v1/custom_field_options/${id}`, { body, ...options });
-  }
-
-  /**
-   * Show custom field options for a custom field
-   *
-   * @example
-   * ```ts
-   * const customFieldOptions =
-   *   await client.customFieldOptions.list({
-   *     custom_field_id: '01FCNDV6P870EA6S7TK1DSYD5H',
-   *   });
-   * ```
-   */
-  list(
-    query: CustomFieldOptionListParams,
-    options?: RequestOptions,
-  ): APIPromise<CustomFieldOptionListResponse> {
-    return this._client.get('/v1/custom_field_options', { query, ...options });
-  }
-
-  /**
-   * Delete a custom field option
-   *
-   * @example
-   * ```ts
-   * await client.customFieldOptions.delete(
-   *   '01FCNDV6P870EA6S7TK1DSYDG0',
-   * );
-   * ```
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v1/custom_field_options/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 }
 
@@ -159,6 +159,24 @@ export interface CustomFieldOptionListResponse {
   pagination_meta: PaginationMeta;
 }
 
+export interface CustomFieldOptionListParams {
+  /**
+   * The custom field to list options for.
+   */
+  custom_field_id: string;
+
+  /**
+   * A custom field option's ID. This endpoint will return a list of custom field
+   * options created after this option.
+   */
+  after?: string;
+
+  /**
+   * Integer number of records to return
+   */
+  page_size?: number;
+}
+
 export interface CustomFieldOptionCreateParams {
   /**
    * ID of the custom field this option belongs to
@@ -188,24 +206,6 @@ export interface CustomFieldOptionUpdateParams {
   value: string;
 }
 
-export interface CustomFieldOptionListParams {
-  /**
-   * The custom field to list options for.
-   */
-  custom_field_id: string;
-
-  /**
-   * A custom field option's ID. This endpoint will return a list of custom field
-   * options created after this option.
-   */
-  after?: string;
-
-  /**
-   * Integer number of records to return
-   */
-  page_size?: number;
-}
-
 export declare namespace CustomFieldOptions {
   export {
     type CustomFieldOptionV1 as CustomFieldOptionV1,
@@ -214,8 +214,8 @@ export declare namespace CustomFieldOptions {
     type CustomFieldOptionRetrieveResponse as CustomFieldOptionRetrieveResponse,
     type CustomFieldOptionUpdateResponse as CustomFieldOptionUpdateResponse,
     type CustomFieldOptionListResponse as CustomFieldOptionListResponse,
+    type CustomFieldOptionListParams as CustomFieldOptionListParams,
     type CustomFieldOptionCreateParams as CustomFieldOptionCreateParams,
     type CustomFieldOptionUpdateParams as CustomFieldOptionUpdateParams,
-    type CustomFieldOptionListParams as CustomFieldOptionListParams,
   };
 }

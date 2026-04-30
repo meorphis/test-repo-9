@@ -9,6 +9,29 @@ const client = new IncidentIo13({
 
 describe('resource schedules', () => {
   // Mock server tests are disabled
+  test.skip('list', async () => {
+    const responsePromise = client.schedules.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.schedules.list(
+        { after: '01FDAG4SAP5TYPT98WGR2N7W91', page_size: 25 },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(IncidentIo13.NotFoundError);
+  });
+
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.schedules.create({ schedule: {} });
     const rawResponse = await responsePromise.asResponse();
@@ -58,6 +81,18 @@ describe('resource schedules', () => {
         timezone: 'America/Los_Angeles',
       },
     });
+  });
+
+  // Mock server tests are disabled
+  test.skip('delete', async () => {
+    const responsePromise = client.schedules.delete('01G0J1EXE7AXZ2C93K61WBPYEH');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   // Mock server tests are disabled
@@ -122,40 +157,5 @@ describe('resource schedules', () => {
         timezone: 'America/Los_Angeles',
       },
     });
-  });
-
-  // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.schedules.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.schedules.list(
-        { after: '01FDAG4SAP5TYPT98WGR2N7W91', page_size: 25 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(IncidentIo13.NotFoundError);
-  });
-
-  // Mock server tests are disabled
-  test.skip('delete', async () => {
-    const responsePromise = client.schedules.delete('01G0J1EXE7AXZ2C93K61WBPYEH');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });
