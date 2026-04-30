@@ -17,6 +17,21 @@ import { path } from '../internal/utils/path';
  */
 export class Schedules extends APIResource {
   /**
+   * List configured schedules.
+   *
+   * @example
+   * ```ts
+   * const schedules = await client.schedules.list();
+   * ```
+   */
+  list(
+    query: ScheduleListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ScheduleListResponse> {
+    return this._client.get('/v2/schedules', { query, ...options });
+  }
+
+  /**
    * Create a new schedule.
    *
    * @example
@@ -35,6 +50,21 @@ export class Schedules extends APIResource {
    */
   create(body: ScheduleCreateParams, options?: RequestOptions): APIPromise<ScheduleCreateResponse> {
     return this._client.post('/v2/schedules', { body, ...options });
+  }
+
+  /**
+   * Archives a single schedule.
+   *
+   * @example
+   * ```ts
+   * await client.schedules.delete('01G0J1EXE7AXZ2C93K61WBPYEH');
+   * ```
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v2/schedules/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -74,36 +104,6 @@ export class Schedules extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ScheduleUpdateResponse> {
     return this._client.put(path`/v2/schedules/${id}`, { body, ...options });
-  }
-
-  /**
-   * List configured schedules.
-   *
-   * @example
-   * ```ts
-   * const schedules = await client.schedules.list();
-   * ```
-   */
-  list(
-    query: ScheduleListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ScheduleListResponse> {
-    return this._client.get('/v2/schedules', { query, ...options });
-  }
-
-  /**
-   * Archives a single schedule.
-   *
-   * @example
-   * ```ts
-   * await client.schedules.delete('01G0J1EXE7AXZ2C93K61WBPYEH');
-   * ```
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v2/schedules/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 }
 
@@ -285,6 +285,19 @@ export interface ScheduleListResponse {
   schedules: Array<Schedule>;
 
   pagination_meta?: IncidentsAPI.PaginationMetaResultWithTotal;
+}
+
+export interface ScheduleListParams {
+  /**
+   * A schedule's ID. This endpoint will return a list of schedules after this ID in
+   * relation to the API response order.
+   */
+  after?: string;
+
+  /**
+   * Integer number of records to return
+   */
+  page_size?: number;
 }
 
 export interface ScheduleCreateParams {
@@ -476,19 +489,6 @@ export namespace ScheduleUpdateParams {
   }
 }
 
-export interface ScheduleListParams {
-  /**
-   * A schedule's ID. This endpoint will return a list of schedules after this ID in
-   * relation to the API response order.
-   */
-  after?: string;
-
-  /**
-   * Integer number of records to return
-   */
-  page_size?: number;
-}
-
 export declare namespace Schedules {
   export {
     type Schedule as Schedule,
@@ -499,8 +499,8 @@ export declare namespace Schedules {
     type ScheduleRetrieveResponse as ScheduleRetrieveResponse,
     type ScheduleUpdateResponse as ScheduleUpdateResponse,
     type ScheduleListResponse as ScheduleListResponse,
+    type ScheduleListParams as ScheduleListParams,
     type ScheduleCreateParams as ScheduleCreateParams,
     type ScheduleUpdateParams as ScheduleUpdateParams,
-    type ScheduleListParams as ScheduleListParams,
   };
 }
