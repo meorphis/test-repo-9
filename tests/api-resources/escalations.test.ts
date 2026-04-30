@@ -9,6 +9,37 @@ const client = new IncidentIo13({
 
 describe('resource escalations', () => {
   // Mock server tests are disabled
+  test.skip('list', async () => {
+    const responsePromise = client.escalations.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.escalations.list(
+        {
+          after: '01FDAG4SAP5TYPT98WGR2N7W91',
+          alert: { one_of: ['01J479052SSQAA4531ASFPR3BF'] },
+          created_at: { gte: ['2021-08-17'] },
+          escalation_path: { one_of: ['01J479052SSQAA4531ASFPR3BF'] },
+          page_size: 25,
+          status: { one_of: ['triggered'] },
+          updated_at: { gte: ['2021-08-17'] },
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(IncidentIo13.NotFoundError);
+  });
+
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.escalations.create({
       idempotency_key: '2024-01-15-abc123',
@@ -44,36 +75,5 @@ describe('resource escalations', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.escalations.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.escalations.list(
-        {
-          after: '01FDAG4SAP5TYPT98WGR2N7W91',
-          alert: { one_of: ['01J479052SSQAA4531ASFPR3BF'] },
-          created_at: { gte: ['2021-08-17'] },
-          escalation_path: { one_of: ['01J479052SSQAA4531ASFPR3BF'] },
-          page_size: 25,
-          status: { one_of: ['triggered'] },
-          updated_at: { gte: ['2021-08-17'] },
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(IncidentIo13.NotFoundError);
   });
 });
