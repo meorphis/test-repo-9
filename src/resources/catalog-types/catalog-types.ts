@@ -36,6 +36,19 @@ export class CatalogTypes extends APIResource {
   actions: ActionsAPI.Actions = new ActionsAPI.Actions(this._client);
 
   /**
+   * List all catalog types for an organisation, including those synced from external
+   * resources.
+   *
+   * @example
+   * ```ts
+   * const catalogTypes = await client.catalogTypes.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<CatalogTypeListResponse> {
+    return this._client.get('/v3/catalog_types', options);
+  }
+
+  /**
    * Create a catalog type. The schema must be updated using the UpdateTypeSchema
    * endpoint.
    *
@@ -61,6 +74,23 @@ export class CatalogTypes extends APIResource {
    */
   create(body: CatalogTypeCreateParams, options?: RequestOptions): APIPromise<CatalogTypeCreateResponse> {
     return this._client.post('/v3/catalog_types', { body, ...options });
+  }
+
+  /**
+   * Archives a catalog type and associated entries.
+   *
+   * @example
+   * ```ts
+   * await client.catalogTypes.destroy(
+   *   '01FCNDV6P870EA6S7TK1DSYDG0',
+   * );
+   * ```
+   */
+  destroy(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v3/catalog_types/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -109,36 +139,6 @@ export class CatalogTypes extends APIResource {
     options?: RequestOptions,
   ): APIPromise<CatalogTypeUpdateResponse> {
     return this._client.put(path`/v3/catalog_types/${id}`, { body, ...options });
-  }
-
-  /**
-   * List all catalog types for an organisation, including those synced from external
-   * resources.
-   *
-   * @example
-   * ```ts
-   * const catalogTypes = await client.catalogTypes.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<CatalogTypeListResponse> {
-    return this._client.get('/v3/catalog_types', options);
-  }
-
-  /**
-   * Archives a catalog type and associated entries.
-   *
-   * @example
-   * ```ts
-   * await client.catalogTypes.destroy(
-   *   '01FCNDV6P870EA6S7TK1DSYDG0',
-   * );
-   * ```
-   */
-  destroy(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v3/catalog_types/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 }
 
