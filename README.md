@@ -43,7 +43,7 @@ const actions = await client.actions.list();
 console.log(actions.actions);
 ```
 
-### Request & Response types
+### Request & Response types!
 
 This library includes TypeScript definitions for all request params and response fields. You may import and use them like so:
 
