@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2026-05-01)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/meorphis/test-repo-9/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* avoid formatting file that gets changed during releases ([5cf8151](https://github.com/meorphis/test-repo-9/commit/5cf81518dc6a1d15ed09a5d305679f54cb13e8cb))
+
 ## 0.1.0 (2026-04-29)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/meorphis/test-repo-9/compare/v0.0.1...v0.1.0)

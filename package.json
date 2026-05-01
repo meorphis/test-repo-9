@@ -1,6 +1,6 @@
 {
   "name": "incident-io-2",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The official TypeScript library for the Incident Io 14 API",
   "author": "Incident Io 14 <meorphis6@gmail.com>",
   "types": "dist/index.d.ts",
