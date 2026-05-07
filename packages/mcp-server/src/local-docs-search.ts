@@ -859,7 +859,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.incident.io/v1/incident_roles/$ID \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $INCIDENT_IO_2_API_KEY" \\\n    -d \'{\n          "description": "The person currently coordinating the incident",\n          "instructions": "Take point on the incident; Make sure people are clear on responsibilities",\n          "name": "Incident Lead",\n          "shortform": "lead"\n        }\'',
+          'curl https://api.incident.io/v1/incident_roles/$ID \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $INCIDENT_IO_2_API_KEY" \\\n    -d \'{\n          "description": "The person currently coordinating the incident",\n          "instructions": "Take point on the incident; Make sure people are clear on responsibilities",\n          "name": "Incident Lead",\n          "shortform": "lead",\n          "required": false\n        }\'',
       },
     },
   },
@@ -1673,7 +1673,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.incident.io/v2/alert_attributes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $INCIDENT_IO_2_API_KEY" \\\n    -d \'{\n          "array": false,\n          "name": "service",\n          "type": "CatalogEntry[\\\\"01GW2G3V0S59R238FAHPDS1R67\\\\"]"\n        }\'',
+          'curl https://api.incident.io/v2/alert_attributes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $INCIDENT_IO_2_API_KEY" \\\n    -d \'{\n          "array": false,\n          "name": "service",\n          "type": "CatalogEntry[\\\\"01GW2G3V0S59R238FAHPDS1R67\\\\"]",\n          "required": false\n        }\'',
       },
     },
   },
@@ -1746,7 +1746,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.incident.io/v2/alert_attributes/$ID \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $INCIDENT_IO_2_API_KEY" \\\n    -d \'{\n          "array": false,\n          "name": "service",\n          "type": "CatalogEntry[\\\\"01GW2G3V0S59R238FAHPDS1R67\\\\"]"\n        }\'',
+          'curl https://api.incident.io/v2/alert_attributes/$ID \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $INCIDENT_IO_2_API_KEY" \\\n    -d \'{\n          "array": false,\n          "name": "service",\n          "type": "CatalogEntry[\\\\"01GW2G3V0S59R238FAHPDS1R67\\\\"]",\n          "required": false\n        }\'',
       },
     },
   },
