@@ -72,7 +72,7 @@ export async function initMcpServer(params: {
     setLocalSearch(localSearch);
   }
 
-  let _client: IncidentIo14 | undefined;
+  let _client: IncidentIo14 | IncidentIo16 | undefined;
   let _clientError: Error | undefined;
   let _logLevel: 'debug' | 'info' | 'warn' | 'error' | 'off' | undefined;
 
