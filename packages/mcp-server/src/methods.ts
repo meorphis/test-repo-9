@@ -11,16 +11,16 @@ export type SdkMethod = {
 
 export const sdkMethods: SdkMethod[] = [
   {
-    clientCallName: 'client.actions.list',
-    fullyQualifiedName: 'actions.list',
-    httpMethod: 'get',
-    httpPath: '/v1/actions',
-  },
-  {
     clientCallName: 'client.actions.retrieve',
     fullyQualifiedName: 'actions.retrieve',
     httpMethod: 'get',
     httpPath: '/v1/actions/{id}',
+  },
+  {
+    clientCallName: 'client.actions.list',
+    fullyQualifiedName: 'actions.list',
+    httpMethod: 'get',
+    httpPath: '/v1/actions',
   },
   {
     clientCallName: 'client.actions.listV2',
@@ -35,22 +35,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/actions/{id}',
   },
   {
-    clientCallName: 'client.customFieldOptions.list',
-    fullyQualifiedName: 'customFieldOptions.list',
-    httpMethod: 'get',
-    httpPath: '/v1/custom_field_options',
-  },
-  {
     clientCallName: 'client.customFieldOptions.create',
     fullyQualifiedName: 'customFieldOptions.create',
     httpMethod: 'post',
     httpPath: '/v1/custom_field_options',
-  },
-  {
-    clientCallName: 'client.customFieldOptions.delete',
-    fullyQualifiedName: 'customFieldOptions.delete',
-    httpMethod: 'delete',
-    httpPath: '/v1/custom_field_options/{id}',
   },
   {
     clientCallName: 'client.customFieldOptions.retrieve',
@@ -65,10 +53,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/custom_field_options/{id}',
   },
   {
-    clientCallName: 'client.customFields.listV1',
-    fullyQualifiedName: 'customFields.listV1',
+    clientCallName: 'client.customFieldOptions.list',
+    fullyQualifiedName: 'customFieldOptions.list',
     httpMethod: 'get',
-    httpPath: '/v1/custom_fields',
+    httpPath: '/v1/custom_field_options',
+  },
+  {
+    clientCallName: 'client.customFieldOptions.delete',
+    fullyQualifiedName: 'customFieldOptions.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/custom_field_options/{id}',
   },
   {
     clientCallName: 'client.customFields.createV1',
@@ -77,34 +71,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/custom_fields',
   },
   {
-    clientCallName: 'client.customFields.deleteV1',
-    fullyQualifiedName: 'customFields.deleteV1',
-    httpMethod: 'delete',
-    httpPath: '/v1/custom_fields/{id}',
-  },
-  {
-    clientCallName: 'client.customFields.retrieveV1',
-    fullyQualifiedName: 'customFields.retrieveV1',
-    httpMethod: 'get',
-    httpPath: '/v1/custom_fields/{id}',
-  },
-  {
-    clientCallName: 'client.customFields.updateV1',
-    fullyQualifiedName: 'customFields.updateV1',
-    httpMethod: 'put',
-    httpPath: '/v1/custom_fields/{id}',
-  },
-  {
-    clientCallName: 'client.customFields.listV2',
-    fullyQualifiedName: 'customFields.listV2',
-    httpMethod: 'get',
-    httpPath: '/v2/custom_fields',
-  },
-  {
     clientCallName: 'client.customFields.createV2',
     fullyQualifiedName: 'customFields.createV2',
     httpMethod: 'post',
     httpPath: '/v2/custom_fields',
+  },
+  {
+    clientCallName: 'client.customFields.deleteV1',
+    fullyQualifiedName: 'customFields.deleteV1',
+    httpMethod: 'delete',
+    httpPath: '/v1/custom_fields/{id}',
   },
   {
     clientCallName: 'client.customFields.deleteV2',
@@ -113,10 +89,34 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/custom_fields/{id}',
   },
   {
+    clientCallName: 'client.customFields.listV1',
+    fullyQualifiedName: 'customFields.listV1',
+    httpMethod: 'get',
+    httpPath: '/v1/custom_fields',
+  },
+  {
+    clientCallName: 'client.customFields.listV2',
+    fullyQualifiedName: 'customFields.listV2',
+    httpMethod: 'get',
+    httpPath: '/v2/custom_fields',
+  },
+  {
+    clientCallName: 'client.customFields.retrieveV1',
+    fullyQualifiedName: 'customFields.retrieveV1',
+    httpMethod: 'get',
+    httpPath: '/v1/custom_fields/{id}',
+  },
+  {
     clientCallName: 'client.customFields.retrieveV2',
     fullyQualifiedName: 'customFields.retrieveV2',
     httpMethod: 'get',
     httpPath: '/v2/custom_fields/{id}',
+  },
+  {
+    clientCallName: 'client.customFields.updateV1',
+    fullyQualifiedName: 'customFields.updateV1',
+    httpMethod: 'put',
+    httpPath: '/v1/custom_fields/{id}',
   },
   {
     clientCallName: 'client.customFields.updateV2',
@@ -131,15 +131,15 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/identity',
   },
   {
-    clientCallName: 'client.incidentAttachments.list',
-    fullyQualifiedName: 'incidentAttachments.list',
-    httpMethod: 'get',
-    httpPath: '/v1/incident_attachments',
-  },
-  {
     clientCallName: 'client.incidentAttachments.create',
     fullyQualifiedName: 'incidentAttachments.create',
     httpMethod: 'post',
+    httpPath: '/v1/incident_attachments',
+  },
+  {
+    clientCallName: 'client.incidentAttachments.list',
+    fullyQualifiedName: 'incidentAttachments.list',
+    httpMethod: 'get',
     httpPath: '/v1/incident_attachments',
   },
   {
@@ -167,22 +167,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/incident_relationships',
   },
   {
-    clientCallName: 'client.incidentRoles.list',
-    fullyQualifiedName: 'incidentRoles.list',
-    httpMethod: 'get',
-    httpPath: '/v1/incident_roles',
-  },
-  {
     clientCallName: 'client.incidentRoles.create',
     fullyQualifiedName: 'incidentRoles.create',
     httpMethod: 'post',
     httpPath: '/v1/incident_roles',
-  },
-  {
-    clientCallName: 'client.incidentRoles.delete',
-    fullyQualifiedName: 'incidentRoles.delete',
-    httpMethod: 'delete',
-    httpPath: '/v1/incident_roles/{id}',
   },
   {
     clientCallName: 'client.incidentRoles.retrieve',
@@ -197,10 +185,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/incident_roles/{id}',
   },
   {
-    clientCallName: 'client.incidentRoles.listV2',
-    fullyQualifiedName: 'incidentRoles.listV2',
+    clientCallName: 'client.incidentRoles.list',
+    fullyQualifiedName: 'incidentRoles.list',
     httpMethod: 'get',
-    httpPath: '/v2/incident_roles',
+    httpPath: '/v1/incident_roles',
+  },
+  {
+    clientCallName: 'client.incidentRoles.delete',
+    fullyQualifiedName: 'incidentRoles.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/incident_roles/{id}',
   },
   {
     clientCallName: 'client.incidentRoles.createV2',
@@ -215,6 +209,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/incident_roles/{id}',
   },
   {
+    clientCallName: 'client.incidentRoles.listV2',
+    fullyQualifiedName: 'incidentRoles.listV2',
+    httpMethod: 'get',
+    httpPath: '/v2/incident_roles',
+  },
+  {
     clientCallName: 'client.incidentRoles.retrieveV2',
     fullyQualifiedName: 'incidentRoles.retrieveV2',
     httpMethod: 'get',
@@ -227,22 +227,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/incident_roles/{id}',
   },
   {
-    clientCallName: 'client.incidentStatuses.list',
-    fullyQualifiedName: 'incidentStatuses.list',
-    httpMethod: 'get',
-    httpPath: '/v1/incident_statuses',
-  },
-  {
     clientCallName: 'client.incidentStatuses.create',
     fullyQualifiedName: 'incidentStatuses.create',
     httpMethod: 'post',
     httpPath: '/v1/incident_statuses',
-  },
-  {
-    clientCallName: 'client.incidentStatuses.delete',
-    fullyQualifiedName: 'incidentStatuses.delete',
-    httpMethod: 'delete',
-    httpPath: '/v1/incident_statuses/{id}',
   },
   {
     clientCallName: 'client.incidentStatuses.retrieve',
@@ -257,10 +245,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/incident_statuses/{id}',
   },
   {
-    clientCallName: 'client.incidentTypes.list',
-    fullyQualifiedName: 'incidentTypes.list',
+    clientCallName: 'client.incidentStatuses.list',
+    fullyQualifiedName: 'incidentStatuses.list',
     httpMethod: 'get',
-    httpPath: '/v1/incident_types',
+    httpPath: '/v1/incident_statuses',
+  },
+  {
+    clientCallName: 'client.incidentStatuses.delete',
+    fullyQualifiedName: 'incidentStatuses.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/incident_statuses/{id}',
   },
   {
     clientCallName: 'client.incidentTypes.retrieve',
@@ -269,10 +263,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/incident_types/{id}',
   },
   {
-    clientCallName: 'client.incidents.list',
-    fullyQualifiedName: 'incidents.list',
+    clientCallName: 'client.incidentTypes.list',
+    fullyQualifiedName: 'incidentTypes.list',
     httpMethod: 'get',
-    httpPath: '/v1/incidents',
+    httpPath: '/v1/incident_types',
   },
   {
     clientCallName: 'client.incidents.create',
@@ -287,15 +281,21 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/incidents/{id}',
   },
   {
-    clientCallName: 'client.incidents.listV2',
-    fullyQualifiedName: 'incidents.listV2',
+    clientCallName: 'client.incidents.list',
+    fullyQualifiedName: 'incidents.list',
     httpMethod: 'get',
-    httpPath: '/v2/incidents',
+    httpPath: '/v1/incidents',
   },
   {
     clientCallName: 'client.incidents.createV2',
     fullyQualifiedName: 'incidents.createV2',
     httpMethod: 'post',
+    httpPath: '/v2/incidents',
+  },
+  {
+    clientCallName: 'client.incidents.listV2',
+    fullyQualifiedName: 'incidents.listV2',
+    httpMethod: 'get',
     httpPath: '/v2/incidents',
   },
   {
@@ -335,22 +335,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/openapiV3.json',
   },
   {
-    clientCallName: 'client.severities.list',
-    fullyQualifiedName: 'severities.list',
-    httpMethod: 'get',
-    httpPath: '/v1/severities',
-  },
-  {
     clientCallName: 'client.severities.create',
     fullyQualifiedName: 'severities.create',
     httpMethod: 'post',
     httpPath: '/v1/severities',
-  },
-  {
-    clientCallName: 'client.severities.delete',
-    fullyQualifiedName: 'severities.delete',
-    httpMethod: 'delete',
-    httpPath: '/v1/severities/{id}',
   },
   {
     clientCallName: 'client.severities.retrieve',
@@ -365,28 +353,28 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/severities/{id}',
   },
   {
+    clientCallName: 'client.severities.list',
+    fullyQualifiedName: 'severities.list',
+    httpMethod: 'get',
+    httpPath: '/v1/severities',
+  },
+  {
+    clientCallName: 'client.severities.delete',
+    fullyQualifiedName: 'severities.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/severities/{id}',
+  },
+  {
     clientCallName: 'client.statusPages.incidents.listResponseIncidents',
     fullyQualifiedName: 'statusPages.incidents.listResponseIncidents',
     httpMethod: 'get',
     httpPath: '/v1/status-pages/{id}/incidents/{incident_id}/response-incidents',
   },
   {
-    clientCallName: 'client.alertAttributes.list',
-    fullyQualifiedName: 'alertAttributes.list',
-    httpMethod: 'get',
-    httpPath: '/v2/alert_attributes',
-  },
-  {
     clientCallName: 'client.alertAttributes.create',
     fullyQualifiedName: 'alertAttributes.create',
     httpMethod: 'post',
     httpPath: '/v2/alert_attributes',
-  },
-  {
-    clientCallName: 'client.alertAttributes.delete',
-    fullyQualifiedName: 'alertAttributes.delete',
-    httpMethod: 'delete',
-    httpPath: '/v2/alert_attributes/{id}',
   },
   {
     clientCallName: 'client.alertAttributes.retrieve',
@@ -401,28 +389,28 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/alert_attributes/{id}',
   },
   {
+    clientCallName: 'client.alertAttributes.list',
+    fullyQualifiedName: 'alertAttributes.list',
+    httpMethod: 'get',
+    httpPath: '/v2/alert_attributes',
+  },
+  {
+    clientCallName: 'client.alertAttributes.delete',
+    fullyQualifiedName: 'alertAttributes.delete',
+    httpMethod: 'delete',
+    httpPath: '/v2/alert_attributes/{id}',
+  },
+  {
     clientCallName: 'client.alertEvents.createHTTP',
     fullyQualifiedName: 'alertEvents.createHTTP',
     httpMethod: 'post',
     httpPath: '/v2/alert_events/http/{alert_source_config_id}',
   },
   {
-    clientCallName: 'client.alertRoutes.list',
-    fullyQualifiedName: 'alertRoutes.list',
-    httpMethod: 'get',
-    httpPath: '/v2/alert_routes',
-  },
-  {
     clientCallName: 'client.alertRoutes.create',
     fullyQualifiedName: 'alertRoutes.create',
     httpMethod: 'post',
     httpPath: '/v2/alert_routes',
-  },
-  {
-    clientCallName: 'client.alertRoutes.delete',
-    fullyQualifiedName: 'alertRoutes.delete',
-    httpMethod: 'delete',
-    httpPath: '/v2/alert_routes/{id}',
   },
   {
     clientCallName: 'client.alertRoutes.retrieve',
@@ -437,22 +425,22 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/alert_routes/{id}',
   },
   {
-    clientCallName: 'client.alertSources.list',
-    fullyQualifiedName: 'alertSources.list',
+    clientCallName: 'client.alertRoutes.list',
+    fullyQualifiedName: 'alertRoutes.list',
     httpMethod: 'get',
-    httpPath: '/v2/alert_sources',
+    httpPath: '/v2/alert_routes',
+  },
+  {
+    clientCallName: 'client.alertRoutes.delete',
+    fullyQualifiedName: 'alertRoutes.delete',
+    httpMethod: 'delete',
+    httpPath: '/v2/alert_routes/{id}',
   },
   {
     clientCallName: 'client.alertSources.create',
     fullyQualifiedName: 'alertSources.create',
     httpMethod: 'post',
     httpPath: '/v2/alert_sources',
-  },
-  {
-    clientCallName: 'client.alertSources.delete',
-    fullyQualifiedName: 'alertSources.delete',
-    httpMethod: 'delete',
-    httpPath: '/v2/alert_sources/{id}',
   },
   {
     clientCallName: 'client.alertSources.retrieve',
@@ -467,10 +455,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/alert_sources/{id}',
   },
   {
-    clientCallName: 'client.alerts.list',
-    fullyQualifiedName: 'alerts.list',
+    clientCallName: 'client.alertSources.list',
+    fullyQualifiedName: 'alertSources.list',
     httpMethod: 'get',
-    httpPath: '/v2/alerts',
+    httpPath: '/v2/alert_sources',
+  },
+  {
+    clientCallName: 'client.alertSources.delete',
+    fullyQualifiedName: 'alertSources.delete',
+    httpMethod: 'delete',
+    httpPath: '/v2/alert_sources/{id}',
   },
   {
     clientCallName: 'client.alerts.retrieve',
@@ -479,10 +473,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/alerts/{id}',
   },
   {
-    clientCallName: 'client.catalogEntries.listEntriesV2',
-    fullyQualifiedName: 'catalogEntries.listEntriesV2',
+    clientCallName: 'client.alerts.list',
+    fullyQualifiedName: 'alerts.list',
     httpMethod: 'get',
-    httpPath: '/v2/catalog_entries',
+    httpPath: '/v2/alerts',
   },
   {
     clientCallName: 'client.catalogEntries.createEntryV2',
@@ -491,34 +485,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/catalog_entries',
   },
   {
-    clientCallName: 'client.catalogEntries.destroyEntryV2',
-    fullyQualifiedName: 'catalogEntries.destroyEntryV2',
-    httpMethod: 'delete',
-    httpPath: '/v2/catalog_entries/{id}',
-  },
-  {
-    clientCallName: 'client.catalogEntries.showEntryV2',
-    fullyQualifiedName: 'catalogEntries.showEntryV2',
-    httpMethod: 'get',
-    httpPath: '/v2/catalog_entries/{id}',
-  },
-  {
-    clientCallName: 'client.catalogEntries.updateEntryV2',
-    fullyQualifiedName: 'catalogEntries.updateEntryV2',
-    httpMethod: 'put',
-    httpPath: '/v2/catalog_entries/{id}',
-  },
-  {
-    clientCallName: 'client.catalogEntries.listEntriesV3',
-    fullyQualifiedName: 'catalogEntries.listEntriesV3',
-    httpMethod: 'get',
-    httpPath: '/v3/catalog_entries',
-  },
-  {
     clientCallName: 'client.catalogEntries.createEntryV3',
     fullyQualifiedName: 'catalogEntries.createEntryV3',
     httpMethod: 'post',
     httpPath: '/v3/catalog_entries',
+  },
+  {
+    clientCallName: 'client.catalogEntries.destroyEntryV2',
+    fullyQualifiedName: 'catalogEntries.destroyEntryV2',
+    httpMethod: 'delete',
+    httpPath: '/v2/catalog_entries/{id}',
   },
   {
     clientCallName: 'client.catalogEntries.destroyEntryV3',
@@ -527,10 +503,34 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v3/catalog_entries/{id}',
   },
   {
+    clientCallName: 'client.catalogEntries.listEntriesV2',
+    fullyQualifiedName: 'catalogEntries.listEntriesV2',
+    httpMethod: 'get',
+    httpPath: '/v2/catalog_entries',
+  },
+  {
+    clientCallName: 'client.catalogEntries.listEntriesV3',
+    fullyQualifiedName: 'catalogEntries.listEntriesV3',
+    httpMethod: 'get',
+    httpPath: '/v3/catalog_entries',
+  },
+  {
+    clientCallName: 'client.catalogEntries.showEntryV2',
+    fullyQualifiedName: 'catalogEntries.showEntryV2',
+    httpMethod: 'get',
+    httpPath: '/v2/catalog_entries/{id}',
+  },
+  {
     clientCallName: 'client.catalogEntries.showEntryV3',
     fullyQualifiedName: 'catalogEntries.showEntryV3',
     httpMethod: 'get',
     httpPath: '/v3/catalog_entries/{id}',
+  },
+  {
+    clientCallName: 'client.catalogEntries.updateEntryV2',
+    fullyQualifiedName: 'catalogEntries.updateEntryV2',
+    httpMethod: 'put',
+    httpPath: '/v2/catalog_entries/{id}',
   },
   {
     clientCallName: 'client.catalogEntries.updateEntryV3',
@@ -551,22 +551,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v3/catalog_resources',
   },
   {
-    clientCallName: 'client.catalogTypes.list',
-    fullyQualifiedName: 'catalogTypes.list',
-    httpMethod: 'get',
-    httpPath: '/v3/catalog_types',
-  },
-  {
     clientCallName: 'client.catalogTypes.create',
     fullyQualifiedName: 'catalogTypes.create',
     httpMethod: 'post',
     httpPath: '/v3/catalog_types',
-  },
-  {
-    clientCallName: 'client.catalogTypes.destroy',
-    fullyQualifiedName: 'catalogTypes.destroy',
-    httpMethod: 'delete',
-    httpPath: '/v3/catalog_types/{id}',
   },
   {
     clientCallName: 'client.catalogTypes.retrieve',
@@ -578,6 +566,18 @@ export const sdkMethods: SdkMethod[] = [
     clientCallName: 'client.catalogTypes.update',
     fullyQualifiedName: 'catalogTypes.update',
     httpMethod: 'put',
+    httpPath: '/v3/catalog_types/{id}',
+  },
+  {
+    clientCallName: 'client.catalogTypes.list',
+    fullyQualifiedName: 'catalogTypes.list',
+    httpMethod: 'get',
+    httpPath: '/v3/catalog_types',
+  },
+  {
+    clientCallName: 'client.catalogTypes.destroy',
+    fullyQualifiedName: 'catalogTypes.destroy',
+    httpMethod: 'delete',
     httpPath: '/v3/catalog_types/{id}',
   },
   {
@@ -593,12 +593,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/escalation_paths',
   },
   {
-    clientCallName: 'client.escalationPaths.delete',
-    fullyQualifiedName: 'escalationPaths.delete',
-    httpMethod: 'delete',
-    httpPath: '/v2/escalation_paths/{id}',
-  },
-  {
     clientCallName: 'client.escalationPaths.retrieve',
     fullyQualifiedName: 'escalationPaths.retrieve',
     httpMethod: 'get',
@@ -611,10 +605,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/escalation_paths/{id}',
   },
   {
-    clientCallName: 'client.escalations.list',
-    fullyQualifiedName: 'escalations.list',
-    httpMethod: 'get',
-    httpPath: '/v2/escalations',
+    clientCallName: 'client.escalationPaths.delete',
+    fullyQualifiedName: 'escalationPaths.delete',
+    httpMethod: 'delete',
+    httpPath: '/v2/escalation_paths/{id}',
   },
   {
     clientCallName: 'client.escalations.create',
@@ -629,10 +623,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/escalations/{id}',
   },
   {
-    clientCallName: 'client.followUps.list',
-    fullyQualifiedName: 'followUps.list',
+    clientCallName: 'client.escalations.list',
+    fullyQualifiedName: 'escalations.list',
     httpMethod: 'get',
-    httpPath: '/v2/follow_ups',
+    httpPath: '/v2/escalations',
   },
   {
     clientCallName: 'client.followUps.retrieve',
@@ -641,22 +635,28 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/follow_ups/{id}',
   },
   {
+    clientCallName: 'client.followUps.list',
+    fullyQualifiedName: 'followUps.list',
+    httpMethod: 'get',
+    httpPath: '/v2/follow_ups',
+  },
+  {
     clientCallName: 'client.incidentAlerts.list',
     fullyQualifiedName: 'incidentAlerts.list',
     httpMethod: 'get',
     httpPath: '/v2/incident_alerts',
   },
   {
-    clientCallName: 'client.incidentTimestamps.list',
-    fullyQualifiedName: 'incidentTimestamps.list',
-    httpMethod: 'get',
-    httpPath: '/v2/incident_timestamps',
-  },
-  {
     clientCallName: 'client.incidentTimestamps.retrieve',
     fullyQualifiedName: 'incidentTimestamps.retrieve',
     httpMethod: 'get',
     httpPath: '/v2/incident_timestamps/{id}',
+  },
+  {
+    clientCallName: 'client.incidentTimestamps.list',
+    fullyQualifiedName: 'incidentTimestamps.list',
+    httpMethod: 'get',
+    httpPath: '/v2/incident_timestamps',
   },
   {
     clientCallName: 'client.incidentUpdates.list',
@@ -677,22 +677,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/schedule_overrides',
   },
   {
-    clientCallName: 'client.schedules.list',
-    fullyQualifiedName: 'schedules.list',
-    httpMethod: 'get',
-    httpPath: '/v2/schedules',
-  },
-  {
     clientCallName: 'client.schedules.create',
     fullyQualifiedName: 'schedules.create',
     httpMethod: 'post',
     httpPath: '/v2/schedules',
-  },
-  {
-    clientCallName: 'client.schedules.delete',
-    fullyQualifiedName: 'schedules.delete',
-    httpMethod: 'delete',
-    httpPath: '/v2/schedules/{id}',
   },
   {
     clientCallName: 'client.schedules.retrieve',
@@ -707,10 +695,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/schedules/{id}',
   },
   {
-    clientCallName: 'client.users.list',
-    fullyQualifiedName: 'users.list',
+    clientCallName: 'client.schedules.list',
+    fullyQualifiedName: 'schedules.list',
     httpMethod: 'get',
-    httpPath: '/v2/users',
+    httpPath: '/v2/schedules',
+  },
+  {
+    clientCallName: 'client.schedules.delete',
+    fullyQualifiedName: 'schedules.delete',
+    httpMethod: 'delete',
+    httpPath: '/v2/schedules/{id}',
   },
   {
     clientCallName: 'client.users.retrieve',
@@ -719,22 +713,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/users/{id}',
   },
   {
-    clientCallName: 'client.workflows.list',
-    fullyQualifiedName: 'workflows.list',
+    clientCallName: 'client.users.list',
+    fullyQualifiedName: 'users.list',
     httpMethod: 'get',
-    httpPath: '/v2/workflows',
+    httpPath: '/v2/users',
   },
   {
     clientCallName: 'client.workflows.create',
     fullyQualifiedName: 'workflows.create',
     httpMethod: 'post',
     httpPath: '/v2/workflows',
-  },
-  {
-    clientCallName: 'client.workflows.destroy',
-    fullyQualifiedName: 'workflows.destroy',
-    httpMethod: 'delete',
-    httpPath: '/v2/workflows/{id}',
   },
   {
     clientCallName: 'client.workflows.retrieve',
@@ -746,6 +734,18 @@ export const sdkMethods: SdkMethod[] = [
     clientCallName: 'client.workflows.update',
     fullyQualifiedName: 'workflows.update',
     httpMethod: 'put',
+    httpPath: '/v2/workflows/{id}',
+  },
+  {
+    clientCallName: 'client.workflows.list',
+    fullyQualifiedName: 'workflows.list',
+    httpMethod: 'get',
+    httpPath: '/v2/workflows',
+  },
+  {
+    clientCallName: 'client.workflows.destroy',
+    fullyQualifiedName: 'workflows.destroy',
+    httpMethod: 'delete',
     httpPath: '/v2/workflows/{id}',
   },
 ];

@@ -15,20 +15,6 @@ import { path } from '../internal/utils/path';
  */
 export class AlertRoutes extends APIResource {
   /**
-   * List all alert routes in your account.
-   *
-   * @example
-   * ```ts
-   * const alertRoutes = await client.alertRoutes.list({
-   *   page_size: 25,
-   * });
-   * ```
-   */
-  list(query: AlertRouteListParams, options?: RequestOptions): APIPromise<AlertRouteListResponse> {
-    return this._client.get('/v2/alert_routes', { query, ...options });
-  }
-
-  /**
    * Create a new alert route in your account.
    *
    * @example
@@ -110,23 +96,6 @@ export class AlertRoutes extends APIResource {
    */
   create(body: AlertRouteCreateParams, options?: RequestOptions): APIPromise<AlertRouteCreateResponse> {
     return this._client.post('/v2/alert_routes', { body, ...options });
-  }
-
-  /**
-   * Delete an existing alert route in your account.
-   *
-   * @example
-   * ```ts
-   * await client.alertRoutes.delete(
-   *   '01FCNDV6P870EA6S7TK1DSYDG0',
-   * );
-   * ```
-   */
-  delete(id: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/v2/alert_routes/${id}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
   }
 
   /**
@@ -229,6 +198,37 @@ export class AlertRoutes extends APIResource {
     options?: RequestOptions,
   ): APIPromise<AlertRouteUpdateResponse> {
     return this._client.put(path`/v2/alert_routes/${id}`, { body, ...options });
+  }
+
+  /**
+   * List all alert routes in your account.
+   *
+   * @example
+   * ```ts
+   * const alertRoutes = await client.alertRoutes.list({
+   *   page_size: 25,
+   * });
+   * ```
+   */
+  list(query: AlertRouteListParams, options?: RequestOptions): APIPromise<AlertRouteListResponse> {
+    return this._client.get('/v2/alert_routes', { query, ...options });
+  }
+
+  /**
+   * Delete an existing alert route in your account.
+   *
+   * @example
+   * ```ts
+   * await client.alertRoutes.delete(
+   *   '01FCNDV6P870EA6S7TK1DSYDG0',
+   * );
+   * ```
+   */
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v2/alert_routes/${id}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -944,18 +944,6 @@ export namespace AlertRouteListResponse {
   }
 }
 
-export interface AlertRouteListParams {
-  /**
-   * Number of alert routes to return per page
-   */
-  page_size: number;
-
-  /**
-   * The ID of the last alert route on the previous page
-   */
-  after?: string;
-}
-
 export interface AlertRouteCreateParams {
   /**
    * Which alert sources should this alert route match?
@@ -1074,6 +1062,18 @@ export interface AlertRouteUpdateParams {
   updated_at?: string;
 }
 
+export interface AlertRouteListParams {
+  /**
+   * Number of alert routes to return per page
+   */
+  page_size: number;
+
+  /**
+   * The ID of the last alert route on the previous page
+   */
+  after?: string;
+}
+
 export declare namespace AlertRoutes {
   export {
     type AlertRoute as AlertRoute,
@@ -1099,8 +1099,8 @@ export declare namespace AlertRoutes {
     type AlertRouteRetrieveResponse as AlertRouteRetrieveResponse,
     type AlertRouteUpdateResponse as AlertRouteUpdateResponse,
     type AlertRouteListResponse as AlertRouteListResponse,
-    type AlertRouteListParams as AlertRouteListParams,
     type AlertRouteCreateParams as AlertRouteCreateParams,
     type AlertRouteUpdateParams as AlertRouteUpdateParams,
+    type AlertRouteListParams as AlertRouteListParams,
   };
 }

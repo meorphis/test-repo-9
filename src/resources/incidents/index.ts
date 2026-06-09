@@ -18,8 +18,8 @@ export {
   type IncidentCreateV2Response,
   type IncidentListV2Response,
   type IncidentRetrieveV2Response,
-  type IncidentListParams,
   type IncidentCreateParams,
-  type IncidentListV2Params,
+  type IncidentListParams,
   type IncidentCreateV2Params,
+  type IncidentListV2Params,
 } from './incidents';

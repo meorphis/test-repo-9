@@ -383,7 +383,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['INCIDENT_IO_14_BASE_URL'].
+   * Defaults to process.env['INCIDENT_IO_16_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -437,7 +437,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['INCIDENT_IO_14_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['INCIDENT_IO_16_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -450,9 +450,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Incident Io 14 API.
+ * API Client for interfacing with the Incident Io 16 API.
  */
-export class IncidentIo14 {
+export class IncidentIo16 {
   apiKey: string | null;
 
   baseURL: string;
@@ -468,10 +468,10 @@ export class IncidentIo14 {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Incident Io 14 API.
+   * API Client for interfacing with the Incident Io 16 API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['INCIDENT_IO_2_API_KEY'] ?? null]
-   * @param {string} [opts.baseURL=process.env['INCIDENT_IO_14_BASE_URL'] ?? https://api.incident.io] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['INCIDENT_IO_16_BASE_URL'] ?? https://api.incident.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -480,7 +480,7 @@ export class IncidentIo14 {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('INCIDENT_IO_14_BASE_URL'),
+    baseURL = readEnv('INCIDENT_IO_16_BASE_URL'),
     apiKey = readEnv('INCIDENT_IO_2_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
@@ -491,21 +491,21 @@ export class IncidentIo14 {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? IncidentIo14.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? IncidentIo16.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('INCIDENT_IO_14_LOG'), "process.env['INCIDENT_IO_14_LOG']", this) ??
+      parseLogLevel(readEnv('INCIDENT_IO_16_LOG'), "process.env['INCIDENT_IO_16_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
     this.#encoder = Opts.FallbackEncoder;
 
-    const customHeadersEnv = readEnv('INCIDENT_IO_14_CUSTOM_HEADERS');
+    const customHeadersEnv = readEnv('INCIDENT_IO_16_CUSTOM_HEADERS');
     if (customHeadersEnv) {
       const parsed: Record<string, string> = {};
       for (const line of customHeadersEnv.split('\n')) {
@@ -1057,10 +1057,10 @@ export class IncidentIo14 {
     }
   }
 
-  static IncidentIo14 = this;
+  static IncidentIo16 = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static IncidentIo14Error = Errors.IncidentIo14Error;
+  static IncidentIo16Error = Errors.IncidentIo16Error;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -1326,43 +1326,43 @@ export class IncidentIo14 {
   workflows: API.Workflows = new API.Workflows(this);
 }
 
-IncidentIo14.Actions = Actions;
-IncidentIo14.CustomFieldOptions = CustomFieldOptions;
-IncidentIo14.CustomFields = CustomFields;
-IncidentIo14.Identity = Identity;
-IncidentIo14.IncidentAttachments = IncidentAttachments;
-IncidentIo14.IncidentMemberships = IncidentMemberships;
-IncidentIo14.IncidentRelationships = IncidentRelationships;
-IncidentIo14.IncidentRoles = IncidentRoles;
-IncidentIo14.IncidentStatuses = IncidentStatuses;
-IncidentIo14.IncidentTypes = IncidentTypes;
-IncidentIo14.Incidents = Incidents;
-IncidentIo14.IPAllowlists = IPAllowlists;
-IncidentIo14.OpenAPIJson = OpenAPIJson;
-IncidentIo14.OpenAPIV3Json = OpenAPIV3Json;
-IncidentIo14.Severities = Severities;
-IncidentIo14.StatusPages = StatusPages;
-IncidentIo14.AlertAttributes = AlertAttributes;
-IncidentIo14.AlertEvents = AlertEvents;
-IncidentIo14.AlertRoutes = AlertRoutes;
-IncidentIo14.AlertSources = AlertSources;
-IncidentIo14.Alerts = Alerts;
-IncidentIo14.CatalogEntries = CatalogEntries;
-IncidentIo14.CatalogResources = CatalogResources;
-IncidentIo14.CatalogTypes = CatalogTypes;
-IncidentIo14.EscalationPaths = EscalationPaths;
-IncidentIo14.Escalations = Escalations;
-IncidentIo14.FollowUps = FollowUps;
-IncidentIo14.IncidentAlerts = IncidentAlerts;
-IncidentIo14.IncidentTimestamps = IncidentTimestamps;
-IncidentIo14.IncidentUpdates = IncidentUpdates;
-IncidentIo14.ScheduleEntries = ScheduleEntries;
-IncidentIo14.ScheduleOverrides = ScheduleOverrides;
-IncidentIo14.Schedules = Schedules;
-IncidentIo14.Users = Users;
-IncidentIo14.Workflows = Workflows;
+IncidentIo16.Actions = Actions;
+IncidentIo16.CustomFieldOptions = CustomFieldOptions;
+IncidentIo16.CustomFields = CustomFields;
+IncidentIo16.Identity = Identity;
+IncidentIo16.IncidentAttachments = IncidentAttachments;
+IncidentIo16.IncidentMemberships = IncidentMemberships;
+IncidentIo16.IncidentRelationships = IncidentRelationships;
+IncidentIo16.IncidentRoles = IncidentRoles;
+IncidentIo16.IncidentStatuses = IncidentStatuses;
+IncidentIo16.IncidentTypes = IncidentTypes;
+IncidentIo16.Incidents = Incidents;
+IncidentIo16.IPAllowlists = IPAllowlists;
+IncidentIo16.OpenAPIJson = OpenAPIJson;
+IncidentIo16.OpenAPIV3Json = OpenAPIV3Json;
+IncidentIo16.Severities = Severities;
+IncidentIo16.StatusPages = StatusPages;
+IncidentIo16.AlertAttributes = AlertAttributes;
+IncidentIo16.AlertEvents = AlertEvents;
+IncidentIo16.AlertRoutes = AlertRoutes;
+IncidentIo16.AlertSources = AlertSources;
+IncidentIo16.Alerts = Alerts;
+IncidentIo16.CatalogEntries = CatalogEntries;
+IncidentIo16.CatalogResources = CatalogResources;
+IncidentIo16.CatalogTypes = CatalogTypes;
+IncidentIo16.EscalationPaths = EscalationPaths;
+IncidentIo16.Escalations = Escalations;
+IncidentIo16.FollowUps = FollowUps;
+IncidentIo16.IncidentAlerts = IncidentAlerts;
+IncidentIo16.IncidentTimestamps = IncidentTimestamps;
+IncidentIo16.IncidentUpdates = IncidentUpdates;
+IncidentIo16.ScheduleEntries = ScheduleEntries;
+IncidentIo16.ScheduleOverrides = ScheduleOverrides;
+IncidentIo16.Schedules = Schedules;
+IncidentIo16.Users = Users;
+IncidentIo16.Workflows = Workflows;
 
-export declare namespace IncidentIo14 {
+export declare namespace IncidentIo16 {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
@@ -1390,9 +1390,9 @@ export declare namespace IncidentIo14 {
     type CustomFieldOptionRetrieveResponse as CustomFieldOptionRetrieveResponse,
     type CustomFieldOptionUpdateResponse as CustomFieldOptionUpdateResponse,
     type CustomFieldOptionListResponse as CustomFieldOptionListResponse,
-    type CustomFieldOptionListParams as CustomFieldOptionListParams,
     type CustomFieldOptionCreateParams as CustomFieldOptionCreateParams,
     type CustomFieldOptionUpdateParams as CustomFieldOptionUpdateParams,
+    type CustomFieldOptionListParams as CustomFieldOptionListParams,
   };
 
   export {
@@ -1409,8 +1409,8 @@ export declare namespace IncidentIo14 {
     type CustomFieldUpdateV1Response as CustomFieldUpdateV1Response,
     type CustomFieldUpdateV2Response as CustomFieldUpdateV2Response,
     type CustomFieldCreateV1Params as CustomFieldCreateV1Params,
-    type CustomFieldUpdateV1Params as CustomFieldUpdateV1Params,
     type CustomFieldCreateV2Params as CustomFieldCreateV2Params,
+    type CustomFieldUpdateV1Params as CustomFieldUpdateV1Params,
     type CustomFieldUpdateV2Params as CustomFieldUpdateV2Params,
   };
 
@@ -1421,8 +1421,8 @@ export declare namespace IncidentIo14 {
     type IncidentAttachment as IncidentAttachment,
     type IncidentAttachmentCreateResponse as IncidentAttachmentCreateResponse,
     type IncidentAttachmentListResponse as IncidentAttachmentListResponse,
-    type IncidentAttachmentListParams as IncidentAttachmentListParams,
     type IncidentAttachmentCreateParams as IncidentAttachmentCreateParams,
+    type IncidentAttachmentListParams as IncidentAttachmentListParams,
   };
 
   export {
@@ -1490,10 +1490,10 @@ export declare namespace IncidentIo14 {
     type IncidentCreateV2Response as IncidentCreateV2Response,
     type IncidentListV2Response as IncidentListV2Response,
     type IncidentRetrieveV2Response as IncidentRetrieveV2Response,
-    type IncidentListParams as IncidentListParams,
     type IncidentCreateParams as IncidentCreateParams,
-    type IncidentListV2Params as IncidentListV2Params,
+    type IncidentListParams as IncidentListParams,
     type IncidentCreateV2Params as IncidentCreateV2Params,
+    type IncidentListV2Params as IncidentListV2Params,
   };
 
   export {
@@ -1567,9 +1567,9 @@ export declare namespace IncidentIo14 {
     type AlertRouteRetrieveResponse as AlertRouteRetrieveResponse,
     type AlertRouteUpdateResponse as AlertRouteUpdateResponse,
     type AlertRouteListResponse as AlertRouteListResponse,
-    type AlertRouteListParams as AlertRouteListParams,
     type AlertRouteCreateParams as AlertRouteCreateParams,
     type AlertRouteUpdateParams as AlertRouteUpdateParams,
+    type AlertRouteListParams as AlertRouteListParams,
   };
 
   export {
@@ -1611,11 +1611,11 @@ export declare namespace IncidentIo14 {
     type CatalogEntryShowEntryV3Response as CatalogEntryShowEntryV3Response,
     type CatalogEntryUpdateEntryV2Response as CatalogEntryUpdateEntryV2Response,
     type CatalogEntryUpdateEntryV3Response as CatalogEntryUpdateEntryV3Response,
-    type CatalogEntryListEntriesV2Params as CatalogEntryListEntriesV2Params,
     type CatalogEntryCreateEntryV2Params as CatalogEntryCreateEntryV2Params,
-    type CatalogEntryUpdateEntryV2Params as CatalogEntryUpdateEntryV2Params,
-    type CatalogEntryListEntriesV3Params as CatalogEntryListEntriesV3Params,
     type CatalogEntryCreateEntryV3Params as CatalogEntryCreateEntryV3Params,
+    type CatalogEntryListEntriesV2Params as CatalogEntryListEntriesV2Params,
+    type CatalogEntryListEntriesV3Params as CatalogEntryListEntriesV3Params,
+    type CatalogEntryUpdateEntryV2Params as CatalogEntryUpdateEntryV2Params,
     type CatalogEntryUpdateEntryV3Params as CatalogEntryUpdateEntryV3Params,
   };
 
@@ -1656,8 +1656,8 @@ export declare namespace IncidentIo14 {
     type EscalationCreateResponse as EscalationCreateResponse,
     type EscalationRetrieveResponse as EscalationRetrieveResponse,
     type EscalationListResponse as EscalationListResponse,
-    type EscalationListParams as EscalationListParams,
     type EscalationCreateParams as EscalationCreateParams,
+    type EscalationListParams as EscalationListParams,
   };
 
   export {
@@ -1714,9 +1714,9 @@ export declare namespace IncidentIo14 {
     type ScheduleRetrieveResponse as ScheduleRetrieveResponse,
     type ScheduleUpdateResponse as ScheduleUpdateResponse,
     type ScheduleListResponse as ScheduleListResponse,
-    type ScheduleListParams as ScheduleListParams,
     type ScheduleCreateParams as ScheduleCreateParams,
     type ScheduleUpdateParams as ScheduleUpdateParams,
+    type ScheduleListParams as ScheduleListParams,
   };
 
   export {

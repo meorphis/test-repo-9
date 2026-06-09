@@ -1,40 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import IncidentIo14 from 'incident-io-2';
+import IncidentIo16 from 'incident-io-2';
 
-const client = new IncidentIo14({
+const client = new IncidentIo16({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource incidents', () => {
-  // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.incidents.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.incidents.list(
-        {
-          after: '01FDAG4SAP5TYPT98WGR2N7W91',
-          page_size: 25,
-          status: ['declined'],
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(IncidentIo14.NotFoundError);
-  });
-
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.incidents.create({ idempotency_key: 'alert-uuid', visibility: 'public' });
@@ -103,8 +76,8 @@ describe('resource incidents', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('listV2', async () => {
-    const responsePromise = client.incidents.listV2();
+  test.skip('list', async () => {
+    const responsePromise = client.incidents.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -115,34 +88,18 @@ describe('resource incidents', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('listV2: request options and params are passed correctly', async () => {
+  test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.incidents.listV2(
+      client.incidents.list(
         {
           after: '01FDAG4SAP5TYPT98WGR2N7W91',
-          created_at: { 'created_at[gte]': ['2024-05-01'] },
-          custom_field: {
-            '01GBSQF3FHF7FWZQNWGHAVQ804': {
-              one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804', '01ET65M7ZARSFZ6TFDFVQDN9AA'],
-            },
-          },
-          incident_role: {
-            '01GBSQF3FHF7FWZQNWGHAVQ804': {
-              one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804', '01ET65M7ZARSFZ6TFDFVQDN9AA'],
-            },
-          },
-          incident_type: { one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804'] },
-          mode: { one_of: ['retrospective'] },
           page_size: 25,
-          severity: { one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804'] },
-          status: { one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804'] },
-          status_category: { one_of: ['active'] },
-          updated_at: { 'updated_at[gte]': ['2024-05-01'] },
+          status: ['declined'],
         },
         { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(IncidentIo14.NotFoundError);
+    ).rejects.toThrow(IncidentIo16.NotFoundError);
   });
 
   // Mock server tests are disabled
@@ -208,6 +165,49 @@ describe('resource incidents', () => {
       slack_team_id: 'T02A1FSLE8J',
       summary: "Our database is really really sad, and we don't know why yet.",
     });
+  });
+
+  // Mock server tests are disabled
+  test.skip('listV2', async () => {
+    const responsePromise = client.incidents.listV2();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('listV2: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.incidents.listV2(
+        {
+          after: '01FDAG4SAP5TYPT98WGR2N7W91',
+          created_at: { 'created_at[gte]': ['2024-05-01'] },
+          custom_field: {
+            '01GBSQF3FHF7FWZQNWGHAVQ804': {
+              one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804', '01ET65M7ZARSFZ6TFDFVQDN9AA'],
+            },
+          },
+          incident_role: {
+            '01GBSQF3FHF7FWZQNWGHAVQ804': {
+              one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804', '01ET65M7ZARSFZ6TFDFVQDN9AA'],
+            },
+          },
+          incident_type: { one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804'] },
+          mode: { one_of: ['retrospective'] },
+          page_size: 25,
+          severity: { one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804'] },
+          status: { one_of: ['01GBSQF3FHF7FWZQNWGHAVQ804'] },
+          status_category: { one_of: ['active'] },
+          updated_at: { 'updated_at[gte]': ['2024-05-01'] },
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(IncidentIo16.NotFoundError);
   });
 
   // Mock server tests are disabled

@@ -1,44 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import IncidentIo14 from 'incident-io-2';
+import IncidentIo16 from 'incident-io-2';
 
-const client = new IncidentIo14({
+const client = new IncidentIo16({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource escalations', () => {
-  // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.escalations.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.escalations.list(
-        {
-          after: '01FDAG4SAP5TYPT98WGR2N7W91',
-          alert: { one_of: ['01J479052SSQAA4531ASFPR3BF'] },
-          created_at: { gte: ['2021-08-17'] },
-          escalation_path: { one_of: ['01J479052SSQAA4531ASFPR3BF'] },
-          page_size: 25,
-          status: { one_of: ['triggered'] },
-          updated_at: { gte: ['2021-08-17'] },
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(IncidentIo14.NotFoundError);
-  });
-
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.escalations.create({
@@ -75,5 +44,36 @@ describe('resource escalations', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('list', async () => {
+    const responsePromise = client.escalations.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.escalations.list(
+        {
+          after: '01FDAG4SAP5TYPT98WGR2N7W91',
+          alert: { one_of: ['01J479052SSQAA4531ASFPR3BF'] },
+          created_at: { gte: ['2021-08-17'] },
+          escalation_path: { one_of: ['01J479052SSQAA4531ASFPR3BF'] },
+          page_size: 25,
+          status: { one_of: ['triggered'] },
+          updated_at: { gte: ['2021-08-17'] },
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(IncidentIo16.NotFoundError);
   });
 });
